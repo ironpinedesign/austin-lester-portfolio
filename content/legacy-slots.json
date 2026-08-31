@@ -1,0 +1,274 @@
+[
+  {
+    "old": "truckvault-3d-configurator:section:2:0",
+    "new": "project.truckvault_configurator.strategy.primary_visual"
+  },
+  {
+    "old": "truckvault-3d-configurator:section:4:0",
+    "new": "project.truckvault_configurator.work.primary_visual"
+  },
+  {
+    "old": "truckvault-3d-configurator:section:4:1",
+    "new": "project.truckvault_configurator.work.supporting_visual"
+  },
+  {
+    "old": "truckvault-3d-configurator:section:4:2",
+    "new": "project.truckvault_configurator.work.detail_visual"
+  },
+  {
+    "old": "truckvault-3d-configurator:cover",
+    "new": "project.truckvault_configurator.opening.hero"
+  },
+  {
+    "old": "truckvault-3d-configurator:thumbnail",
+    "new": "work.index.truckvault_configurator.image"
+  },
+  {
+    "old": "truckvault-3d-configurator:thumbnail",
+    "new": "home.selected_work.truckvault_configurator.image"
+  },
+  {
+    "old": "kryptek-identity-system:section:2:0",
+    "new": "project.kryptek_identity.strategy.primary_visual"
+  },
+  {
+    "old": "kryptek-identity-system:section:4:0",
+    "new": "project.kryptek_identity.work.primary_visual"
+  },
+  {
+    "old": "kryptek-identity-system:section:4:1",
+    "new": "project.kryptek_identity.work.supporting_visual"
+  },
+  {
+    "old": "kryptek-identity-system:section:4:2",
+    "new": "project.kryptek_identity.work.detail_visual"
+  },
+  {
+    "old": "kryptek-identity-system:cover",
+    "new": "project.kryptek_identity.opening.hero"
+  },
+  {
+    "old": "kryptek-identity-system:thumbnail",
+    "new": "work.index.kryptek_identity.image"
+  },
+  {
+    "old": "kryptek-identity-system:thumbnail",
+    "new": "home.selected_work.kryptek_identity.image"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:section:2:0",
+    "new": "project.kryptek_ecommerce.strategy.primary_visual"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:section:4:0",
+    "new": "project.kryptek_ecommerce.work.primary_visual"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:section:4:1",
+    "new": "project.kryptek_ecommerce.work.supporting_visual"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:section:4:2",
+    "new": "project.kryptek_ecommerce.work.detail_visual"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:cover",
+    "new": "project.kryptek_ecommerce.opening.hero"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:thumbnail",
+    "new": "work.index.kryptek_ecommerce.image"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:thumbnail",
+    "new": "home.selected_work.kryptek_ecommerce.image"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:section:4:0",
+    "new": "home.selected_work.kryptek_ecommerce.supporting_image"
+  },
+  {
+    "old": "fieldcraft-survival:section:2:0",
+    "new": "project.fieldcraft_survival.strategy.primary_visual"
+  },
+  {
+    "old": "fieldcraft-survival:section:3:0",
+    "new": "project.fieldcraft_survival.execution.primary_visual"
+  },
+  {
+    "old": "fieldcraft-survival:section:4:0",
+    "new": "project.fieldcraft_survival.work.primary_visual"
+  },
+  {
+    "old": "fieldcraft-survival:section:4:1",
+    "new": "project.fieldcraft_survival.work.supporting_visual"
+  },
+  {
+    "old": "fieldcraft-survival:section:4:2",
+    "new": "project.fieldcraft_survival.work.detail_visual"
+  },
+  {
+    "old": "fieldcraft-survival:cover",
+    "new": "project.fieldcraft_survival.opening.hero"
+  },
+  {
+    "old": "fieldcraft-survival:thumbnail",
+    "new": "work.index.fieldcraft_survival.image"
+  },
+  {
+    "old": "fieldcraft-survival:thumbnail",
+    "new": "home.selected_work.fieldcraft_survival.image"
+  },
+  {
+    "old": "flyway-camouflage-launch:section:2:0",
+    "new": "project.flyway.strategy.primary_visual"
+  },
+  {
+    "old": "flyway-camouflage-launch:section:4:0",
+    "new": "project.flyway.work.primary_visual"
+  },
+  {
+    "old": "flyway-camouflage-launch:section:4:1",
+    "new": "project.flyway.work.supporting_visual"
+  },
+  {
+    "old": "flyway-camouflage-launch:section:4:2",
+    "new": "project.flyway.work.detail_visual"
+  },
+  {
+    "old": "flyway-camouflage-launch:cover",
+    "new": "project.flyway.opening.hero"
+  },
+  {
+    "old": "flyway-camouflage-launch:thumbnail",
+    "new": "work.index.flyway.image"
+  },
+  {
+    "old": "flyway-camouflage-launch:thumbnail",
+    "new": "home.selected_work.flyway.image"
+  },
+  {
+    "old": "2024-big-game-guide:section:2:0",
+    "new": "project.big_game_guide.strategy.primary_visual"
+  },
+  {
+    "old": "2024-big-game-guide:section:4:0",
+    "new": "project.big_game_guide.work.primary_visual"
+  },
+  {
+    "old": "2024-big-game-guide:section:4:1",
+    "new": "project.big_game_guide.work.supporting_visual"
+  },
+  {
+    "old": "2024-big-game-guide:section:4:2",
+    "new": "project.big_game_guide.work.detail_visual"
+  },
+  {
+    "old": "2024-big-game-guide:cover",
+    "new": "project.big_game_guide.opening.hero"
+  },
+  {
+    "old": "2024-big-game-guide:thumbnail",
+    "new": "work.index.big_game_guide.image"
+  },
+  {
+    "old": "2024-big-game-guide:thumbnail",
+    "new": "home.selected_work.big_game_guide.image"
+  },
+  {
+    "old": "kryptek-paid-media-system:section:2:0",
+    "new": "project.kryptek_paid_media.strategy.primary_visual"
+  },
+  {
+    "old": "kryptek-paid-media-system:section:4:0",
+    "new": "project.kryptek_paid_media.work.primary_visual"
+  },
+  {
+    "old": "kryptek-paid-media-system:section:4:1",
+    "new": "project.kryptek_paid_media.work.supporting_visual"
+  },
+  {
+    "old": "kryptek-paid-media-system:section:4:2",
+    "new": "project.kryptek_paid_media.work.detail_visual"
+  },
+  {
+    "old": "kryptek-paid-media-system:cover",
+    "new": "project.kryptek_paid_media.opening.hero"
+  },
+  {
+    "old": "kryptek-paid-media-system:thumbnail",
+    "new": "work.index.kryptek_paid_media.image"
+  },
+  {
+    "old": "kryptek-paid-media-system:thumbnail",
+    "new": "home.selected_work.kryptek_paid_media.image"
+  },
+  {
+    "old": "the-public-standard:section:2:0",
+    "new": "project.public_standard.strategy.primary_visual"
+  },
+  {
+    "old": "the-public-standard:section:3:0",
+    "new": "project.public_standard.execution.primary_visual"
+  },
+  {
+    "old": "the-public-standard:section:4:0",
+    "new": "project.public_standard.work.primary_visual"
+  },
+  {
+    "old": "the-public-standard:section:4:1",
+    "new": "project.public_standard.work.supporting_visual"
+  },
+  {
+    "old": "the-public-standard:section:4:2",
+    "new": "project.public_standard.work.detail_visual"
+  },
+  {
+    "old": "the-public-standard:cover",
+    "new": "project.public_standard.opening.hero"
+  },
+  {
+    "old": "the-public-standard:thumbnail",
+    "new": "work.index.public_standard.image"
+  },
+  {
+    "old": "the-public-standard:thumbnail",
+    "new": "home.selected_work.public_standard.image"
+  },
+  {
+    "old": "kryptek-merchandise:section:2:0",
+    "new": "project.kryptek_merchandise.strategy.primary_visual"
+  },
+  {
+    "old": "kryptek-merchandise:section:4:0",
+    "new": "project.kryptek_merchandise.work.primary_visual"
+  },
+  {
+    "old": "kryptek-merchandise:section:4:1",
+    "new": "project.kryptek_merchandise.work.supporting_visual"
+  },
+  {
+    "old": "kryptek-merchandise:section:4:2",
+    "new": "project.kryptek_merchandise.work.detail_visual"
+  },
+  {
+    "old": "kryptek-merchandise:cover",
+    "new": "project.kryptek_merchandise.opening.hero"
+  },
+  {
+    "old": "kryptek-merchandise:thumbnail",
+    "new": "work.index.kryptek_merchandise.image"
+  },
+  {
+    "old": "kryptek-merchandise:thumbnail",
+    "new": "home.selected_work.kryptek_merchandise.image"
+  },
+  {
+    "old": "truckvault-3d-configurator:cover",
+    "new": "home.hero.image"
+  },
+  {
+    "old": "kryptek-ecommerce-content-engine:thumbnail",
+    "new": "home.hero.detail_image"
+  }
+]

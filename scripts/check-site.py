@@ -41,7 +41,8 @@ req('/api/studio/media','POST',b'not an image',extra={'Content-Type':'image/png'
 req('/api/studio/media','POST',b'x',signed=False,extra={'Content-Type':'image/png'},expected=401)
 png=base64.b64decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j0ioAAAAASUVORK5CYII=')
 result,_=req('/api/studio/media','POST',png,extra={'Content-Type':'image/png','X-Filename':'integration-test.png'},expected=201)
-mid=json.loads(result)['id'];slot=projects[0]['slug']+':cover'
+old_placements=json.loads(req('/api/studio/media')[0])['placements']
+mid=json.loads(result)['id'];slot='project.'+projects[0]['content_id']+'.opening.hero'
 try:
  req('/api/media/'+mid,signed=False,expected=404)
  payload,_=req('/api/media/'+mid);assert payload==png
@@ -59,6 +60,8 @@ try:
  req('/api/studio/settings','PUT',{'linkedin':'javascript:alert(1)'},expected=400)
  req('/api/studio/media','DELETE',{'id':mid},extra={'Origin':'https://wrong.example'},expected=403)
 finally:
+ old=next((p['media_id'] for p in old_placements if p['slot']==slot),None)
+ req('/api/studio/placements','PUT',{'slot':slot,'mediaId':old})
  req('/api/studio/media','DELETE',{'id':mid})
  req('/api/media/'+mid,expected=404)
 print('PASS: 9 case studies, portfolio routes, owner setup, upload validation, private/public media, range requests, placements, descriptions, contact validation, deletion and origin protection.')

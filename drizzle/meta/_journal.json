@@ -8,6 +8,13 @@
       "when": 1788137399071,
       "tag": "0000_silly_loners",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788160596126,
+      "tag": "0001_tan_purifiers",
+      "breakpoints": true
     }
   ]
 }
