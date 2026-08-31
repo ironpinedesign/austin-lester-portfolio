@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
+import Link from '../components/SiteLink';
 import {getContent} from '../../lib/content';
 import {approachKeys,capabilityKeys} from '../../content/site-copy';
 import {InlineCopy,ProseCopy} from '../components/Copy';

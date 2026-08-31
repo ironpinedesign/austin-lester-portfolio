@@ -1,6 +1,6 @@
 'use client';
 import {useEffect,useState,useRef} from 'react';
-import Link from 'next/link';
+import Link from '../../components/SiteLink';
 import AdminNav from '../admin-nav';
 import type {Preview} from '../../../lib/content-csv';
 import type {Entry} from '../../../lib/content-registry';

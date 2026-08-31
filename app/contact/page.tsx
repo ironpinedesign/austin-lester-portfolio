@@ -1,5 +1,5 @@
 import type {Metadata} from 'next';
-import Link from 'next/link';
+import Link from '../components/SiteLink';
 import {getContent} from '../../lib/content';
 import {InlineCopy} from '../components/Copy';
 export const dynamic='force-dynamic';

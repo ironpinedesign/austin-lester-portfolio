@@ -1,2 +1,2 @@
-import Link from 'next/link';
+import Link from '../components/SiteLink';
 export default function AdminNav({active}:{active:string}){return <nav className="admin-nav" aria-label="Portfolio administration">{[['media','/studio','Media Studio'],['content','/studio/content','Content / CSV'],['map','/studio/map','Site Map']].map(([key,href,label])=><Link key={key} href={href} aria-current={active===key?'page':undefined}>{label}</Link>)}</nav>}

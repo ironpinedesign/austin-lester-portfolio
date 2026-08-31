@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from './SiteLink';
 import type { Project } from '../../lib/projects';
 import type { MediaMap } from '../../lib/storage';
 import Media from './Media';

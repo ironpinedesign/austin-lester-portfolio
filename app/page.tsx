@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from './components/SiteLink';
 import {getContent} from '../lib/content';
 import {InlineCopy} from './components/Copy';
 import { mediaMap } from '../lib/storage';

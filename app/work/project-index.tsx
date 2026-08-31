@@ -1,6 +1,6 @@
 'use client';
 import {useState,useEffect} from 'react';
-import Link from 'next/link';
+import Link from '../components/SiteLink';
 import type {Project} from '../../lib/projects';
 import type {MediaMap} from '../../lib/storage';
 import Media from '../components/Media';

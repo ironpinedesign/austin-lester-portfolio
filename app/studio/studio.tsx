@@ -1,6 +1,6 @@
 'use client';
 import {useState,useEffect,useRef} from 'react';
-import Link from 'next/link';
+import Link from '../components/SiteLink';
 import AdminNav from './admin-nav';
 import type {MediaSlot} from '../../lib/projects';
 import type {MediaRecord,SiteSettings} from '../../lib/storage';
