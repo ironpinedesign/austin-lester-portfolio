@@ -15,3 +15,11 @@ The media API requires the trusted Sites identity headers and the stored owner I
 Use the existing pnpm scripts (`dev`, `build`, `db:generate`). Local D1/R2 data is in the ignored Wrangler state. Local test identity is not a production identity. The schema lives in `db/schema.ts`; migrations are checked into `drizzle/`. Source content is never loaded from Base44 at runtime.
 
 All project visuals intentionally remain placeholders. No generated project artwork or social image is included. Detail-page metadata uses the actual project title and thesis, with no inherited unrelated image.
+
+## Drag-and-drop uploads
+
+After connecting your owner account, drag files from Finder anywhere in the Media Studio. A page overlay marks the drop target. Browsers with the File and Directory Entries API also accept folders, including nested folders; otherwise select files inside the folder or use Browse files. Only the dropped selection is read. Folder paths are not retained: the library stays flat, so use unique descriptive filenames.
+
+Each batch accepts up to 500 files. Hidden files are ignored during drop collection; unsupported, empty, oversized, unreadable, or failed uploads are listed without stopping the remaining valid files. Wait for the current batch to finish, keep the page open, and retry only failed items. The server verifies file signatures and the existing 25 MB limit; upload does not assign or publish media automatically. A timed-out request may still finish on the server, so check the refreshed library before retrying.
+
+Folder traversal follows MDN's File and Directory Entries guidance and reads batches until empty: https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry

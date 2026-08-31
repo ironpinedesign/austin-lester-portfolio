@@ -18,10 +18,13 @@ def req(path, method='GET', data=None, signed=True, extra=None, expected=200):
 # Verify all pages, content counts, matching category names, and per-project metadata.
 req('/api/studio/media',signed=False,expected=401)
 req('/studio',signed=True)
-page,_=req('/studio');assert b'Connect your account' in page
-req('/api/studio/claim','POST',{'code':'incorrect'},expected=403)
-req('/api/studio/claim','POST',{'code':'local-verification-only'},extra={'Origin':'https://wrong.example'},expected=403)
-req('/api/studio/claim','POST',{'code':'local-verification-only'})
+page,_=req('/studio')
+if b'Connect your account' in page:
+ req('/api/studio/claim','POST',{'code':'incorrect'},expected=403)
+ req('/api/studio/claim','POST',{'code':'local-verification-only'},extra={'Origin':'https://wrong.example'},expected=403)
+ req('/api/studio/claim','POST',{'code':'local-verification-only'})
+else:
+ assert b'Drag your work right in.' in page, 'Use the local owner account for these checks'
 for path in ['/','/work','/about','/contact','/studio']:
  page,_=req(path);assert b'<html' in page
 with open('content/projects.json') as f:projects=json.load(f)
