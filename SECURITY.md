@@ -70,4 +70,10 @@ Passed: TypeScript, production build, Drizzle migration compatibility check, sem
 
 The public stylesheet, Home/About/Contact/Work/case-study layout source, SiteLink, hosting association, and database schema match the baseline. Fourteen generated public JavaScript files were checked for the previously bundled complete case-study source text; it was absent. These checks support the scoped changes; they do not replace the pending anonymous production launch checks above.
 
-GitHub repository creation and repository-level security switches require the intended account to be resolved. Do not make the repository public to obtain optional scanning features. Once created privately, enable available dependency alerts/security updates and secret scanning without adding deployment automation or granting broader access without the owner's authorization.
+## GitHub repository controls
+
+The owner selected **ironpinedesign** exclusively. The private repository is [ironpinedesign/austin-lester-portfolio](https://github.com/ironpinedesign/austin-lester-portfolio); no source or repository changes were made under vaultbuilderstudio.
+
+Verified enabled in repository settings: dependency graph, Dependabot vulnerability alerts, Dependabot security-update pull requests, and dependency malware alerts. Automatic merging and deployment were not enabled. Secret scanning and code scanning were not offered in this private repository's available security settings; they are not claimed as enabled. Do not make the source public or purchase an upgrade just to obtain optional scanning.
+
+The prepared `main` history separates the published-site baseline (`44aa42ce1ff093907b169726158d0d83ace02cb3`) from the reviewed security changes (`9fed59c6716792ff65a2a0bbf391470458cf9da2`). Git transport must be authenticated as ironpinedesign before uploading this history. Creating an empty repository is not itself a completed source backup; verify the remote branch matches the local commit after pushing.
