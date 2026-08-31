@@ -38,3 +38,25 @@ next-env.d.ts
 /work/
 !.env.example
 *.tsbuildinfo
+
+# Local secrets, runtime data, and private backup artifacts
+.dev.vars
+.dev.vars.*
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.log
+*.bundle
+/backups/
+/private/
+/tmp/
+/.cache/
+/.idea/
+/.vscode/
+*.swp
+*.swo
+Thumbs.db
