@@ -1,0 +1,1308 @@
+[
+  {
+    "title": "TruckVault 3D Configurator",
+    "slug": "truckvault-3d-configurator",
+    "project_number": "01",
+    "subtitle": "Turning a complex product system into an interactive 3D experience",
+    "client": "TruckVault",
+    "year": 2026,
+    "role": [
+      "Creative Technologist",
+      "Lead 3D Technical Artist",
+      "UX / Interaction"
+    ],
+    "thesis": "Rebuilding a complex product-selection process as an interactive 3D experience designed to make configuration clearer, more visual, and easier to understand.",
+    "summary": "TruckVault products are highly configurable, but that flexibility creates a communication challenge: customers need to understand fit, finishes, accessories, and product combinations before committing to a build. The configurator translated those choices into a real-time 3D experience while establishing a scalable production pipeline for future models and variants.",
+    "strategic_intent": "Creative Technology & Interactive",
+    "discipline_tags": [
+      "Creative & Art Direction",
+      "3D Technical Art",
+      "UX/UI",
+      "Interaction Design",
+      "Systems Architecture",
+      "Asset Pipeline"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": true,
+    "featured_order": 1,
+    "index_order": 1,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "Production system",
+        "value": "Reusable",
+        "kind": "outcome"
+      },
+      {
+        "label": "Runtime assets",
+        "value": "Optimized",
+        "kind": "outcome"
+      },
+      {
+        "label": "Pipeline",
+        "value": "Validated",
+        "kind": "outcome"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "The product was configurable. The experience wasn't.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "TruckVault builds storage systems with a high degree of configuration. Drawer layouts, vehicle applications, finishes, accessories, dimensions, and product combinations can change substantially from one build to the next.\n\nThat flexibility is a strength of the product, but it creates a communication problem. Static photography and conventional product pages can show individual configurations, but they cannot easily help a customer understand how all of those decisions come together before the product is built."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The more configurable the product became, the harder it was to explain with static imagery.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "right",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Make configuration visible.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy",
+        "body": "The answer was not simply to create more renders. The experience needed to let customers see configuration decisions as they made them.\n\nThe strategy was to build a real-time 3D system that connected product logic with visual feedback. Instead of asking customers to mentally assemble options from separate images and descriptions, the configurator could show the product taking shape around their selections.\n\nThat meant solving two problems at once: create a clear customer-facing experience and establish a production system capable of supporting an expanding catalog of 3D assets."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Build the pipeline, not just the model.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "System",
+        "body": "A configurator at this scale could not depend on one-off asset preparation. The 3D content needed consistent rules for geometry, materials, naming, optimization, export, and runtime behavior.\n\nThe workflow standardized how assets moved from source geometry through material preparation, optimization, export, and validation so future models and variants could enter the system predictably."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "From system to experience.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Execution",
+        "body": "With the production framework established, the work shifted from building isolated assets to assembling a coherent interactive product experience. Models, materials, variants, and configuration logic could now function as parts of the same system."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A reusable system, not a one-off experience.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Outcome",
+        "body": "The result is more than a set of 3D product models. The configurator is supported by a reusable production framework designed to accommodate new products, material variations, configuration logic, and continued expansion."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "Kryptek Identity System",
+    "slug": "kryptek-identity-system",
+    "project_number": "02",
+    "subtitle": "Rebuilding a fragmented identity into an operating brand system",
+    "client": "Kryptek Outdoor Group",
+    "year": 2023,
+    "role": [
+      "Brand Strategist",
+      "Creative Director",
+      "Art Director",
+      "Designer",
+      "Copywriter"
+    ],
+    "thesis": "Restoring and refining Kryptek's identity so a recognized camouflage brand could speak, look, and behave consistently across every customer and partner touchpoint.",
+    "summary": "Kryptek had a distinctive proprietary pattern and strong industry recognition, but its identity assets had accumulated inconsistencies. Several logos lacked authoritative source artwork, proportions varied, and rules for voice, color, typography, icons, and application were not consolidated. The work rebuilt the master assets, refined the visual hierarchy, and established an official operating system for the brand.",
+    "strategic_intent": "Identity & Design Systems",
+    "discipline_tags": [
+      "Brand & Narrative Strategy",
+      "Creative & Art Direction",
+      "Brand Strategy",
+      "Logo Refinement",
+      "Brand Guidelines",
+      "Voice & Tone",
+      "Color & Typography",
+      "Iconography",
+      "Motion Identity"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": true,
+    "featured_order": 2,
+    "index_order": 2,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "Brand guidelines",
+        "value": "Established",
+        "kind": "outcome"
+      },
+      {
+        "label": "Logo master system",
+        "value": "Restored",
+        "kind": "outcome"
+      },
+      {
+        "label": "Cross-channel consistency",
+        "value": "Improved",
+        "kind": "outcome"
+      },
+      {
+        "label": "Brand positioning",
+        "value": "Refined",
+        "kind": "outcome"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A recognized pattern without a unified identity system.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Kryptek entered the work with strong recognition in the hunting and outdoor industry, a proprietary camouflage pattern, and years of accumulated brand assets. As the company expanded across apparel, ecommerce, retail, partnerships, print, and media, those assets were being interpreted in different ways.\n\nSeveral marks had degraded through repeated export and reuse, proportions varied, and application rules were not consistently defined. Voice, typography, color, iconography, photography, motion, and partner use also needed a shared standard. The challenge was to protect existing brand equity while rebuilding reliable masters and turning scattered creative decisions into one usable system."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "A brand system earns trust when every expression feels related—even when the medium, audience, and partner change.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "right",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Preserve recognition. Correct the system. Define the rules.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy / Approach",
+        "body": "The approach began with an audit of the existing identity ecosystem, followed by reconstruction and refinement of the core logo family. From there, the work established brand values, character, promise, story, vision, target audience, and voice alongside practical standards for color, typography, sizing, placement, iconography, and visual application.\n\nThis paired narrative strategy with production-ready design guidance so the brand could operate consistently across internal teams, vendors, retailers, and partners."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "From master artwork to a complete brand ecosystem.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "System",
+        "body": "The system included restored horizontal, vertical, composite, and mark-only logo files; official colors; type and hierarchy guidance; product-technology and layering icons; brand voice and manifesto content; topo-line and graphic elements; photo presets; motion-logo applications; and rollout across ecommerce, catalogs, advertising, merchandise, and partner creative."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Identity, guidance, and application.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Work",
+        "body": "A single system carried across identity, brand guidance, digital, campaign, product education, motion, merchandise, and partner applications."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A brand system that could be used, governed, and extended.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Outcome",
+        "body": "The work established official guidance and a reliable asset foundation, improved consistency across the branding ecosystem, supported clearer market positioning, and gave future customer, retailer, and partnership communication a shared voice and visual standard."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Role and contribution.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Role & Credits",
+        "body": "I owned the brand strategy, creative direction, art direction, design, layout, and copywriting behind the repositioning and identity system. I rebuilt and refined the asset family, authored the narrative and usage guidance, and directed how the system carried into customer-facing and partner work. Final production and rollout involved Kryptek's internal team and external vendors and partners."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "Kryptek E-Commerce & Content Engine",
+    "slug": "kryptek-ecommerce-content-engine",
+    "project_number": "03",
+    "subtitle": "Designing the storefront and the one-operator production system behind it",
+    "client": "Kryptek Outdoor Group",
+    "year": 2023,
+    "role": [
+      "Creative Director",
+      "Art Director",
+      "UX/UI Lead",
+      "Photographer",
+      "Production Lead",
+      "Editor"
+    ],
+    "thesis": "Rebuilding the ecommerce experience and creating a custom multicamera content workflow capable of capturing Kryptek's full garment, pattern, and colorway catalog with one camera operator.",
+    "summary": "The ecommerce rebuild required more than a new visual layer. It needed a complete product-content foundation. I led the site's creative and art direction, layout, and UX/UI while planning and directing a large studio shoot across garments, patterns, colorways, models, body types, angles, and focal lengths. A custom Capture One-based tethering workflow synchronized multiple cameras so one operator could trigger and monitor the system efficiently.",
+    "strategic_intent": "Creative Technology & Interactive",
+    "discipline_tags": [
+      "Photography & Film",
+      "Creative & Art Direction",
+      "UX/UI",
+      "E-Commerce",
+      "Creative Operations",
+      "Multicamera Capture",
+      "Capture One Workflow",
+      "Product Photography",
+      "Production Direction",
+      "Asset Systems"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": true,
+    "featured_order": 3,
+    "index_order": 3,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "Product-family masters",
+        "value": "106",
+        "kind": "metric"
+      },
+      {
+        "label": "Final shoot selects",
+        "value": "1,494",
+        "kind": "metric"
+      },
+      {
+        "label": "Product-library files",
+        "value": "2,047",
+        "kind": "metric"
+      },
+      {
+        "label": "Capture completion",
+        "value": "100%",
+        "kind": "metric"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A new storefront needed a new content foundation.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Kryptek's ecommerce experience had to represent a large technical-apparel catalog across garments, proprietary patterns, colorways, product families, and different body types. Existing imagery and page structures were not consistent enough to support a unified, product-led shopping experience.\n\nThe production also required repeatable front, back, profile, detail, and alternate focal-length coverage across a large assortment while keeping framing, light, color, styling, and naming consistent. The storefront and the production system behind it had to be designed together."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The website could only be as coherent as the production system feeding it.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "left",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Design the experience and the capture architecture as one system.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy / Approach",
+        "body": "The strategy connected the site's visual hierarchy, UX/UI, page layouts, product-information needs, and responsive imagery to a tightly planned production matrix. Studio location, model casting, body-type coverage, garment sequencing, camera positions, focal lengths, tethering, selects, editing, naming, and handoff were organized around the requirements of the final ecommerce experience."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "One click. Multiple angles. One operator.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Execution",
+        "body": "I designed a custom Capture One-based tethering workflow that orchestrated multiple cameras and captured several angles and focal lengths from a single trigger. The setup let one camera operator run the capture system while monitoring results in real time. I also booked and managed the studio, cast models for the required body types, directed the shoot, photographed the catalog, and led editing and asset organization."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Storefront, product library, and production evidence.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Work",
+        "body": "Responsive storefront layouts, final product imagery, flatlays, lifestyle photography, library organization, and behind-the-scenes production views show the system from capture through the customer-facing experience."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A shipped storefront supported by a reusable content engine.",
+        "background": "dark",
+        "metrics": [
+          {
+            "value": "106",
+            "label": "Product-family masters"
+          },
+          {
+            "value": "1,494",
+            "label": "Final selects"
+          },
+          {
+            "value": "2,047",
+            "label": "Library files"
+          },
+          {
+            "value": "100%",
+            "label": "Capture completion"
+          }
+        ],
+        "type": "metrics",
+        "narrative_stage": "Outcome",
+        "body": "The ecommerce experience shipped with a consistent visual and product-content foundation. The retained archive documents 106 product-family master folders, 59 model or session folders, 1,494 final shoot selects, 64 product-list PDFs, and 2,047 files in the organized product library. The capture plan completed the required photography without a second camera operator."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Role and contribution.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Role & Credits",
+        "body": "I owned the site's creative and art direction, layout, UX/UI, photography, shoot direction, editing, and production strategy. I booked and managed the studio and models, designed and operated the multicamera capture workflow, and led the product-image system from planning through final library. Models, studio support, ecommerce development, and additional team credits can be named when the final image selections are locked."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "Fieldcraft Survival",
+    "slug": "fieldcraft-survival",
+    "project_number": "04",
+    "subtitle": "Building a brand and content platform around preparedness",
+    "client": "Fieldcraft Survival",
+    "year": 2022,
+    "role": [
+      "Creative Director",
+      "Brand Strategist",
+      "Content"
+    ],
+    "thesis": "Building a cohesive brand and content platform that connected training, products, media, and preparedness into one recognizable creative system.",
+    "summary": "Fieldcraft operated across training, products, media, and preparedness education. The creative challenge was to make those parts feel like one brand rather than separate channels. The work centered on content architecture, campaign narratives, repeatable production systems, and multidisciplinary creative direction across film, photography, and digital content.",
+    "strategic_intent": "Brand & Narrative Strategy",
+    "discipline_tags": [
+      "Creative & Art Direction",
+      "Campaign Development",
+      "Photography & Film",
+      "Brand Strategy",
+      "Content Architecture",
+      "Creative Leadership",
+      "Production"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": true,
+    "featured_order": 4,
+    "index_order": 4,
+    "accent_color": "#D65A31",
+    "outcomes": [],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "One brand. Multiple ways into it.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Fieldcraft operated across training, products, media, and preparedness education. Each part could attract a different audience, but the brand needed a common point of view strong enough to connect them.\n\nThe challenge was not simply producing more content. It was creating a system that made every piece feel like part of the same larger platform."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The content had to do more than promote the brand. It had to teach people how the brand saw the world.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "left",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Build a platform, not a feed.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy",
+        "body": "The strategy centered on repeatable content architecture: recurring formats, recognizable narratives, consistent production standards, and a visual language that could move across long-form video, social, campaigns, photography, and product storytelling.\n\nThat created room for individual pieces to feel distinct without losing the larger brand."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Creative direction across the platform.",
+        "background": "light",
+        "metrics": [],
+        "type": "full_image",
+        "narrative_stage": "Execution",
+        "body": "The system supported flagship film, photography, campaign creative, digital content, and ongoing channel programming while maintaining a consistent point of view."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A repeatable visual and content language.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Execution",
+        "body": null
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A recognizable content engine.",
+        "background": "dark",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Outcome",
+        "body": "The work established a repeatable creative platform that could support audience growth, brand storytelling, product communication, and ongoing publishing without treating every campaign as a fresh start."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "Flyway Camouflage Launch",
+    "slug": "flyway-camouflage-launch",
+    "project_number": "05",
+    "subtitle": "Extending a proprietary camouflage system into a waterfowl-specific environment",
+    "client": "Kryptek Outdoor Group",
+    "year": 2023,
+    "role": [
+      "Creative Director",
+      "Art Director",
+      "Pattern & Colorway Development",
+      "Photographer",
+      "Copywriter"
+    ],
+    "thesis": "Developing an environment-specific waterfowl colorway from Kryptek's proprietary pattern and building the product, photography, narrative, and launch system around it.",
+    "summary": "Flyway extended Kryptek's pattern language into waterfowl hunting. The work connected environmental color research, pattern and colorway development, garment application, product storytelling, photography, ecommerce, launch communication, and partner content so the new line entered the market as a credible system rather than a cosmetic variation.",
+    "strategic_intent": "Campaign Development",
+    "discipline_tags": [
+      "Brand & Narrative Strategy",
+      "Creative & Art Direction",
+      "Photography & Film",
+      "Pattern Development",
+      "Colorway Design",
+      "Product Launch",
+      "Copywriting",
+      "E-Commerce",
+      "Partner Marketing"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": true,
+    "featured_order": 5,
+    "index_order": 5,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "Waterfowl colorway",
+        "value": "Developed",
+        "kind": "outcome"
+      },
+      {
+        "label": "Product launch",
+        "value": "Shipped",
+        "kind": "outcome"
+      },
+      {
+        "label": "Audience positioning",
+        "value": "Expanded",
+        "kind": "outcome"
+      },
+      {
+        "label": "Launch system",
+        "value": "Unified",
+        "kind": "outcome"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A proprietary pattern entering a different environment.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Kryptek's pattern architecture already carried recognition in the hunting market, but waterfowl environments introduce a different range of reeds, marsh grasses, mud, open water, overcast light, and seasonal vegetation. Entering the category required more than applying an existing colorway to new garments.\n\nThe new expression had to retain the pattern characteristics customers recognized while adapting its palette and product communication to waterfowl conditions, then carry that logic coherently across product imagery, field photography, ecommerce, written communication, and brand and retail partners."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The pattern system could stay recognizable while the environment rewrote its palette.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "right",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Begin with the habitat, then build the launch around the result.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy / Approach",
+        "body": "The approach used Kryptek's proprietary pattern as the structural foundation and developed an environment-specific colorway for waterfowl hunting. Product selection, garment application, naming, narrative, image direction, and launch communication were then aligned around the category so every touchpoint reinforced the same environmental purpose."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Pattern, product, photography, and communication as one release.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Execution",
+        "body": "The work included colorway and application development, launch writing, product pages, product photography, field imagery, partner-facing visuals, and coordinated release communication. The asset set shows the pattern close-up, garment range, ecommerce presentation, and waterfowl context together."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "From pattern logic to field use.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Work",
+        "body": "Environmental references, pattern details, garment applications, ecommerce pages, launch typography, field photography, and partner imagery trace the system from habitat logic to market launch."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A shipped category extension with a coherent point of view.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Outcome",
+        "body": "Flyway shipped as an integrated waterfowl expression of the Kryptek brand. It expanded category and audience positioning, gave the garment collection an environment-specific narrative, and provided a consistent toolkit for customer, ecommerce, editorial, and partner communication."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Role and contribution.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Role & Credits",
+        "body": "I led the creative and art direction, environment-specific colorway development, product narrative, launch writing, photography, design, editing, and communication system. Garment development, manufacturing, internal product operations, models, and brand and retail partners supported the shipped release."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "2024 Big Game Guide",
+    "slug": "2024-big-game-guide",
+    "project_number": "06",
+    "subtitle": "Turning a technical apparel range into a guided system for hunters",
+    "client": "Kryptek Outdoor Group",
+    "year": 2024,
+    "role": [
+      "Creative Director",
+      "Art Director",
+      "Editorial Designer",
+      "Photographer",
+      "Copywriter"
+    ],
+    "thesis": "Organizing a complex performance-apparel catalog into an editorial guide that helped hunters understand products, layers, patterns, technologies, and use cases as one coherent system.",
+    "summary": "The 2024 guide brought product photography, technical features, layering logic, camouflage stories, icons, editorial copy, and partner content into a single print and digital experience. The work translated a broad assortment into a navigable education system without losing the atmosphere and authority of the brand.",
+    "strategic_intent": "Art Direction",
+    "discipline_tags": [
+      "Identity & Design Systems",
+      "Brand & Narrative Strategy",
+      "Editorial Design",
+      "Catalog Design",
+      "Information Architecture",
+      "Product Education",
+      "Photography",
+      "Copywriting",
+      "Print Production"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": false,
+    "featured_order": 0,
+    "index_order": 6,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "2024 guide",
+        "value": "Shipped",
+        "kind": "outcome"
+      },
+      {
+        "label": "Product education",
+        "value": "Consolidated",
+        "kind": "outcome"
+      },
+      {
+        "label": "Layering and feature language",
+        "value": "Standardized",
+        "kind": "outcome"
+      },
+      {
+        "label": "Print and digital system",
+        "value": "Unified",
+        "kind": "outcome"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A catalog with more to explain than a grid of products could hold.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Kryptek's assortment spanned garment systems, camouflage patterns, colorways, layers, technical features, accessories, and category-specific use cases. Customers needed to understand not only what each product was, but how the pieces related to conditions, activities, and each other.\n\nThe guide had to make that technical depth easier to navigate while balancing product density with editorial pacing, technical credibility with visual clarity, and brand storytelling with practical purchase guidance across many pages, image sources, product updates, and print revisions."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The catalog became more useful when it taught the system—not just listed the assortment.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "left",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Build the guide around decisions hunters actually make.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy / Approach",
+        "body": "The editorial architecture organized content around patterns, conditions, layers, product families, and performance features. Reusable iconography, product-page structures, type hierarchy, color, photography, and concise copy gave readers consistent cues while longer narrative moments carried brand and partner stories."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A repeatable editorial system across a changing product line.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Execution",
+        "body": "The work combined layout, art direction, product and lifestyle photography, image editing, feature and layering icons, pattern writeups, product copy, page templates, partner content, prepress, and revision management into one production system that could absorb updates without losing coherence."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Editorial pacing, product systems, and print detail.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Work",
+        "body": "Finished covers and spreads, product-family pages, pattern narratives, layering and feature systems, and print details show how the publication balanced editorial pacing with product education."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A shipped guide that made the assortment work as a system.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Outcome",
+        "body": "The guide consolidated product education and brand storytelling into a single customer and partner resource. It created a consistent language for layers, technologies, patterns, photography, and product presentation that could carry into ecommerce, advertising, and future publications."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Role and contribution.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Role & Credits",
+        "body": "I owned creative and art direction, editorial strategy, layout and design, photography, image editing, copywriting, information hierarchy, icon application, and print-production coordination. Kryptek's product team and external editorial, print, and brand partners contributed product information and partner materials."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "Kryptek Paid Media System",
+    "slug": "kryptek-paid-media-system",
+    "project_number": "07",
+    "subtitle": "Building a repeatable product-education system across performance channels",
+    "client": "Kryptek Outdoor Group",
+    "year": 2024,
+    "role": [
+      "Campaign Strategist",
+      "Art Director",
+      "Designer",
+      "Photographer",
+      "Copywriter"
+    ],
+    "thesis": "Turning technical apparel benefits into a scalable creative system for evergreen, product-focus, problem-solving, sale, print, and seasonal campaigns.",
+    "summary": "The paid-media system translated dense product information into a clear hierarchy of customer benefit, product proof, and action. It was designed to repeat across products and placements while remaining flexible enough for partner campaigns, print, social, Meta, Google, and Black Friday. The documented BFCM results reflect the combined effect of creative, offer, media strategy, budget, landing experience, and campaign management.",
+    "strategic_intent": "Campaign Development",
+    "discipline_tags": [
+      "Creative & Art Direction",
+      "Identity & Design Systems",
+      "Campaign Strategy",
+      "Paid Social",
+      "Performance Creative",
+      "Product Storytelling",
+      "Photography",
+      "Copywriting",
+      "Print Advertising"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": false,
+    "featured_order": 0,
+    "index_order": 7,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "Meta impressions",
+        "value": "1.22M",
+        "kind": "metric"
+      },
+      {
+        "label": "Meta ROAS",
+        "value": "13.76×",
+        "kind": "metric"
+      },
+      {
+        "label": "Google conversion value",
+        "value": "$450K",
+        "kind": "metric"
+      },
+      {
+        "label": "Google ROAS",
+        "value": "8.58×",
+        "kind": "metric"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A broad product line competing in fast-moving placements.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Kryptek's performance products carried meaningful differences in weather protection, insulation, durability, layers, fabrics, camouflage applications, and intended use. Paid and partner placements had only a few seconds to make that value legible.\n\nThe creative system had to reduce complexity without flattening the products, adapt across Meta, Google, social, print, retail partners, and email, and scale from evergreen education to urgent sale messaging while remaining visibly Kryptek as image, headline, price, offer, and format changed."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The job was not to say more about the product. It was to make the right information impossible to miss.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "right",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Build a hierarchy of benefit, proof, product, and action.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy / Approach",
+        "body": "The approach created repeatable structures for product-focus ads, problem-solving feature callouts, evergreen creative, sale campaigns, category stories, and partner placements. Photography, product cutouts, technical icons, benefit-led copy, typography, price and offer modules, and calls to action could be recombined without rebuilding the visual logic each time."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "One campaign language across performance and print.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Execution",
+        "body": "The system was deployed across product-focus and feature-callout creative, Black Friday and sale assets, Meta and Google placements, Instagram formats, phone mockups, retailer campaigns, and print ads. First Pier managed paid-media execution and documented campaign performance."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Evergreen, product education, promotional, and partner creative.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Work",
+        "body": "Shipped ads, live-placement screenshots, and a restrained set of mockups show how the system adapted across evergreen education, product-focused creative, promotional campaigns, and partner placements."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Strong documented performance within an integrated campaign.",
+        "background": "dark",
+        "metrics": [
+          {
+            "value": "1.22M",
+            "label": "Meta impressions"
+          },
+          {
+            "value": "13.76×",
+            "label": "Meta ROAS"
+          },
+          {
+            "value": "$450K",
+            "label": "Google conversion value"
+          },
+          {
+            "value": "8.58×",
+            "label": "Google ROAS"
+          }
+        ],
+        "type": "metrics",
+        "narrative_stage": "Outcome",
+        "body": "The First Pier BFCM report documents 1.22 million Meta impressions, 834 Meta conversions, $162.5K in Meta conversion value, and 13.76× Meta ROAS. Google delivered 1.4 million impressions, 2.2K conversions, $450K in conversion value, and 8.58× ROAS. The strongest Black Friday campaign recorded $80K in conversion value at 16.32× ROAS. These results reflect the combined contribution of creative, media strategy, offer, spend, landing experience, and campaign execution."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Role and contribution.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Role & Credits",
+        "body": "I owned campaign strategy, creative and art direction, design, layout, photography, editing, copywriting, and adaptation of the creative system across formats. First Pier managed paid-media execution and produced the campaign-results report. Kryptek's ecommerce, product, and operations teams supported offers, inventory, landing experiences, and fulfillment."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "The Public Standard",
+    "slug": "the-public-standard",
+    "project_number": "08",
+    "subtitle": "A search-and-rescue film about the standard behind public service",
+    "client": "TruckVault",
+    "year": 2026,
+    "role": [
+      "Creative Direction",
+      "Narrative",
+      "Film"
+    ],
+    "thesis": "A search-and-rescue film concept built around the people, preparation, and systems behind response rather than conventional product advertising.",
+    "summary": "The Public Standard was developed as a search-and-rescue story focused on readiness, responsibility, and the people behind public-service response. Rather than making equipment the hero, the concept placed the product inside a larger operational reality where preparation, access, organization, and trust matter because the work itself matters.",
+    "strategic_intent": "Photography & Film",
+    "discipline_tags": [
+      "Creative & Art Direction",
+      "Brand & Narrative Strategy",
+      "Campaign Development",
+      "Narrative Direction",
+      "Film",
+      "Public Safety"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": true,
+    "featured_order": 6,
+    "index_order": 8,
+    "accent_color": "#D65A31",
+    "outcomes": [],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Public-safety work does not begin with the product.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Search-and-rescue teams operate in environments where equipment matters because readiness matters. A conventional product spot risked reducing that reality to features and hardware.\n\nThe film concept needed to begin with the work itself: the people, preparation, judgment, and systems that make response possible."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "The product earns credibility by showing the standard it is expected to support.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "left",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Make the mission the story.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy",
+        "body": "The narrative approach moved the product out of the starring role and into the operational environment. The focus became preparedness, organization, access, and the quiet standards teams maintain before a call ever comes in.\n\nThat gave the brand a way to communicate product relevance through context instead of conventional claims."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "The Public Standard.",
+        "background": "dark",
+        "metrics": [],
+        "type": "full_image",
+        "narrative_stage": "Concept / Direction",
+        "body": "The creative direction was built around an observational, grounded treatment of public-service response—favoring real environments, purposeful detail, and operational credibility over polished product spectacle."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "People. Preparation. Response.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Execution",
+        "body": null
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A film framework built around credibility.",
+        "background": "dark",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Outcome",
+        "body": "The concept established a narrative direction for showing TruckVault in search-and-rescue environments without making the story feel like a conventional product advertisement."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  },
+  {
+    "title": "Kryptek Merchandise",
+    "slug": "kryptek-merchandise",
+    "project_number": "09",
+    "subtitle": "Extending the brand system into apparel people would choose to wear",
+    "client": "Kryptek Outdoor Group",
+    "year": 2023,
+    "role": [
+      "Creative Director",
+      "Art Director",
+      "Designer",
+      "Copywriter"
+    ],
+    "thesis": "Translating Kryptek's identity, language, and community values into a produced merchandise collection that expanded the brand beyond technical camouflage apparel.",
+    "summary": "The merchandise program used brand language, identity elements, typography, illustration, color, and garment placement to create wearable expressions of the company rather than simple logo applications. All selected Kryptek merchandise entered production. Unreleased Kill Cliff collaboration concepts are intentionally excluded from this shipped case study and can be shown later as clearly labeled concept work.",
+    "strategic_intent": "Art Direction",
+    "discipline_tags": [
+      "Identity & Design Systems",
+      "Apparel Graphics",
+      "Merchandise Design",
+      "Typography",
+      "Illustration",
+      "Art Direction",
+      "Production Design",
+      "Copywriting"
+    ],
+    "thumbnail_url": "",
+    "cover_image_url": "",
+    "featured": false,
+    "featured_order": 0,
+    "index_order": 9,
+    "accent_color": "#D65A31",
+    "outcomes": [
+      {
+        "label": "Selected merchandise",
+        "value": "Produced",
+        "kind": "outcome"
+      },
+      {
+        "label": "Brand expression",
+        "value": "Extended",
+        "kind": "outcome"
+      },
+      {
+        "label": "Collection language",
+        "value": "Unified",
+        "kind": "outcome"
+      }
+    ],
+    "related_project_ids": [],
+    "content_sections": [
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A technical brand needed a wearable cultural expression.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Context",
+        "body": "Kryptek's core apparel was built around hunting performance and proprietary camouflage. Merchandise offered a different opportunity: give customers, employees, and partners a way to identify with the values and community around the brand even when they were not wearing technical field gear.\n\nThe collection needed enough range to feel collectible without becoming a set of unrelated logo placements. Graphics, phrases, typography, color, garment selection, placement, scale, and production constraints all had to work as deliberate extensions of the evolving identity system."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": "Merchandise works when people wear the point of view, not just the mark.",
+        "heading": null,
+        "background": "dark",
+        "metrics": [],
+        "type": "pull_quote",
+        "narrative_stage": "Insight",
+        "body": null
+      },
+      {
+        "layout": "left",
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Build a family of expressions around shared brand character.",
+        "background": "light",
+        "metrics": [],
+        "type": "split_text_image",
+        "narrative_stage": "Strategy / Approach",
+        "body": "The approach treated identity assets, brand language, Warrior Ethos themes, camouflage references, typography, illustration, and garment color as a flexible kit. Each piece could have its own voice while scale, placement, palette, and recurring brand cues kept the collection related."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Designed for production, not presentation only.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Execution",
+        "body": "The work moved from concept into production-ready vector systems, colorways, garment mockups, Tek-Pak presentation, and manufacturing handoff—carrying the same brand logic from design through production."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Graphics, colorways, and produced garments.",
+        "background": "light",
+        "metrics": [],
+        "type": "gallery",
+        "narrative_stage": "Work",
+        "body": "Warrior Ethos, Brand Tee, and supporting graphics are shown across artwork, garment colorways, detail crops, and production views to reveal both range and consistency."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "A shipped extension of the identity system.",
+        "background": "dark",
+        "metrics": [],
+        "type": "dark_statement",
+        "narrative_stage": "Outcome",
+        "body": "All selected Kryptek merchandise entered production. The collection gave the brand a broader cultural and retail expression, expanded the usefulness of the identity system, and created customer-facing products that could carry brand character beyond technical hunting apparel."
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Role and contribution.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "Role & Credits",
+        "body": "I owned the creative and art direction, graphic design, typography, layout, copywriting, colorway decisions, mockups, and production artwork for the merchandise shown. Kryptek's product and operations teams and manufacturing vendors supported garment selection, sampling, production, and fulfillment."
+      }
+    ],
+    "published": true,
+    "is_sample": false
+  }
+]

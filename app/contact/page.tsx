@@ -1,0 +1,6 @@
+import type {Metadata} from 'next';
+import Link from 'next/link';
+import {siteSettings} from '../../lib/storage';
+export const dynamic='force-dynamic';
+export const metadata:Metadata={title:'Contact',description:'Connect with Austin Lester about strategy, creative direction, design, and technology.'};
+export default async function Contact(){const details=await siteSettings();return <><section className="wrap page-opening contact-opening"><p className="eyebrow">— Contact</p><h1>Start a<br/><em>conversation.</em></h1><div className="opening-bottom"><p>For projects across strategy, creative direction, design, and technology.</p></div></section><section className="wrap contact-channels"><p className="eyebrow">— Direct</p><div>{details.contact_email?<a className="contact-email" href={`mailto:${details.contact_email}`}>{details.contact_email} ↗</a>:<div className="contact-pending"><h2>Contact details coming soon.</h2><p>This portfolio is being prepared. A direct email link will appear here when the contact details are added.</p></div>}{details.location&&<p className="contact-location">{details.location}</p>}{details.linkedin&&<a className="text-link" href={details.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>}</div></section><div className="wrap contact-back"><Link className="text-link" href="/work">← Explore the work</Link></div></>}

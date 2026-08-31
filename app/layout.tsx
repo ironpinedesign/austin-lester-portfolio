@@ -1,0 +1,7 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import './globals.css';
+export const metadata: Metadata = {title: {default:'Austin Lester — Creative Direction',template:'%s — Austin Lester'},description:'Selected work across strategy, creative direction, design, and technology. A portfolio by Austin Lester.',openGraph:{title:'Austin Lester — Creative Direction',description:'From the problem to the executed outcome.',type:'website'},twitter:{card:'summary',title:'Austin Lester — Creative Direction',description:'From the problem to the executed outcome.'}};
+export default function RootLayout({ children }: Readonly<{children: React.ReactNode}>) {
+ return <html lang="en"><body><a href="#main" className="skip-link">Skip to content</a><header className="site-nav"><div className="wrap nav-inner"><Link className="wordmark" href="/">Austin Lester</Link><nav aria-label="Main navigation"><Link href="/work">Index</Link><Link href="/about">About</Link><Link href="/contact">Contact</Link></nav></div></header><main id="main">{children}</main><footer className="site-footer"><div className="wrap"><div className="footer-top"><div><p className="eyebrow">— Contact</p><Link href="/contact" className="footer-title">Let’s make it matter <span>↗</span></Link></div><p>Strategy. Direction. Design.<br/>From the problem to the outcome.</p></div><div className="footer-bottom"><span>© 2026 Austin Lester</span><Link href="/studio">Media studio ↗</Link></div></div></footer></body></html>;
+}
