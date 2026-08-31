@@ -6,4 +6,4 @@ export function sameOrigin(request:Request){const origin=request.headers.get('or
 export function apiError(e:unknown){if(e instanceof Response)return e;console.error('Studio request failed',e instanceof Error?e.message:'unknown');return Response.json({error:'This change could not be saved. Please try again.'},{status:500});}
 export async function safeEqual(a:string,b:string){if(!a||!b)return false;const enc=new TextEncoder();const [ha,hb]=await Promise.all([crypto.subtle.digest('SHA-256',enc.encode(a)),crypto.subtle.digest('SHA-256',enc.encode(b))]);const aa=new Uint8Array(ha),bb=new Uint8Array(hb);let difference=0;for(let i=0;i<aa.length;i++)difference|=aa[i]^bb[i];return difference===0;}
 
-export async function readObject(request:Request):Promise<Record<string,unknown>>{const value=await request.json();if(!value||typeof value!=='object'||Array.isArray(value))throw new Response('Invalid request',{status:400});return value as Record<string,unknown>;}
+export {readJsonObject as readObject} from './request-body';

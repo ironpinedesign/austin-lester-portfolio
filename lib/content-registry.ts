@@ -56,8 +56,8 @@ export function resolveProjects(values:ContentValues):Project[]{return projects.
  return p;
 })}
 export function registryState(values:ContentValues,placements:{slot:string;media_id:string}[],media:{id:string;alt:string}[]):Entry[]{
- const ps=resolveProjects(values);const byId=new Map(ps.map(p=>[p.content_id,p]));
- return registry.map(e=>{const p=e.projectId?byId.get(e.projectId):null;const active=!p||p.published&&(e.surface!=='selected'||p.featured);const binding=placements.find(b=>b.slot===e.id);const m=binding&&media.find(m=>m.id===binding.media_id);const value=e.slot?binding?.media_id||'':contentValue(e.id,values);let status:Entry['status']=e.slot?(binding?(m?'COMPLETE':'MISSING'):'PLACEHOLDER'):!value.trim()?'MISSING':/\[.*placeholder|coming soon|to be added/i.test(value)?'PLACEHOLDER':'COMPLETE';
+ const ps=resolveProjects(values);const byId=new Map(ps.map(p=>[p.content_id,p]));const featuredCount=ps.filter(p=>p.published&&p.featured).length;
+ return registry.map(e=>{const p=e.projectId?byId.get(e.projectId):null;const active=e.id==='home.hero.image'?featuredCount>0:e.id==='home.hero.detail_image'?featuredCount>2:!p||p.published&&(e.surface!=='selected'||p.featured);const binding=placements.find(b=>b.slot===e.id);const m=binding&&media.find(m=>m.id===binding.media_id);const value=e.slot?binding?.media_id||'':contentValue(e.id,values);let status:Entry['status']=e.slot?(binding?(m?'COMPLETE':'MISSING'):'PLACEHOLDER'):!value.trim()?'MISSING':/\[.*placeholder|coming soon|to be added/i.test(value)?'PLACEHOLDER':'COMPLETE';
  let note=!active?'Not shown while project is unpublished or not featured.':e.sourceId?'Shared copy — edit the original project field.':e.slot?(m&&!m.alt?'Assigned; add alternative text in Media Studio.':m?'Assigned asset':binding?'Asset reference no longer resolves.':'No asset assigned; the site shows a placeholder.') :!value&&e.type==='link'?'Intentionally inactive until a destination is provided.':'';
  if(e.id==='contact.direct.email'&&!value)note='Email action intentionally inactive until you add your confirmed address.';
  if(e.id==='contact.direct.linkedin'&&!value)note='LinkedIn action intentionally inactive until you add your profile.';
@@ -76,3 +76,6 @@ export function validateValue(e:Entry,value:string):string|null{
  if(e.id.endsWith('.related_project_ids')&&value.split('\n').filter(Boolean).some(v=>!projects.some(p=>p.content_id===v)))return 'Use one project key per line from the Content Map (for example kryptek_identity).';
  return null;
 }
+
+// Public media must be used by a currently rendered, published location.
+export function publicMediaSlots(values:ContentValues){return new Set(registryState(values,[],[]).filter(e=>e.slot&&e.active).map(e=>e.id))}
