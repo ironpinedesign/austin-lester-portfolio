@@ -10,7 +10,11 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "export:sites-runtime": "node scripts/export-sites-runtime.mjs",
+    "import:runtime-plan": "node scripts/import-runtime-backup.mjs",
+    "check:access-jwt": "corepack pnpm exec tsc lib/identity/access-jwt.ts lib/identity/types.ts --outDir /tmp/portfolio-tests-auth --module commonjs --target es2022 --esModuleInterop --skipLibCheck && node scripts/check-access-jwt.cjs",
+    "check:migration-tools": "node scripts/check-migration-tools.cjs"
   },
   "dependencies": {
     "drizzle-orm": "0.45.2",

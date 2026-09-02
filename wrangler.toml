@@ -1,0 +1,27 @@
+# Cloudflare-native migration template. This file is source-only preparation.
+# No remote resources are created by committing this config.
+name = "austin-lester-portfolio-staging"
+main = "dist/worker.js"
+compatibility_date = "2026-09-02"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+account_id = "2e8092555bad431938650f4256140c20"
+
+[vars]
+# Selects server identity provider. Keep openai-sites for legacy Site runtime,
+# use cloudflare-access for Worker deployments protected by Access.
+AUTH_PROVIDER = "cloudflare-access"
+# Fill these after creating Access in staging.
+CF_ACCESS_TEAM_DOMAIN = "REPLACE_WITH_TEAM_DOMAIN"
+CF_ACCESS_AUD = "REPLACE_WITH_ACCESS_AUDIENCE"
+
+[[d1_databases]]
+binding = "DB"
+# Fill these after intentionally creating staging D1 resources.
+database_name = "REPLACE_WITH_STAGING_D1_NAME"
+database_id = "00000000-0000-4000-8000-000000000000"
+
+[[r2_buckets]]
+binding = "FILES"
+# Fill this after intentionally creating staging R2 resources.
+bucket_name = "replace-with-staging-r2-bucket"
