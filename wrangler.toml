@@ -8,20 +8,25 @@ workers_dev = true
 account_id = "2e8092555bad431938650f4256140c20"
 
 [vars]
-# Selects server identity provider. Keep openai-sites for legacy Site runtime,
-# use cloudflare-access for Worker deployments protected by Access.
+# Keep placeholders only at top-level. Real runtime values are set in env.staging.
 AUTH_PROVIDER = "cloudflare-access"
-# Fill these after creating Access in staging.
-CF_ACCESS_TEAM_DOMAIN = "REPLACE_WITH_TEAM_DOMAIN"
-CF_ACCESS_AUD = "REPLACE_WITH_ACCESS_AUDIENCE"
+CF_ACCESS_TEAM_DOMAIN = "fancy-tree-d5e8.cloudflareaccess.com"
+CF_ACCESS_AUD = "b6759c4204df8cbc2966b317b6d7693159265b2dc280bf44cf987dbe8010750b"
 
-[[d1_databases]]
+[env.staging]
+name = "austin-lester-portfolio-staging"
+workers_dev = true
+
+[env.staging.vars]
+AUTH_PROVIDER = "cloudflare-access"
+CF_ACCESS_TEAM_DOMAIN = "fancy-tree-d5e8.cloudflareaccess.com"
+CF_ACCESS_AUD = "b6759c4204df8cbc2966b317b6d7693159265b2dc280bf44cf987dbe8010750b"
+
+[[env.staging.d1_databases]]
 binding = "DB"
-# Fill these after intentionally creating staging D1 resources.
-database_name = "REPLACE_WITH_STAGING_D1_NAME"
-database_id = "00000000-0000-4000-8000-000000000000"
+database_name = "austin-lester-portfolio-staging-db"
+database_id = "50dfe17e-196a-468b-8c42-262f5074b145"
 
-[[r2_buckets]]
+[[env.staging.r2_buckets]]
 binding = "FILES"
-# Fill this after intentionally creating staging R2 resources.
-bucket_name = "replace-with-staging-r2-bucket"
+bucket_name = "austin-lester-portfolio-staging-files"

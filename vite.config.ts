@@ -4,6 +4,9 @@ import { defineConfig } from 'vite';
 
 const D1_BINDING = 'DB';
 const R2_BINDING = 'FILES';
+const STAGING_D1_NAME = 'austin-lester-portfolio-staging-db';
+const STAGING_D1_ID = '50dfe17e-196a-468b-8c42-262f5074b145';
+const STAGING_R2_NAME = 'austin-lester-portfolio-staging-files';
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
@@ -26,7 +29,29 @@ const localBindingConfig = {
   ],
 };
 
+const stagingBindingConfig = {
+  main: 'vinext/server/app-router-entry',
+  compatibility_flags: ['nodejs_compat'],
+  d1_databases: [
+    {
+      binding: D1_BINDING,
+      database_name: STAGING_D1_NAME,
+      database_id: STAGING_D1_ID,
+    },
+  ],
+  r2_buckets: [
+    {
+      binding: R2_BINDING,
+      bucket_name: STAGING_R2_NAME,
+    },
+  ],
+};
+
 export default defineConfig(async () => {
+  const bindingProfile = process.env.CF_BINDINGS_PROFILE === 'staging'
+    ? stagingBindingConfig
+    : localBindingConfig;
+
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= 'false';
@@ -45,7 +70,7 @@ export default defineConfig(async () => {
       vinext(),
       cloudflare({
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
-        config: localBindingConfig,
+        config: bindingProfile,
       }),
     ],
   };
