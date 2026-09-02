@@ -7,7 +7,7 @@ import {ProseCopy as Prose} from '../../components/Copy';
 import {mediaMap,type MediaMap} from '../../../lib/storage';
 import Media from '../../components/Media';
 export const dynamic='force-dynamic';
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const slug=(await params).slug;const p=(await getContent()).projects.find(p=>p.slug===slug);if(!p)return {title:'Project not found'};return {title:p.title,description:p.thesis,openGraph:{title:p.title,description:p.thesis,type:'article',images:[]},twitter:{card:'summary',title:p.title,description:p.thesis,images:[]}}}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const slug=(await params).slug;const p=(await getContent()).projects.find(p=>p.slug===slug);if(!p)return {title:'Project not found'};const path=`/work/${p.slug}`;return {title:p.title,description:p.thesis,alternates:{canonical:path},openGraph:{title:p.title,description:p.thesis,type:'article',url:path},twitter:{card:'summary_large_image',title:p.title,description:p.thesis}}}
 function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectId:string;map:MediaMap;text:(id:string)=>string}){
  const dark=s.background==='dark'||s.type==='dark_statement';const slot=(n=0)=>`project.${projectId}.${s.content_id}.${s.media_slots[n]}`;
  if(s.type==='pull_quote')return <section id={s.content_id} className={`case-section quote-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><blockquote><span>“</span>{s.quote}<span>”</span></blockquote>{s.quote_attribution&&<p className="quote-attribution">{s.quote_attribution}</p>}</div></section>;
