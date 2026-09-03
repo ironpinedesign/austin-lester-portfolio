@@ -7,6 +7,9 @@ const R2_BINDING = 'FILES';
 const STAGING_D1_NAME = 'austin-lester-portfolio-staging-db';
 const STAGING_D1_ID = '50dfe17e-196a-468b-8c42-262f5074b145';
 const STAGING_R2_NAME = 'austin-lester-portfolio-staging-files';
+const PRODUCTION_D1_NAME = 'austin-lester-portfolio-production-db';
+const PRODUCTION_D1_ID = '324f6fe6-6280-4731-bf7b-4f19dd19a537';
+const PRODUCTION_R2_NAME = 'austin-lester-portfolio-production-files';
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === 'seatbelt';
@@ -47,10 +50,30 @@ const stagingBindingConfig = {
   ],
 };
 
+const productionBindingConfig = {
+  main: 'vinext/server/app-router-entry',
+  compatibility_flags: ['nodejs_compat'],
+  d1_databases: [
+    {
+      binding: D1_BINDING,
+      database_name: PRODUCTION_D1_NAME,
+      database_id: PRODUCTION_D1_ID,
+    },
+  ],
+  r2_buckets: [
+    {
+      binding: R2_BINDING,
+      bucket_name: PRODUCTION_R2_NAME,
+    },
+  ],
+};
+
 export default defineConfig(async () => {
   const bindingProfile = process.env.CF_BINDINGS_PROFILE === 'staging'
     ? stagingBindingConfig
-    : localBindingConfig;
+    : process.env.CF_BINDINGS_PROFILE === 'production'
+      ? productionBindingConfig
+      : localBindingConfig;
 
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.

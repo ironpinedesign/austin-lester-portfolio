@@ -21,4 +21,4 @@ export async function visibleMediaSlots(){const d=await db();const state=await d
 export async function mediaMap():Promise<MediaMap>{const d=await db();const active=await visibleMediaSlots();const rows=await d.prepare('SELECT m.id,m.mime,m.alt,p.slot FROM placements p JOIN media m ON m.id=p.media_id').all<BoundMedia>();return Object.fromEntries(rows.results.filter(r=>active.has(r.slot)).map(r=>[r.slot,r]));}
 export async function siteSettings():Promise<SiteSettings>{const d=await db();const row=await d.prepare('SELECT values_json FROM content_state WHERE id=1').first<{values_json:string}>();const v=JSON.parse(row?.values_json||'{}');return {contact_email:v['contact.direct.email']||'',location:v['contact.direct.location']||'',linkedin:v['contact.direct.linkedin']||''};}
 export const bucket=()=>env.FILES;
-export const setupCode=()=>env.STUDIO_SETUP_CODE||'';
+export const setupCode=()=>(env.STUDIO_SETUP_CODE||'').trim();

@@ -82,6 +82,17 @@ function sha256(bytes) {
   return createHash('sha256').update(bytes).digest('hex');
 }
 
+async function responseBytes(response) {
+  if (typeof response.arrayBuffer === 'function') {
+    return new Uint8Array(await response.arrayBuffer());
+  }
+  if (typeof response.body === 'function') {
+    const body = await response.body();
+    return body instanceof Uint8Array ? body : new Uint8Array(body);
+  }
+  throw new Error('Response does not support binary body reads');
+}
+
 async function createExportPackage(requestGet, baseUrl, outDir) {
   const mediaDir = path.join(outDir, 'media');
   await mkdir(mediaDir, { recursive: true });
@@ -122,7 +133,7 @@ async function createExportPackage(requestGet, baseUrl, outDir) {
 
     try {
       const fileRes = await requestGet(`${baseUrl}/api/media/${item.id}`);
-      const bytes = new Uint8Array(await fileRes.arrayBuffer());
+      const bytes = await responseBytes(fileRes);
       exportedBytes = bytes.byteLength;
       checksum = sha256(bytes);
       await writeFile(outputPath, bytes);
@@ -202,9 +213,28 @@ async function requestWithPlaywright(baseUrl) {
     );
   }
 
-  const browser = await chromium.launch({ headless: false });
-  const context = await browser.newContext();
-  const page = await context.newPage();
+  const profileDir = path.resolve(
+    process.env.SITES_EXPORT_PLAYWRIGHT_PROFILE
+      || path.join(process.env.HOME || '.', '.local', 'share', 'austin-lester-sites-export-profile'),
+  );
+  await mkdir(profileDir, { recursive: true });
+
+  // A persistent browser profile helps Cloudflare/OpenAI anti-bot checks stick
+  // across retries instead of re-challenging every fresh ephemeral context.
+  const context = await chromium.launchPersistentContext(profileDir, {
+    headless: false,
+    channel: 'chrome',
+    viewport: { width: 1440, height: 900 },
+    ignoreDefaultArgs: ['--enable-automation'],
+    args: ['--disable-blink-features=AutomationControlled'],
+  });
+
+  await context.addInitScript(() => {
+    // Some challenge pages look for webdriver automation flags.
+    Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+  });
+
+  const page = context.pages()[0] || await context.newPage();
   await page.goto(`${baseUrl}/studio`, { waitUntil: 'domcontentloaded' });
 
   process.stdout.write(
@@ -217,7 +247,7 @@ async function requestWithPlaywright(baseUrl) {
       return context.request.get(url, { method: 'GET' });
     },
     async close() {
-      await browser.close();
+      await context.close();
     },
   };
 }

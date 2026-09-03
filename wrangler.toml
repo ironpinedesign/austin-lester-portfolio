@@ -1,6 +1,6 @@
 # Cloudflare-native migration template. This file is source-only preparation.
 # No remote resources are created by committing this config.
-name = "austin-lester-portfolio-staging"
+name = "austin-lester-portfolio-production"
 main = "dist/worker.js"
 compatibility_date = "2026-09-02"
 compatibility_flags = ["nodejs_compat"]
@@ -8,7 +8,7 @@ workers_dev = true
 account_id = "2e8092555bad431938650f4256140c20"
 
 [vars]
-# Keep placeholders only at top-level. Real runtime values are set in env.staging.
+# Top-level config targets production deploys. Staging remains isolated under env.staging.
 AUTH_PROVIDER = "cloudflare-access"
 CF_ACCESS_TEAM_DOMAIN = "fancy-tree-d5e8.cloudflareaccess.com"
 CF_ACCESS_AUD = "b6759c4204df8cbc2966b317b6d7693159265b2dc280bf44cf987dbe8010750b"
@@ -30,3 +30,21 @@ database_id = "50dfe17e-196a-468b-8c42-262f5074b145"
 [[env.staging.r2_buckets]]
 binding = "FILES"
 bucket_name = "austin-lester-portfolio-staging-files"
+
+[env.production]
+name = "austin-lester-portfolio-production"
+workers_dev = true
+
+[env.production.vars]
+AUTH_PROVIDER = "cloudflare-access"
+CF_ACCESS_TEAM_DOMAIN = "fancy-tree-d5e8.cloudflareaccess.com"
+CF_ACCESS_AUD = "b6759c4204df8cbc2966b317b6d7693159265b2dc280bf44cf987dbe8010750b"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "austin-lester-portfolio-production-db"
+database_id = "324f6fe6-6280-4731-bf7b-4f19dd19a537"
+
+[[env.production.r2_buckets]]
+binding = "FILES"
+bucket_name = "austin-lester-portfolio-production-files"
