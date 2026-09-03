@@ -401,4 +401,5 @@ Verified outcomes:
 
 QA notes and limitations:
 - Intermittent net::ERR_ABORTED logs were observed for the loop fixture during rapid scripted navigations. Direct fixture requests and in-page playback remained successful.
+- Classification: non-blocking automation artifact caused by navigation-time request cancellation, not a user-visible runtime defect.
 - Scroll-jump signals in earlier scripts were caused by automation click behavior, not by component layout instability; deterministic checks with direct DOM click flow showed stable scroll positions.
