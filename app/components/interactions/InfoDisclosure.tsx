@@ -6,16 +6,17 @@ type Props={
  heading?:string;
  children:ReactNode;
  defaultExpanded?:boolean;
+ variant?:'inline'|'row';
 };
 
-export default function InfoDisclosure({label='INFO',heading,children,defaultExpanded=false}:Props){
+export default function InfoDisclosure({label='INFO',heading,children,defaultExpanded=false,variant='inline'}:Props){
  const id=useId();
  const triggerRef=useRef<HTMLButtonElement>(null);
  const [open,setOpen]=useState(defaultExpanded);
 
- return <section className={`info-disclosure ${open?'is-open':''}`}>
+ return <section className={`info-disclosure ${open?'is-open':''} variant-${variant}`}>
   <button ref={triggerRef} type="button" className="interaction-toggle" aria-expanded={open} aria-controls={id} onClick={()=>setOpen(v=>!v)}>
-   {open?`${label} -`:`${label} +`}
+     {open?`${label} −`:`${label} +`}
   </button>
   <div id={id} hidden={!open} className="info-disclosure-panel">
    {heading&&<h3>{heading}</h3>}

@@ -2,18 +2,23 @@
 import {type PointerEvent,type ReactNode,type TouchEvent,useMemo,useRef,useState} from 'react';
 
 type Item={id:string;content:ReactNode;caption?:string;credit?:string;label?:string};
-type Props={items:Item[];label:string};
+type Props={items:Item[];label:string;wrap?:boolean};
 
-export default function MediaCarousel({items,label}:Props){
+export default function MediaCarousel({items,label,wrap=true}:Props){
  const [index,setIndex]=useState(0);
  const touchStartX=useRef<number|null>(null);
  const pointerStartX=useRef<number|null>(null);
  const total=items.length;
  const active=items[index];
  const count=useMemo(()=>`${String(index+1).padStart(2,'0')} / ${String(total).padStart(2,'0')}`,[index,total]);
+ const hasPrev=wrap||index>0;
+ const hasNext=wrap||index<total-1;
 
  if(total===0)return null;
- const go=(delta:number)=>setIndex((n)=>(n+delta+total)%total);
+ const go=(delta:number)=>setIndex((n)=>{
+  if(wrap)return (n+delta+total)%total;
+  return Math.max(0,Math.min(total-1,n+delta));
+ });
  const onTouchStart=(event:TouchEvent)=>{touchStartX.current=event.changedTouches[0]?.clientX??null;};
  const onTouchEnd=(event:TouchEvent)=>{
     if(touchStartX.current===null)return;
@@ -41,10 +46,10 @@ export default function MediaCarousel({items,label}:Props){
     {items.map((item,i)=><div key={item.id} className="media-carousel-slide" aria-hidden={i!==index}>{Math.abs(i-index)<=1?item.content:<div className="media-carousel-placeholder" aria-hidden="true"/>}</div>)}
    </div>
   </div>
-  <div className="media-carousel-controls">
-   <button type="button" onClick={()=>go(-1)} aria-label="Previous slide">Previous</button>
+   <div className="media-carousel-controls">
+    <button type="button" onClick={()=>go(-1)} aria-label="Previous slide" disabled={!hasPrev}>Previous</button>
    <span className="carousel-index" aria-live="polite">{count}</span>
-   <button type="button" onClick={()=>go(1)} aria-label="Next slide">Next</button>
+    <button type="button" onClick={()=>go(1)} aria-label="Next slide" disabled={!hasNext}>Next</button>
   </div>
   {(active.caption||active.credit)&&<div className="media-carousel-meta">{active.caption&&<p>{active.caption}</p>}{active.credit&&<p className="eyebrow">{active.credit}</p>}</div>}
  </section>;

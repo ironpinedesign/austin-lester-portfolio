@@ -50,7 +50,7 @@ function renderNarrative(s:Section){
 function renderInfoDisclosure(s:Section){
  const config=s.interaction?.infoDisclosure;
  if(!config?.enabled||!config.body)return null;
- return <InfoDisclosure label={config.label||'INFO'} heading={config.heading}><p>{config.body}</p></InfoDisclosure>;
+ return <InfoDisclosure label={config.label||'INFO'} heading={config.heading} variant={config.variant||'inline'}><p>{config.body}</p></InfoDisclosure>;
 }
 
 function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectId:string;map:MediaMap;text:(id:string)=>string}){
@@ -69,15 +69,16 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    :<Media slot={slotKey} map={map} label={`${s.narrative_stage||'Project'} / ${String(n+1).padStart(2,'0')}`} className={className} controls kind={kind}/>;
 
   if(inspectSlots.has(slotName))node=<MediaInspect
-   label={s.interaction?.mediaInspect?.buttonLabel||'INSPECT +'}
+    label={s.interaction?.mediaInspect?.buttonLabel||'INSPECT ↗'}
    caption={s.interaction?.mediaInspect?.captions?.[slotName]}
    credit={s.interaction?.mediaInspect?.credits?.[slotName]}
+    tone={s.interaction?.mediaInspect?.tone||'bone'}
    trigger={node}
    expanded={<Media slot={slotKey} map={map} label={`${s.heading||s.narrative_stage||'Project'} / Inspect`} className="wide" controls kind={kind}/>}
   />;
 
   const detail=detailItems?.find((item)=>item.slot===slotName);
-  if(detail)node=<MediaDetail label={detail.label||'+'} title={detail.title} body={detail.body}>{node}</MediaDetail>;
+    if(detail)node=<MediaDetail label={detail.label||'+'} title={detail.title} body={detail.body} x={detail.x} y={detail.y}>{node}</MediaDetail>;
 
   return node;
  };

@@ -18,13 +18,33 @@ Interaction is only valid when it improves comprehension of the work. If static 
 - Avoid scroll hijacking, novelty-only effects, and decorative interaction noise.
 - Static presentation remains preferable when interaction does not improve comprehension.
 
+### Interaction Hierarchy
+
+Primary:
+- the work and core narrative
+
+Secondary:
+- interaction controls
+
+Tertiary:
+- explanatory metadata, captions, and credits
+
+Language semantics:
+- + = contextual explanation / deeper thinking.
+- Inspect/enlarge actions use INSPECT ↗ language, not +, to avoid conceptual ambiguity.
+
+Disclosure control sizing:
+- Disclosure controls should generally be intrinsic/compact.
+- Full-width ruled disclosure rows should be used only when structurally justified.
+
 ## 3. Reusable Interaction Patterns
 
 ### Expandable Narrative
 
 - Problem solved: secondary explanatory text can clutter core scan path.
 - Best use cases: strategy and system sections where one paragraph is primary and deeper rationale is optional.
-- Intended behavior: summary text remains visible; READ MORE + expands inline; SHOW LESS - collapses inline.
+- Intended behavior: summary text remains visible; READ MORE + expands inline; SHOW LESS − collapses inline.
+- Visual hierarchy rule: control remains compact and editorial, left-aligned beneath narrative, not a dominant full-width UI bar.
 - Mobile behavior: same inline expansion; no overlay or modal.
 - Accessibility notes: semantic button, aria-expanded and aria-controls, keyboard operable.
 - Performance considerations: native height and opacity transition, no heavy animation dependency.
@@ -36,7 +56,9 @@ Interaction is only valid when it improves comprehension of the work. If static 
 - Problem solved: single decision-level explanation needs contextual placement without permanent visual clutter.
 - Best use cases: explaining one frame-specific decision, callout, or technical note.
 - Intended behavior: plus trigger opens anchored panel; close button and Escape close panel.
+- Placement behavior: optional normalized coordinates (x, y) place the + marker contextually over relevant detail.
 - Mobile behavior: panel drops below media frame to avoid covering key visual content.
+- Desktop behavior: panel opens near marker when practical and remains bounded within media-safe area.
 - Accessibility notes: semantic trigger, keyboard support, Escape support, return focus to trigger.
 - Performance considerations: lightweight local state only.
 - When NOT to use: if note is obvious from caption or creates visual noise.
@@ -50,6 +72,7 @@ Interaction is only valid when it improves comprehension of the work. If static 
 - Mobile behavior: same controls plus swipe gesture support.
 - Accessibility notes: focusable viewport, keyboard navigation, labeled controls.
 - Performance considerations: non-active distant slides replaced with lightweight placeholders.
+- Navigation behavior: wrapping is intentional in current implementation.
 - When NOT to use: when seeing multiple assets simultaneously better explains a system.
 - Implementation status: BUILT.
 
@@ -68,10 +91,11 @@ Interaction is only valid when it improves comprehension of the work. If static 
 
 - Problem solved: detailed work needs closer inspection without overcrowding page layout.
 - Best use cases: guideline pages, detailed layouts, technical diagrams, dense UI.
-- Intended behavior: INSPECT + opens fullscreen dialog with close control and optional caption/credit.
+- Intended behavior: INSPECT ↗ opens media-first dialog with close control and optional caption/credit.
 - Mobile behavior: full-height panel with scrolling body.
 - Accessibility notes: dialog semantics, Escape close, focus to close on open, focus return on close.
 - Performance considerations: modal only mounts on open.
+- Presentation modes: bone and obsidian background tones are supported for artwork-appropriate contrast.
 - When NOT to use: when there is no meaningful detail beyond default display.
 - Implementation status: BUILT.
 
@@ -80,6 +104,7 @@ Interaction is only valid when it improves comprehension of the work. If static 
 - Problem solved: secondary information such as credits and production notes can disrupt narrative pacing.
 - Best use cases: credits, partner details, secondary process notes.
 - Intended behavior: INFO + or CREDITS + reveals local inline panel.
+- Presentation modes: inline (default compact control) and row (ruled full-width disclosure for structural use).
 - Mobile behavior: same inline behavior.
 - Accessibility notes: semantic relationships with aria-expanded and controls.
 - Performance considerations: minimal DOM and state.
@@ -386,7 +411,7 @@ Notes:
 
 Environment:
 - Local route tested: /work/interaction-lab (internal only, noindex).
-- Viewports tested: 375x812, 768x1024, 1440x900.
+- Viewports tested: 375x812, 768x1024, 1100x900, 1440x900.
 - Input modes tested: mouse, keyboard, touch-style swipe gesture.
 - Motion preference tested: prefers-reduced-motion reduce.
 

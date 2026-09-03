@@ -10,7 +10,7 @@ type Props={
  defaultExpanded?:boolean;
 };
 
-export default function ExpandableNarrative({summary,details,readMoreLabel='READ MORE +',showLessLabel='SHOW LESS -',fade=true,defaultExpanded=false}:Props){
+export default function ExpandableNarrative({summary,details,readMoreLabel='READ MORE +',showLessLabel='SHOW LESS −',fade=true,defaultExpanded=false}:Props){
  const id=useId();
  const [expanded,setExpanded]=useState(defaultExpanded);
 

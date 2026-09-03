@@ -32,8 +32,9 @@ export default function InteractionLab(){
 
   <section className="case-section">
    <h2 className="case-section-title">Media Detail and Inspect</h2>
-   <MediaDetail title="Decision note" body="This framing was selected to prioritize product fit in vehicle context.">
+    <MediaDetail title="Decision note" body="This framing was selected to prioritize product fit in vehicle context." x={63} y={31}>
     <MediaInspect
+      tone="obsidian"
      trigger={<DemoAsset label="Media frame"/>}
      expanded={<DemoAsset label="Expanded inspect view"/>}
      caption="Optional caption text."
@@ -61,7 +62,7 @@ export default function InteractionLab(){
 
   <section className="case-section">
    <h2 className="case-section-title">Info Disclosure</h2>
-   <InfoDisclosure label="CREDITS" heading="Contributors">
+    <InfoDisclosure label="CREDITS" heading="Contributors" variant="inline">
     <p>Creative Direction: Austin Lester. Development support: internal production team.</p>
    </InfoDisclosure>
   </section>
