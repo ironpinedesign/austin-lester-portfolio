@@ -1,0 +1,12 @@
+<svg width="1200" height="2200" viewBox="0 0 1200 2200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gtall" x1="0" y1="0" x2="1200" y2="2200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E9E7E0"/>
+      <stop offset="1" stop-color="#D4D0C3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="2200" fill="url(#gtall)"/>
+  <rect x="70" y="70" width="1060" height="2060" stroke="rgba(40,40,40,0.2)"/>
+  <text x="120" y="166" fill="#1E2126" font-family="JetBrains Mono, monospace" font-size="38" letter-spacing="7">TALL EDITORIAL PAGE</text>
+  <text x="120" y="220" fill="#4E5158" font-family="JetBrains Mono, monospace" font-size="19">1200 x 2200 local fixture</text>
+</svg>

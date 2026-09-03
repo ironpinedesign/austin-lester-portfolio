@@ -1,0 +1,418 @@
+.layoutSection{
+ padding-block:72px;
+}
+
+.layoutWrap{
+ display:grid;
+ gap:24px;
+}
+
+.layoutShell{
+ display:grid;
+ gap:24px;
+ min-width:0;
+}
+
+.layoutShell :global(.media-frame){
+ max-width:100%;
+}
+
+.layoutShell :global(.media-frame.wide){
+ min-height:0;
+}
+
+.layoutShell img,
+.layoutShell video{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.narrativeBlock{
+ max-width:52ch;
+}
+
+.caption{
+ font-size:13px;
+ line-height:1.6;
+ color:var(--ink);
+}
+
+.metadata,
+.mediaNote{
+ font:10px/1.7 var(--mono);
+ letter-spacing:.12em;
+ text-transform:uppercase;
+ color:var(--muted);
+}
+
+.captionRail{
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:space-between;
+ gap:16px 24px;
+ padding-top:12px;
+ border-top:1px solid var(--line);
+}
+
+.defaultMediaRegion :global(.media-frame){
+ aspect-ratio:16/10;
+}
+
+.fullBleedRegion{
+ display:grid;
+ gap:14px;
+}
+
+.singleColumn{
+ grid-template-columns:1fr !important;
+}
+
+.fullBleedRegion .defaultMediaRegion :global(.media-frame){
+ aspect-ratio:21/9;
+}
+
+.fullBleed01,
+.fullBleed02{
+ grid-template-columns:minmax(0,1fr);
+}
+
+.textSidecar01,
+.mediaSidecar01,
+.mediaSidecar02{
+ grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+ align-items:start;
+}
+
+.mediaSidecar01,
+.mediaSidecar02{
+ grid-template-columns:minmax(0,8fr) minmax(0,4fr);
+}
+
+.reverse{
+ direction:rtl;
+}
+
+.reverse > *{
+ direction:ltr;
+}
+
+.narrativePane,
+.sidecarPane,
+.mediaPane,
+.comparePane,
+.flowPane,
+.stickyPane,
+.systemNav,
+.systemField,
+.annotationRail,
+.annotatedField{
+ min-width:0;
+}
+
+.sidecarPane{
+ display:grid;
+ gap:14px;
+ align-content:start;
+}
+
+.mediaPane :global(.media-frame){
+ aspect-ratio:16/10;
+}
+
+.asymmetricGrid01{
+ display:grid;
+ grid-template-columns:1.65fr 1fr;
+ gap:16px;
+ align-items:stretch;
+}
+
+.asymmetricGrid01 > *,
+.asymmetricGrid02 > *,
+.asymmetricSupportStack > *,
+.specimenField01 > *,
+.specimenField02 > *,
+.editorialSequence01 > *,
+.archiveGrid01 > *,
+.archiveGrid02 > *,
+.archiveSupportRail > *,
+.stateCompare01 > *{
+ min-width:0;
+}
+
+.asymmetricSupportStack{
+ display:grid;
+ gap:16px;
+ grid-template-rows:1fr 1fr;
+}
+
+.dominantRegion :global(.media-frame){
+ min-height:min(52svh,600px);
+}
+
+.asymmetricGrid02{
+ display:grid;
+ grid-template-columns:1.8fr 1fr;
+ gap:16px;
+ align-items:stretch;
+}
+
+.asymmetricGrid02 > .dominantRegion{
+ grid-row:1 / span 3;
+}
+
+.supportWide{
+ grid-column:2;
+}
+
+.specimenField01{
+ display:grid;
+ grid-template-columns:3fr 1fr;
+ gap:16px;
+ align-items:end;
+}
+
+.specimenDominant :global(.media-frame){
+ min-height:min(65svh,760px);
+}
+
+.specimenSupport :global(.media-frame){
+ aspect-ratio:1/1;
+}
+
+.specimenField02{
+ display:grid;
+ grid-template-columns:2fr 1fr;
+ gap:16px;
+}
+
+.specimenField02 > .specimenDominant{
+ grid-row:1 / span 2;
+}
+
+.editorialSequence01{
+ display:grid;
+ grid-template-columns:1.8fr 1fr;
+ gap:18px;
+ align-items:start;
+}
+
+.sequenceLead{
+ grid-row:1 / span 2;
+}
+
+.sequenceLead :global(.media-frame){
+ aspect-ratio:4/3;
+}
+
+.editorialSequence01 > div:nth-child(4){
+ margin-top:10%;
+}
+
+.archiveGrid01{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px;
+}
+
+.archiveGrid01 :global(.media-frame){
+ aspect-ratio:4/5;
+}
+
+.archiveGrid02{
+ display:grid;
+ gap:14px;
+}
+
+.archiveSupportRail{
+ display:grid;
+ grid-template-columns:repeat(4,minmax(0,1fr));
+ gap:12px;
+}
+
+.archiveSupportRail :global(.media-frame){
+ aspect-ratio:4/5;
+}
+
+.stickyNarrative01,
+.stickyNarrative02{
+ grid-template-columns:minmax(0,4fr) minmax(0,8fr);
+ align-items:start;
+}
+
+.stickyNarrative02{
+ grid-template-columns:minmax(0,8fr) minmax(0,4fr);
+}
+
+.stickyPane{
+ position:sticky;
+ top:90px;
+ align-self:start;
+}
+
+.flowPane{
+ display:grid;
+ gap:16px;
+}
+
+.stateCompare01{
+ grid-template-columns:repeat(2,minmax(0,1fr));
+}
+
+.stateCompare01 .comparePane:last-child :global(.media-frame){
+ aspect-ratio:16/10;
+}
+
+.systemStage01{
+ grid-template-columns:minmax(0,3fr) minmax(0,9fr);
+}
+
+.systemNav{
+ display:grid;
+ gap:18px;
+ align-content:start;
+}
+
+.systemNav ol{
+ list-style:none;
+ display:grid;
+ gap:10px;
+ margin:0;
+ padding:0;
+}
+
+.systemNav li{
+ display:grid;
+ grid-template-columns:auto 1fr;
+ gap:12px;
+ padding:10px 0;
+ border-top:1px solid var(--line);
+}
+
+.systemNav li span{
+ font:10px/1.6 var(--mono);
+ letter-spacing:.16em;
+ text-transform:uppercase;
+ color:var(--muted);
+}
+
+.systemNav li strong{
+ font-size:14px;
+ font-weight:600;
+}
+
+.systemNav li p{
+ margin:6px 0 0;
+ font-size:13px;
+ line-height:1.6;
+ color:var(--muted);
+}
+
+.systemField :global(.media-frame){
+ min-height:min(70svh,760px);
+}
+
+.annotatedStage01{
+ grid-template-columns:minmax(0,3fr) minmax(0,9fr);
+ align-items:start;
+}
+
+.annotationRail{
+ display:grid;
+ gap:16px;
+ align-content:start;
+}
+
+.annotationRail ul{
+ list-style:none;
+ margin:0;
+ padding:0;
+ display:grid;
+ gap:10px;
+}
+
+.annotationRail li{
+ border-top:1px solid var(--line);
+ padding-top:10px;
+}
+
+.annotationRail h3{
+ margin:0;
+ font-size:14px;
+}
+
+.annotationRail p{
+ margin:6px 0 0;
+ font-size:13px;
+ line-height:1.6;
+ color:var(--muted);
+}
+
+.annotatedField :global(.media-frame){
+ min-height:min(68svh,760px);
+}
+
+.fallbackMedia{
+ border:1px dashed var(--line);
+}
+
+.requiredMissing{
+ background:color-mix(in srgb,var(--panel) 75%,#f0d6cd 25%);
+}
+
+@media(max-width:1100px){
+ .textSidecar01,
+ .mediaSidecar01,
+ .mediaSidecar02,
+ .stickyNarrative01,
+ .stickyNarrative02,
+ .systemStage01,
+ .annotatedStage01{
+  grid-template-columns:1fr;
+ }
+
+ .stickyPane{
+  position:static;
+ }
+
+ .archiveSupportRail{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+ }
+}
+
+@media(max-width:850px){
+ .fullBleedRegion .defaultMediaRegion :global(.media-frame){
+  aspect-ratio:4/3;
+ }
+
+ .asymmetricGrid01,
+ .asymmetricGrid02,
+ .specimenField01,
+ .specimenField02,
+ .editorialSequence01,
+ .archiveGrid01,
+ .stateCompare01{
+  grid-template-columns:1fr;
+ }
+
+ .asymmetricSupportStack,
+ .asymmetricGrid01 > .dominantRegion,
+ .asymmetricGrid02 > .dominantRegion,
+ .specimenField02 > .specimenDominant,
+ .sequenceLead{
+  grid-row:auto;
+ }
+
+ .supportWide{
+  grid-column:auto;
+ }
+
+ .editorialSequence01 > div:nth-child(4){
+  margin-top:0;
+ }
+
+ .archiveSupportRail{
+  grid-template-columns:1fr;
+ }
+}

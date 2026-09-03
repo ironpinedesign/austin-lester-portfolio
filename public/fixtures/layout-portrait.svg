@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" role="img" aria-labelledby="title desc">
+  <title id="title">Portrait Fixture</title>
+  <desc id="desc">Local fixture for case-study layout prototyping.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5f4533"/>
+      <stop offset="1" stop-color="#8d6a4e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1400" fill="url(#bg)"/>
+  <rect x="80" y="80" width="840" height="1240" fill="none" stroke="#f8f4ed" stroke-opacity="0.38"/>
+  <text x="120" y="150" fill="#f8f4ed" font-size="42" font-family="Arial, sans-serif" letter-spacing="8">PORTRAIT STUDY</text>
+  <text x="120" y="220" fill="#f8f4ed" fill-opacity="0.74" font-size="26" font-family="Arial, sans-serif">1000 x 1400 local fixture</text>
+</svg>

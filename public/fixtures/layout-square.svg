@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Square Fixture</title>
+  <desc id="desc">Local fixture for case-study layout prototyping.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f2a29"/>
+      <stop offset="1" stop-color="#3e5c58"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect x="90" y="90" width="1020" height="1020" fill="none" stroke="#e6efe9" stroke-opacity="0.35"/>
+  <text x="120" y="160" fill="#e6efe9" font-size="42" font-family="Arial, sans-serif" letter-spacing="8">SQUARE ASSET</text>
+  <text x="120" y="230" fill="#e6efe9" fill-opacity="0.74" font-size="26" font-family="Arial, sans-serif">1200 x 1200 local fixture</text>
+</svg>

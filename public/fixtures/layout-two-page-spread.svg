@@ -1,0 +1,13 @@
+<svg width="2400" height="1200" viewBox="0 0 2400 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gspread" x1="0" y1="0" x2="2400" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F3E3D"/>
+      <stop offset="1" stop-color="#4B6A67"/>
+    </linearGradient>
+  </defs>
+  <rect width="2400" height="1200" fill="url(#gspread)"/>
+  <rect x="70" y="70" width="2260" height="1060" stroke="rgba(255,255,255,0.2)"/>
+  <line x1="1200" y1="70" x2="1200" y2="1130" stroke="rgba(255,255,255,0.25)"/>
+  <text x="128" y="166" fill="#F4F4F2" font-family="JetBrains Mono, monospace" font-size="38" letter-spacing="7">TWO-PAGE EDITORIAL SPREAD</text>
+  <text x="128" y="220" fill="#CFD8D6" font-family="JetBrains Mono, monospace" font-size="19">2400 x 1200 local fixture</text>
+</svg>

@@ -1,0 +1,102 @@
+.lab{
+ padding-bottom:90px;
+}
+
+.intro{
+ padding-top:46px;
+ display:grid;
+ gap:20px;
+}
+
+.intro h1{
+ font-size:clamp(44px,7vw,86px);
+}
+
+.intro p{
+ max-width:72ch;
+}
+
+.metaGrid{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:16px;
+ border-top:1px solid var(--line);
+ padding-top:18px;
+}
+
+.metaGrid div{
+ display:grid;
+ gap:8px;
+}
+
+.metaGrid dt{
+ font:10px/1.6 var(--mono);
+ letter-spacing:.14em;
+ text-transform:uppercase;
+ color:var(--muted);
+}
+
+.metaGrid dd{
+ margin:0;
+ font-size:13px;
+ line-height:1.6;
+}
+
+.fixtureFrame{
+ position:relative;
+ min-width:0;
+ width:100%;
+ overflow:hidden;
+ background:var(--panel);
+ border:1px solid var(--line);
+}
+
+.fixtureFrame img,
+.fixtureFrame video{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.fixtureFrame video{
+ background:#181818;
+}
+
+.fixtureLabel{
+ position:absolute;
+ left:12px;
+ bottom:12px;
+ font:10px/1.4 var(--mono);
+ letter-spacing:.14em;
+ text-transform:uppercase;
+ color:#f4f4f2;
+ background:rgba(18,18,18,.75);
+ padding:6px 8px;
+}
+
+.fixtureWide{
+ aspect-ratio:16/10;
+}
+
+.fixtureCinematic{
+ aspect-ratio:21/9;
+}
+
+.fixturePortrait{
+ aspect-ratio:4/5;
+}
+
+.fixtureSquare{
+ aspect-ratio:1/1;
+}
+
+.fixtureEditorial{
+ aspect-ratio:4/3;
+}
+
+@media(max-width:850px){
+ .metaGrid{
+  grid-template-columns:1fr;
+ }
+}

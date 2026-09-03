@@ -1,0 +1,12 @@
+<svg width="2100" height="900" viewBox="0 0 2100 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g21" x1="0" y1="0" x2="2100" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2D3442"/>
+      <stop offset="1" stop-color="#5D6B7A"/>
+    </linearGradient>
+  </defs>
+  <rect width="2100" height="900" fill="url(#g21)"/>
+  <rect x="80" y="80" width="1940" height="740" stroke="rgba(255,255,255,0.22)"/>
+  <text x="130" y="170" fill="#F4F4F2" font-family="JetBrains Mono, monospace" font-size="48" letter-spacing="10">PANORAMIC EVIDENCE</text>
+  <text x="130" y="232" fill="#D7D8DE" font-family="JetBrains Mono, monospace" font-size="22">2100 x 900 local fixture (21:9)</text>
+</svg>

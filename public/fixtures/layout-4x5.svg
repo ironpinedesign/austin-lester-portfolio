@@ -1,0 +1,12 @@
+<svg width="1200" height="1500" viewBox="0 0 1200 1500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g45" x1="0" y1="0" x2="1200" y2="1500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#674C3A"/>
+      <stop offset="1" stop-color="#9D7657"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#g45)"/>
+  <rect x="74" y="74" width="1052" height="1352" stroke="rgba(255,255,255,0.2)"/>
+  <text x="126" y="174" fill="#F4F4F2" font-family="JetBrains Mono, monospace" font-size="40" letter-spacing="8">PORTRAIT STUDY</text>
+  <text x="126" y="228" fill="#E7DFD8" font-family="JetBrains Mono, monospace" font-size="20">1200 x 1500 local fixture (4:5)</text>
+</svg>

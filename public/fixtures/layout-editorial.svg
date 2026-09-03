@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Editorial Fixture</title>
+  <desc id="desc">Local fixture for editorial layout sequence prototyping.</desc>
+  <rect width="1600" height="1100" fill="#efede6"/>
+  <rect x="110" y="120" width="660" height="860" fill="#d8d4c9"/>
+  <rect x="830" y="120" width="660" height="410" fill="#c7c1b1"/>
+  <rect x="830" y="570" width="660" height="410" fill="#bbb39e"/>
+  <text x="140" y="180" fill="#2f2b22" font-size="40" font-family="Arial, sans-serif" letter-spacing="8">EDITORIAL PROOF</text>
+  <text x="140" y="245" fill="#2f2b22" fill-opacity="0.68" font-size="25" font-family="Arial, sans-serif">1600 x 1100 local fixture</text>
+</svg>

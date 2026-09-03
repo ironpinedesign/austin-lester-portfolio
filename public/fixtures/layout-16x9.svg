@@ -1,0 +1,12 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g169" x1="0" y1="0" x2="1920" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3D4854"/>
+      <stop offset="1" stop-color="#6F7F8F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#g169)"/>
+  <rect x="80" y="80" width="1760" height="920" stroke="rgba(255,255,255,0.22)"/>
+  <text x="130" y="170" fill="#F4F4F2" font-family="JetBrains Mono, monospace" font-size="46" letter-spacing="10">LANDSCAPE SYSTEM</text>
+  <text x="130" y="230" fill="#D7D8DE" font-family="JetBrains Mono, monospace" font-size="22">1920 x 1080 local fixture (16:9)</text>
+</svg>

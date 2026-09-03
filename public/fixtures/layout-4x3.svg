@@ -1,0 +1,12 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g43" x1="0" y1="0" x2="1600" y2="1200" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#45505E"/>
+      <stop offset="1" stop-color="#728294"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#g43)"/>
+  <rect x="76" y="76" width="1448" height="1048" stroke="rgba(255,255,255,0.2)"/>
+  <text x="124" y="168" fill="#F4F4F2" font-family="JetBrains Mono, monospace" font-size="44" letter-spacing="9">EDITORIAL PROOF</text>
+  <text x="124" y="226" fill="#D6D8DE" font-family="JetBrains Mono, monospace" font-size="20">1600 x 1200 local fixture (4:3)</text>
+</svg>
