@@ -1,5 +1,13 @@
 import records from '../content/projects.json';
-export type Section={content_id:string;media_slots:string[];type:string;narrative_stage?:string|null;heading?:string|null;body?:string|null;background?:string|null;layout?:string|null;quote?:string|null;quote_attribution?:string|null;metrics?:{content_id:string;label:string;value:string;kind?:string}[];images?:string[];caption?:string|null};
+export type SectionInteractionConfig={
+ expandableNarrative?:{enabled:boolean;previewParagraphs?:number;fade?:boolean;readMoreLabel?:string;showLessLabel?:string};
+ infoDisclosure?:{enabled:boolean;label?:string;heading?:string;body?:string};
+ mediaDetail?:{enabled:boolean;items:{slot:string;body:string;title?:string;label?:string}[]};
+ mediaCarousel?:{enabled:boolean;captions?:Record<string,string>;credits?:Record<string,string>};
+ inlineLoop?:{enabled:boolean;slots:string[];loop?:boolean};
+ mediaInspect?:{enabled:boolean;slots:string[];buttonLabel?:string;captions?:Record<string,string>;credits?:Record<string,string>};
+};
+export type Section={content_id:string;media_slots:string[];type:string;narrative_stage?:string|null;heading?:string|null;body?:string|null;background?:string|null;layout?:string|null;quote?:string|null;quote_attribution?:string|null;metrics?:{content_id:string;label:string;value:string;kind?:string}[];images?:string[];caption?:string|null;interaction?:SectionInteractionConfig};
 export type Project=Omit<(typeof records)[number],'content_sections'|'related_project_ids'>&{content_sections:Section[];related_project_ids:string[]};
 export const projects:Project[]=records as Project[];
 export const categories=['Brand & Narrative Strategy','Campaign Development','Identity & Design Systems','Creative Technology & Interactive','Art Direction','Photography & Film'];

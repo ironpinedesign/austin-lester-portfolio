@@ -68,12 +68,26 @@ const productionBindingConfig = {
   ],
 };
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ command }) => {
+  const isServe = command === 'serve';
+
   const bindingProfile = process.env.CF_BINDINGS_PROFILE === 'staging'
     ? stagingBindingConfig
     : process.env.CF_BINDINGS_PROFILE === 'production'
       ? productionBindingConfig
       : localBindingConfig;
+
+  const devSafeBindingProfile = isServe
+    ? {
+        ...bindingProfile,
+        // vinext/miniflare already supplies nodejs_compat during local runtime.
+        // Passing it again here causes duplicate-flag startup failure.
+        compatibility_flags: undefined,
+        // Local runtime binary in this environment supports up to 2026-05-22.
+        // Keep deploy behavior unchanged; only cap local serve compatibility.
+        compatibility_date: '2026-05-22',
+      }
+    : bindingProfile;
 
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
@@ -93,7 +107,7 @@ export default defineConfig(async () => {
       vinext(),
       cloudflare({
         viteEnvironment: { name: 'rsc', childEnvironments: ['ssr'] },
-        config: bindingProfile,
+        config: devSafeBindingProfile,
       }),
     ],
   };
