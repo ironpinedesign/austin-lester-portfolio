@@ -6,12 +6,15 @@ compatibility_date = "2026-09-02"
 compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 account_id = "2e8092555bad431938650f4256140c20"
+routes = [
+	{ pattern = "austinlesterstudio.com", custom_domain = true }
+]
 
 [vars]
 # Top-level config targets production deploys. Staging remains isolated under env.staging.
 AUTH_PROVIDER = "cloudflare-access"
 CF_ACCESS_TEAM_DOMAIN = "fancy-tree-d5e8.cloudflareaccess.com"
-CF_ACCESS_AUD = "b6759c4204df8cbc2966b317b6d7693159265b2dc280bf44cf987dbe8010750b"
+CF_ACCESS_AUD = "dceb4705c992cba5c210ea1841e48d24c540921816b9652cc20f5b7449f744fc"
 
 [env.staging]
 name = "austin-lester-portfolio-staging"
@@ -34,11 +37,14 @@ bucket_name = "austin-lester-portfolio-staging-files"
 [env.production]
 name = "austin-lester-portfolio-production"
 workers_dev = true
+routes = [
+	{ pattern = "austinlesterstudio.com", custom_domain = true }
+]
 
 [env.production.vars]
 AUTH_PROVIDER = "cloudflare-access"
 CF_ACCESS_TEAM_DOMAIN = "fancy-tree-d5e8.cloudflareaccess.com"
-CF_ACCESS_AUD = "b6759c4204df8cbc2966b317b6d7693159265b2dc280bf44cf987dbe8010750b"
+CF_ACCESS_AUD = "dceb4705c992cba5c210ea1841e48d24c540921816b9652cc20f5b7449f744fc"
 
 [[env.production.d1_databases]]
 binding = "DB"
