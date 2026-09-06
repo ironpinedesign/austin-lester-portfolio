@@ -10,6 +10,8 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "release:preflight": "node scripts/release-preflight.mjs",
+    "deploy:production": "node scripts/deploy-production.mjs",
     "db:generate": "drizzle-kit generate",
     "export:sites-runtime": "node scripts/export-sites-runtime.mjs",
     "import:runtime-plan": "node scripts/import-runtime-backup.mjs",

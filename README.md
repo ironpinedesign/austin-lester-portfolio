@@ -80,6 +80,26 @@ Current hosting uses Vinext/Vite plus `@openai/sites-vite-plugin`, Sites-managed
 
 Current deployment is an explicit Sites workflow: build, associate source/version, package server/static assets/migrations, and publish through Sites. **No GitHub deployment workflow is configured. The security review does not publish or change the live Site.** Deployment of the reviewed changes requires the owner's separate approval.
 
+Canonical production release flow:
+
+1. `pnpm release:preflight`
+2. controlled fast-forward merge/push
+3. `pnpm deploy:production`
+4. live smoke test
+5. manual `/studio` owner read-only smoke check
+
+`pnpm deploy:production` is the canonical production command. It forces `CF_BINDINGS_PROFILE=production`, rebuilds artifacts, verifies resolved targets, and fails before deployment unless these match exactly:
+
+- Worker: `austin-lester-portfolio-production`
+- D1: `austin-lester-portfolio-production-db`
+- R2: `austin-lester-portfolio-production-files`
+
+Manual post-deploy Studio smoke check requirements:
+
+- `/studio` unauthenticated redirect alone is not enough.
+- Authenticate as owner, confirm owner identity, load content and media, and perform no writes.
+- Ignore CSP warnings that appear only on Cloudflare login/dashboard pages unless they also appear on `austinlesterstudio.com` routes.
+
 To move hosts, supply equivalent storage/database bindings or replace `lib/storage.ts` and database access, migrate live rows and blobs, replace the Sites identity adapter with trusted server-side authentication/owner mapping, configure secrets, and replace the Sites build/deployment wiring. A new Site gets different site-scoped user IDs, so owner mapping needs deliberate migration. Keep semantic content IDs and slot mappings intact. Preserve the ordinary-anchor `SiteLink` adapter, which avoids a known production navigation failure in this pinned Vinext version.
 
 ## Verification

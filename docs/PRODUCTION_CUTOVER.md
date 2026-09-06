@@ -3,6 +3,25 @@
 Date: 2026-09-02
 Status: Planning only. No DNS or domain changes executed.
 
+## Canonical Release Flow
+
+Use this exact sequence for production releases:
+
+1. `pnpm release:preflight`
+2. controlled `git` fast-forward merge/push
+3. `pnpm deploy:production`
+4. live smoke test
+5. manual `/studio` owner read-only smoke check
+
+`pnpm deploy:production` is the canonical production deployment command.
+It forces `CF_BINDINGS_PROFILE=production`, rebuilds artifacts, and fails before deployment unless resolved targets match exactly:
+
+- Worker: `austin-lester-portfolio-production`
+- D1: `austin-lester-portfolio-production-db`
+- R2: `austin-lester-portfolio-production-files`
+
+This command does not recreate or rename Cloudflare resources; it verifies and deploys the existing production environment.
+
 ## Read-Only DNS Audit (Current)
 
 Domain: austinlesterstudio.com
@@ -117,6 +136,20 @@ After DNS authority is in Cloudflare and zone is active:
   - Media Studio loads
   - Thumbnails load
   - Save workflow persists to D1
+
+### Manual post-deploy Studio smoke check (required)
+
+- Open `/studio`.
+- Authenticate as owner.
+- Confirm owner is recognized.
+- Load content.
+- Load media.
+- Perform no writes in this smoke pass.
+
+Notes:
+
+- Unauthenticated redirect alone is not sufficient proof that Studio owner workflow is healthy.
+- CSP warnings seen only on Cloudflare login/dashboard pages are not application regressions unless the same warning appears on `austinlesterstudio.com` routes.
 
 ## Rollback Checklist
 

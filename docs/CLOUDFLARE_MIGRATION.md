@@ -198,6 +198,20 @@ Historical/recovery metadata not fully recoverable from API export alone:
 
 ## Production cutover and DNS migration (not executed in this pass)
 
+Canonical release safety sequence:
+
+1. `pnpm release:preflight`
+2. controlled ff-only merge/push
+3. `pnpm deploy:production`
+4. live smoke checks
+5. manual `/studio` owner read-only smoke check
+
+`pnpm deploy:production` forces production binding profile and refuses deployment unless resolved targets are exactly:
+
+- Worker: `austin-lester-portfolio-production`
+- D1: `austin-lester-portfolio-production-db`
+- R2: `austin-lester-portfolio-production-files`
+
 1. Run final staging signoff.
 2. Freeze live-content window.
 3. Run final read-only export.
