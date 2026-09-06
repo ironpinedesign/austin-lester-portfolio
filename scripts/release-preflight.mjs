@@ -51,8 +51,21 @@ function checkCurrentBranchAlignment(currentBranch) {
     console.log(`- Current branch: ${currentBranch}`);
     console.log(`- Upstream: ${upstream}`);
     console.log(`- Divergence: behind=${behind}, ahead=${ahead}`);
-    if (behind > 0 || ahead > 0) {
+    if (behind > 0 && ahead > 0) {
       throw new Error(`main diverged from upstream ${upstream} (behind=${behind}, ahead=${ahead}).`);
+    }
+    if (behind > 0) {
+      throw new Error(`main is behind upstream ${upstream} by ${behind} commit(s).`);
+    }
+    try {
+      runCommand('git', ['merge-base', '--is-ancestor', 'origin/main', 'HEAD']);
+    } catch {
+      throw new Error('main does not contain current origin/main as an ancestor.');
+    }
+    if (ahead > 0) {
+      console.log(`- STATUS: local main ahead of origin/main by ${ahead} commit; acceptable before push`);
+    } else {
+      console.log('- STATUS: local main synchronized with origin/main');
     }
     return;
   }
@@ -199,9 +212,6 @@ async function main() {
   const { currentBranch, localMain, originMain } = branchInfo();
   console.log(`- local main: ${localMain}`);
   console.log(`- origin/main: ${originMain}`);
-  if (currentBranch === 'main' && localMain !== originMain) {
-    throw new Error('local main does not match origin/main. Update main before release operations.');
-  }
   checkCurrentBranchAlignment(currentBranch);
 
   printCheck('TypeScript');
