@@ -99,9 +99,9 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
   return <>
      <div className={styles.editorialSequence01}>
         <div className={styles.sequenceLead}>{requiredNode(nodes,0,'Lead editorial frame')}</div>
-        {item02&&<div>{item02}</div>}
-        {item03&&<div>{item03}</div>}
-        {item04&&<div>{item04}</div>}
+        {item02&&<div className={styles.sequenceSupportA}>{item02}</div>}
+        {item03&&<div className={styles.sequenceSupportB}>{item03}</div>}
+        {item04&&<div className={styles.sequenceClosing}>{item04}</div>}
    </div>
    {note}
   </>;
@@ -145,18 +145,28 @@ function renderNarrativeBlock(heading:Props['heading'],narrative:Props['narrativ
  </div>;
 }
 
+function renderNarrativePrimary(heading:Props['heading'],narrative:Props['narrative']){
+ if(!heading&&!narrative)return null;
+ return <div className={styles.narrativeBlock}>
+  {heading&&<h2 className="case-section-title">{heading}</h2>}
+  {narrative}
+ </div>;
+}
+
 export default function CaseLayoutSystem({sectionId,narrativeStage,heading,narrative,disclosure,mediaNodes,dark=false,layoutConfig}:Props){
  const spatialLayout:CaseSpatialLayoutId=layoutConfig.layout||'FULL BLEED 01';
  const narrativeBlock=renderNarrativeBlock(heading,narrative,disclosure);
+ const narrativePrimary=renderNarrativePrimary(heading,narrative);
  const mediaRegion=renderMediaLayout(layoutConfig.mediaLayout,mediaNodes,layoutConfig.mediaNote);
  const shellClass=getShellClass(spatialLayout);
  const reverseClass=layoutConfig.reverse?styles.reverse:false;
+ const viewportBleedClass=layoutConfig.viewportBleed?styles.viewportBleed:false;
 
- return <section id={sectionId} className={cx('case-section',dark&&'dark',styles.layoutSection)}>
+ return <section id={sectionId} className={cx('case-section',dark&&'dark',styles.layoutSection,viewportBleedClass)}>
   <div className={cx('wrap',styles.layoutWrap)}>
    {narrativeStage&&<p className="eyebrow">{narrativeStage}</p>}
    <div className={cx(styles.layoutShell,shellClass,reverseClass)}>
-    {renderLayout(spatialLayout,narrativeBlock,mediaRegion,layoutConfig)}
+      {renderLayout(spatialLayout,narrativeBlock,narrativePrimary,disclosure,mediaRegion,layoutConfig)}
    </div>
   </div>
  </section>;
@@ -175,7 +185,7 @@ function getShellClass(layout:CaseSpatialLayoutId){
  return styles.annotatedStage01;
 }
 
-function renderLayout(layout:CaseSpatialLayoutId,narrativeBlock:ReactNode,mediaRegion:ReactNode,layoutConfig:SectionLayoutConfig){
+function renderLayout(layout:CaseSpatialLayoutId,narrativeBlock:ReactNode,narrativePrimary:ReactNode,disclosure:ReactNode,mediaRegion:ReactNode,layoutConfig:SectionLayoutConfig){
  const caption=layoutConfig.caption?<p className={styles.caption}>{layoutConfig.caption}</p>:null;
  const metadata=layoutConfig.metadata?<p className={styles.metadata}>{layoutConfig.metadata}</p>:null;
 
@@ -215,10 +225,11 @@ function renderLayout(layout:CaseSpatialLayoutId,narrativeBlock:ReactNode,mediaR
   const items=layoutConfig.systemItems||[];
   return <>
    <div className={styles.systemNav}>
-    {narrativeBlock}
+   {narrativePrimary}
     {items.length>0&&<ol>
      {items.map((item,index)=><li key={item.id}><span>{String(index+1).padStart(2,'0')}</span><div><strong>{item.label}</strong>{item.description&&<p>{item.description}</p>}</div></li>)}
     </ol>}
+   {disclosure}
    </div>
    <div className={styles.systemField}>{mediaRegion}</div>
   </>;

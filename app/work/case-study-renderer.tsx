@@ -16,6 +16,7 @@ type CaseStudyArticleProps={
  projects:Project[];
  map:MediaMap;
  text:(id:string)=>string;
+ showCover?:boolean;
  coverSlotName?:string;
  navigationProjectSlug?:string;
 };
@@ -106,7 +107,7 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
  return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap case-copy-grid"><p className="eyebrow">{s.narrative_stage}</p><div><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}{infoDisclosure}</div></div></section>;
 }
 
-export function CaseStudyArticle({project,projects,map,text,coverSlotName='hero',navigationProjectSlug}:CaseStudyArticleProps){
+export function CaseStudyArticle({project,projects,map,text,showCover=true,coverSlotName='hero',navigationProjectSlug}:CaseStudyArticleProps){
  const navigationSlug=navigationProjectSlug||project.slug;
  const navIndex=projects.findIndex((entry)=>entry.slug===navigationSlug);
  const prev=navIndex>=0?projects[(navIndex+projects.length-1)%projects.length]:null;
@@ -134,9 +135,9 @@ export function CaseStudyArticle({project,projects,map,text,coverSlotName='hero'
    </dl>
   </section>
 
-  <div className="wrap case-cover">
+  {showCover&&<div className="wrap case-cover">
    <Media map={map} slot={`project.${project.content_id}.opening.${coverSlotName}`} label={`${project.title} / Cover`} className="cinematic" controls/>
-  </div>
+  </div>}
 
     {project.content_sections.map((section)=><CaseSection key={section.content_id} s={section} slug={project.slug} projectId={project.content_id} map={map} text={text}/>)}
 

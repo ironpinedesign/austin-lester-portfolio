@@ -28,6 +28,7 @@ export type CaseMediaLayoutId=(typeof CASE_MEDIA_LAYOUT_IDS)[number];
 export type SectionLayoutConfig={
  layout?:CaseSpatialLayoutId;
  mediaLayout?:CaseMediaLayoutId;
+ viewportBleed?:boolean;
  reverse?:boolean;
  caption?:string;
  metadata?:string;

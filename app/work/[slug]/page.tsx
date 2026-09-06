@@ -31,5 +31,6 @@ export default async function CaseStudy({params}:{params:Promise<{slug:string}>}
   projects={projects}
   map={await mediaMap()}
   text={text}
+    showCover={p.slug!=='kryptek-identity-system'}
  />;
 }

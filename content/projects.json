@@ -213,46 +213,123 @@
         "images": [],
         "video_url": null,
         "quote": null,
-        "heading": "A recognized pattern without a unified identity system.",
+        "heading": "Complete brand world expression.",
         "background": "light",
         "metrics": [],
-        "type": "text",
-        "narrative_stage": "Context",
-        "body": "Kryptek entered the work with strong recognition in the hunting and outdoor industry, a proprietary camouflage pattern, and years of accumulated brand assets. As the company expanded across apparel, ecommerce, retail, partnerships, print, and media, those assets were being interpreted in different ways.\n\nSeveral marks had degraded through repeated export and reuse, proportions varied, and application rules were not consistently defined. Voice, typography, color, iconography, photography, motion, and partner use also needed a shared standard. The challenge was to protect existing brand equity while rebuilding reliable masters and turning scattered creative decisions into one usable system.",
-        "content_id": "context",
-        "media_slots": []
+        "type": "full_visual",
+        "narrative_stage": "KIS_02 · Complete Brand World",
+        "body": "A single dominant hero frame presents the resolved Kryptek identity world while all explanatory narrative remains in live HTML sections.",
+        "content_id": "kis_02_complete_brand_world",
+        "media_slots": [
+          "hero_primary"
+        ],
+        "layout_system": {
+          "layout": "FULL BLEED 01",
+          "viewportBleed": true
+        }
       },
       {
         "layout": null,
         "quote_attribution": null,
         "images": [],
         "video_url": null,
-        "quote": "A brand system earns trust when every expression feels related—even when the medium, audience, and partner change.",
-        "heading": null,
-        "background": "dark",
+        "quote": null,
+        "heading": "Inherited brand conditions.",
+        "background": "light",
         "metrics": [],
-        "type": "pull_quote",
+        "type": "text_image",
+        "narrative_stage": "KIS_03 · Context",
+        "body": "Kryptek entered the work with strong recognition in the hunting and outdoor industry, a proprietary camouflage pattern, and years of accumulated brand assets. As the company expanded across apparel, ecommerce, retail, partnerships, print, and media, those assets were being interpreted in different ways.\n\nSeveral marks had degraded through repeated export and reuse, proportions varied, and application rules were not consistently defined. Voice, typography, color, iconography, photography, motion, and partner use also needed a shared standard. The challenge was to protect existing brand equity while rebuilding reliable masters and turning scattered creative decisions into one usable system.",
+        "content_id": "kis_03_inherited_brand_context",
+        "media_slots": [
+          "inherited_dominant",
+          "inherited_identity",
+          "inherited_language",
+          "inherited_application"
+        ],
+        "layout_system": {
+          "layout": "TEXT SIDECAR 01",
+          "mediaLayout": "ASYMMETRIC GRID 02"
+        }
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Consistency must survive context shifts.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
         "narrative_stage": "Insight",
-        "body": null,
+        "body": "A brand system earns trust only when each expression feels related, even as channel, audience, and partner context change. The diagnosis phase revealed that recognition existed, but governance and application logic were inconsistent.",
         "content_id": "insight",
         "media_slots": []
       },
       {
-        "layout": "right",
+        "layout": null,
         "quote_attribution": null,
         "images": [],
         "video_url": null,
         "quote": null,
-        "heading": "Preserve recognition. Correct the system. Define the rules.",
+        "heading": "Governing system in operation.",
         "background": "light",
         "metrics": [],
-        "type": "split_text_image",
-        "narrative_stage": "Strategy / Approach",
-        "body": "The approach began with an audit of the existing identity ecosystem, followed by reconstruction and refinement of the core logo family. From there, the work established brand values, character, promise, story, vision, target audience, and voice alongside practical standards for color, typography, sizing, placement, iconography, and visual application.\n\nThis paired narrative strategy with production-ready design guidance so the brand could operate consistently across internal teams, vendors, retailers, and partners.",
-        "content_id": "strategy",
+        "type": "text_image",
+        "narrative_stage": "KIS_05 · Governing System",
+        "body": "The governing stage combines strategic intent with operational standards so each brand expression remains consistent across teams, partners, and channels.",
+        "content_id": "kis_05_governing_system",
         "media_slots": [
-          "primary_visual"
-        ]
+          "governing_master_identity",
+          "governing_voice_manifesto",
+          "governing_icon_system"
+        ],
+        "layout_system": {
+          "layout": "SYSTEM STAGE 01",
+          "mediaLayout": "SPECIMEN FIELD 02",
+          "systemItems": [
+            {
+              "id": "foundation",
+              "label": "FOUNDATION"
+            },
+            {
+              "id": "identity",
+              "label": "IDENTITY"
+            },
+            {
+              "id": "language",
+              "label": "LANGUAGE"
+            },
+            {
+              "id": "iconography",
+              "label": "ICONOGRAPHY"
+            },
+            {
+              "id": "governance",
+              "label": "GOVERNANCE"
+            },
+            {
+              "id": "application",
+              "label": "APPLICATION"
+            }
+          ]
+        },
+        "interaction": {
+          "expandableNarrative": {
+            "enabled": true,
+            "previewParagraphs": 1,
+            "readMoreLabel": "READ SYSTEM CONTEXT +",
+            "showLessLabel": "HIDE SYSTEM CONTEXT -"
+          },
+          "infoDisclosure": {
+            "enabled": true,
+            "label": "Extended Context",
+            "heading": "Full governing-system narrative",
+            "body": "The approach began with an audit of the existing identity ecosystem, followed by reconstruction and refinement of the core logo family. From there, the work established brand values, character, promise, story, vision, target audience, and voice alongside practical standards for color, typography, sizing, placement, iconography, and visual application.\n\nThis paired narrative strategy with production-ready design guidance so the brand could operate consistently across internal teams, vendors, retailers, and partners.\n\nThe work established official guidance and a reliable asset foundation, improved consistency across the branding ecosystem, supported clearer market positioning, and gave future customer, retailer, and partnership communication a shared voice and visual standard.",
+            "variant": "inline"
+          }
+        }
       },
       {
         "layout": null,
@@ -260,13 +337,37 @@
         "images": [],
         "video_url": null,
         "quote": null,
-        "heading": "From master artwork to a complete brand ecosystem.",
-        "background": "dark",
+        "heading": "Ecommerce application.",
+        "background": "light",
         "metrics": [],
-        "type": "dark_statement",
-        "narrative_stage": "System",
-        "body": "The system included restored horizontal, vertical, composite, and mark-only logo files; official colors; type and hierarchy guidance; product-technology and layering icons; brand voice and manifesto content; topo-line and graphic elements; photo presets; motion-logo applications; and rollout across ecommerce, catalogs, advertising, merchandise, and partner creative.",
-        "content_id": "system",
+        "type": "text_image",
+        "narrative_stage": "KIS_08 · Ecommerce Application",
+        "body": "The ecommerce surface applies the same identity hierarchy, typography, color behavior, and message discipline defined in the governing system. This section isolates ecommerce expression without blending into the separate ecommerce production-engine case study.",
+        "content_id": "kis_08_ecommerce_application",
+        "media_slots": [
+          "ecommerce_primary",
+          "ecommerce_support_01",
+          "ecommerce_support_02"
+        ],
+        "layout_system": {
+          "layout": "MEDIA SIDECAR 01",
+          "mediaLayout": "ASYMMETRIC GRID 01",
+          "caption": "Primary ecommerce view with optional support evidence."
+        }
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Editorial application.",
+        "background": "light",
+        "metrics": [],
+        "type": "text",
+        "narrative_stage": "KIS_09 · Editorial Application",
+        "body": "Editorial pieces carry the same system logic while adapting cadence, hierarchy, and emphasis to long-form storytelling. The sequence below presents lead-to-closing progression with inspect enabled on key frames.",
+        "content_id": "kis_09_editorial_intro",
         "media_slots": []
       },
       {
@@ -275,18 +376,46 @@
         "images": [],
         "video_url": null,
         "quote": null,
-        "heading": "Identity, guidance, and application.",
+        "heading": "",
         "background": "light",
         "metrics": [],
         "type": "gallery",
-        "narrative_stage": "Work",
-        "body": "A single system carried across identity, brand guidance, digital, campaign, product education, motion, merchandise, and partner applications.",
-        "content_id": "work",
+        "narrative_stage": "KIS_09 · Sequence",
+        "body": "",
+        "content_id": "kis_09_editorial_application",
         "media_slots": [
-          "primary_visual",
-          "supporting_visual",
-          "detail_visual"
-        ]
+          "editorial_lead_spread",
+          "editorial_support_spread_01",
+          "editorial_support_spread_02",
+          "editorial_closing_optional"
+        ],
+        "layout_system": {
+          "layout": "FULL BLEED 02",
+          "mediaLayout": "EDITORIAL SEQUENCE 01",
+          "caption": "Lead-to-support editorial cadence with optional closing frame.",
+          "metadata": "Inspect enabled on selected editorial frames for close reading."
+        },
+        "interaction": {
+          "mediaInspect": {
+            "enabled": true,
+            "buttonLabel": "INSPECT ↗",
+            "tone": "bone",
+            "slots": [
+              "editorial_lead_spread",
+              "editorial_support_spread_02"
+            ],
+            "captions": {
+              "editorial_lead_spread": "Lead editorial spread anchor.",
+              "editorial_support_spread_01": "Supporting editorial spread detail.",
+              "editorial_support_spread_02": "Supporting editorial page detail."
+            },
+            "credits": {
+              "editorial_lead_spread": "Kryptek identity editorial application",
+              "editorial_support_spread_01": "Kryptek identity editorial application",
+              "editorial_support_spread_02": "Kryptek identity editorial application"
+            }
+          }
+        }
       },
       {
         "layout": null,
@@ -294,7 +423,30 @@
         "images": [],
         "video_url": null,
         "quote": null,
-        "heading": "A brand system that could be used, governed, and extended.",
+        "heading": "Campaign application.",
+        "background": "light",
+        "metrics": [],
+        "type": "text_image",
+        "narrative_stage": "KIS_10 · Campaign Application",
+        "body": "A single system carried across identity, brand guidance, digital, campaign, product education, motion, merchandise, and partner applications.",
+        "content_id": "kis_10_campaign_application",
+        "media_slots": [
+          "campaign_dominant",
+          "campaign_support_01",
+          "campaign_support_02"
+        ],
+        "layout_system": {
+          "layout": "TEXT SIDECAR 01",
+          "mediaLayout": "ASYMMETRIC GRID 01"
+        }
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
+        "heading": "Systemized, governed, and extensible.",
         "background": "dark",
         "metrics": [],
         "type": "dark_statement",
@@ -313,7 +465,7 @@
         "background": "light",
         "metrics": [],
         "type": "text",
-        "narrative_stage": "Role & Credits",
+        "narrative_stage": "Role / Credits",
         "body": "I owned the brand strategy, creative direction, art direction, design, layout, and copywriting behind the repositioning and identity system. I rebuilt and refined the asset family, authored the narrative and usage guidance, and directed how the system carried into customer-facing and partner work. Final production and rollout involved Kryptek's internal team and external vendors and partners.",
         "content_id": "credits",
         "media_slots": []
