@@ -224,8 +224,7 @@
           "hero_primary"
         ],
         "layout_system": {
-          "layout": "FULL BLEED 01",
-          "viewportBleed": true
+          "layout": "FULL BLEED 01"
         }
       },
       {

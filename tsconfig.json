@@ -31,5 +31,8 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "qa/kryptek-layout-audit-package-2026-09-06/files"
+  ]
 }
