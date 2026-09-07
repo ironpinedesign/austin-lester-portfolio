@@ -29,6 +29,10 @@ function optionalNode(nodes:ReactNode[],index:number){
  return nodes[index]??null;
 }
 
+function mediaNode(node:ReactNode){
+ return <div className={styles.mediaNode}>{node}</div>;
+}
+
 function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNode[],mediaNote?:string){
  const note=mediaNote?<p className={styles.mediaNote}>{mediaNote}</p>:null;
 
@@ -38,10 +42,10 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const hasSupports=!!(supportA||supportB);
   return <>
      <div className={cx(styles.asymmetricGrid01,!hasSupports&&styles.singleColumn)}>
-        <div className={styles.dominantRegion}>{requiredNode(nodes,0,'Primary media')}</div>
+        <div className={styles.dominantRegion}>{mediaNode(requiredNode(nodes,0,'Primary media'))}</div>
         {hasSupports&&<div className={styles.asymmetricSupportStack}>
-         {supportA&&<div>{supportA}</div>}
-         {supportB&&<div>{supportB}</div>}
+         {supportA&&mediaNode(supportA)}
+         {supportB&&mediaNode(supportB)}
         </div>}
    </div>
    {note}
@@ -56,13 +60,13 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const hasSupports=hasStack||!!supportC;
   return <>
      <div className={cx(styles.asymmetricGrid02,!hasSupports&&styles.singleColumn)}>
-        <div className={styles.dominantRegion}>{requiredNode(nodes,0,'Primary media')}</div>
+        <div className={styles.dominantRegion}>{mediaNode(requiredNode(nodes,0,'Primary media'))}</div>
         {hasSupports&&<div className={styles.supportRail}>
-         {hasStack&&<div className={styles.asymmetricSupportStack}>
-          {supportA&&<div>{supportA}</div>}
-          {supportB&&<div>{supportB}</div>}
+         {hasStack&&<div className={cx(styles.asymmetricSupportStack,styles.mediaNode)}>
+          {supportA&&mediaNode(supportA)}
+          {supportB&&mediaNode(supportB)}
          </div>}
-         {supportC&&<div className={styles.supportWide}>{supportC}</div>}
+         {supportC&&<div className={styles.supportWide}>{mediaNode(supportC)}</div>}
         </div>}
    </div>
    {note}
@@ -73,8 +77,8 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const support=optionalNode(nodes,1);
   return <>
      <div className={cx(styles.specimenField01,!support&&styles.singleColumn)}>
-        <div className={styles.specimenDominant}>{requiredNode(nodes,0,'Specimen')}</div>
-        {support&&<div className={styles.specimenSupport}>{support}</div>}
+        <div className={styles.specimenDominant}>{mediaNode(requiredNode(nodes,0,'Specimen'))}</div>
+        {support&&<div className={styles.specimenSupport}>{mediaNode(support)}</div>}
    </div>
    {note}
   </>;
@@ -86,9 +90,9 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const hasSupports=!!(supportA||supportB);
   return <>
      <div className={cx(styles.specimenField02,!hasSupports&&styles.singleColumn)}>
-        <div className={styles.specimenDominant}>{requiredNode(nodes,0,'Specimen')}</div>
-        {supportA&&<div>{supportA}</div>}
-        {supportB&&<div>{supportB}</div>}
+        <div className={styles.specimenDominant}>{mediaNode(requiredNode(nodes,0,'Specimen'))}</div>
+        {supportA&&mediaNode(supportA)}
+        {supportB&&mediaNode(supportB)}
    </div>
    {note}
   </>;
@@ -100,10 +104,10 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const item04=optionalNode(nodes,3);
   return <>
      <div className={styles.editorialSequence01}>
-        <div className={styles.sequenceLead}>{requiredNode(nodes,0,'Lead editorial frame')}</div>
-        {item02&&<div className={styles.sequenceSupportA}>{item02}</div>}
-        {item03&&<div className={styles.sequenceSupportB}>{item03}</div>}
-        {item04&&<div className={styles.sequenceClosing}>{item04}</div>}
+        <div className={styles.sequenceLead}>{mediaNode(requiredNode(nodes,0,'Lead editorial frame'))}</div>
+        {item02&&<div className={styles.sequenceSupportA}>{mediaNode(item02)}</div>}
+        {item03&&<div className={styles.sequenceSupportB}>{mediaNode(item03)}</div>}
+        {item04&&<div className={styles.sequenceClosing}>{mediaNode(item04)}</div>}
    </div>
    {note}
   </>;
@@ -113,7 +117,7 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const archiveItems=nodes.length?nodes:[fallbackNode('Archive media missing')];
   return <>
    <div className={styles.archiveGrid01}>
-        {archiveItems.map((node,index)=><div key={index}>{node}</div>)}
+      {archiveItems.map((node,index)=><div key={index}>{mediaNode(node)}</div>)}
    </div>
    {note}
   </>;
@@ -123,9 +127,9 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const supportNodes=nodes.slice(1);
   return <>
    <div className={styles.archiveGrid02}>
-        <div className={styles.dominantRegion}>{requiredNode(nodes,0,'Selected archive piece')}</div>
+      <div className={styles.dominantRegion}>{mediaNode(requiredNode(nodes,0,'Selected archive piece'))}</div>
         {supportNodes.length>0&&<div className={styles.archiveSupportRail}>
-         {supportNodes.map((node,index)=><div key={index}>{node}</div>)}
+       {supportNodes.map((node,index)=><div key={index}>{mediaNode(node)}</div>)}
         </div>}
    </div>
    {note}
@@ -133,7 +137,7 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
  }
 
  return <>
-    <div className={styles.defaultMediaRegion}>{requiredNode(nodes,0,'Primary media')}</div>
+    <div className={styles.defaultMediaRegion}>{mediaNode(requiredNode(nodes,0,'Primary media'))}</div>
   {note}
  </>;
 }

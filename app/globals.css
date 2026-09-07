@@ -116,6 +116,20 @@
  .kryptek-case-study .case-layout-section>.layoutWrap{width:1280px;max-width:1280px}
 }
 
+@media(min-width:1441px){
+ .kryptek-case-study>.wrap,
+ .kryptek-case-study .case-section>.wrap,
+ .kryptek-case-study .case-section>.layoutWrap,
+ .kryptek-case-study .case-layout-section>.layoutWrap,
+ .kryptek-case-study>.page-opening.case-opening,
+ .kryptek-case-study #insight>.wrap.case-copy-grid,
+ .kryptek-case-study #outcome>.wrap.case-copy-grid,
+ .kryptek-credits-grid{
+    width:calc(100% - 160px);
+  max-width:1600px;
+ }
+}
+
 .nav-toggle{display:none;border:0;background:transparent;padding:0;width:20px;height:14px;grid-template-rows:repeat(3,2px);row-gap:4px;align-content:space-between}
 .nav-toggle span{display:block;height:2px;background:currentColor;width:100%}
 .site-nav .wordmark{font-weight:600}
