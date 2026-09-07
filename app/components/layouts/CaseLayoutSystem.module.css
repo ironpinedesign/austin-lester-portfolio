@@ -21,6 +21,20 @@
  min-height:0;
 }
 
+.mediaNode{
+ min-width:0;
+ min-height:0;
+ height:100%;
+ display:grid;
+ align-content:stretch;
+}
+
+.mediaNode > *{
+ min-width:0;
+ min-height:0;
+ height:100%;
+}
+
 .layoutShell img,
 .layoutShell video{
  display:block;
@@ -757,6 +771,95 @@
 
 .fallbackMedia{
  border:1px dashed var(--line);
+}
+
+@media(min-width:1200px){
+ :global(#kis_03_inherited_brand_context) .narrativePane,
+ :global(#kis_05_governing_system) .systemNav,
+ :global(#kis_08_ecommerce_application) .sidecarPane,
+ :global(#kis_10_campaign_application) .narrativePane{
+  padding-top:40px;
+ }
+}
+
+@media(min-width:1441px){
+ :global(#kis_02_complete_brand_world) .layoutWrap,
+ :global(#kis_03_inherited_brand_context) .layoutWrap,
+ :global(#kis_05_governing_system) .layoutWrap,
+ :global(#kis_08_ecommerce_application) .layoutWrap,
+ :global(#kis_09_editorial_application) .layoutWrap,
+ :global(#kis_10_campaign_application) .layoutWrap,
+ :global(#kis_09_editorial_intro) > .wrap.case-copy-grid{
+  width:calc(100% - 160px);
+  max-width:1600px;
+ }
+
+ :global(#kis_02_complete_brand_world) .fullBleedRegion,
+ :global(#kis_02_complete_brand_world) .defaultMediaRegion{
+  width:100%;
+  height:auto;
+  aspect-ratio:16/7;
+ }
+
+ :global(#kis_03_inherited_brand_context) .layoutShell,
+ :global(#kis_08_ecommerce_application) .layoutShell,
+ :global(#kis_10_campaign_application) .layoutShell,
+ :global(#kis_05_governing_system) .systemStage01{
+  grid-template-columns:minmax(0,34.375%) minmax(0,59.375%);
+  column-gap:6.25%;
+ }
+
+ :global(#kis_03_inherited_brand_context) .mediaPane,
+ :global(#kis_08_ecommerce_application) .mediaPane,
+ :global(#kis_10_campaign_application) .mediaPane,
+ :global(#kis_05_governing_system) .systemField,
+ :global(#kis_05_governing_system) .systemNav,
+ :global(#kis_08_ecommerce_application) .sidecarPane,
+ :global(#kis_10_campaign_application) .narrativePane{
+  width:100%;
+ }
+
+ :global(#kis_03_inherited_brand_context) .asymmetricGrid02{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/550;
+  grid-template-columns:minmax(0,61.0526%) minmax(0,37.3684%);
+  column-gap:1.5789%;
+  row-gap:2.1818%;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+ }
+
+ :global(#kis_05_governing_system) .specimenField02,
+ :global(#kis_10_campaign_application) .asymmetricGrid01{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/664;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:minmax(0,1.909fr) minmax(0,1fr);
+  gap:clamp(24px,1.25vw,32px);
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricGrid01{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/520;
+  grid-template-columns:minmax(0,68.4211%) minmax(0,28.4211%);
+  column-gap:3.1578%;
+  row-gap:0;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricSupportStack{
+  gap:clamp(24px,1.25vw,32px);
+ }
+
+ :global(#kis_09_editorial_application) .editorialSequence01{
+  width:100%;
+  height:auto;
+  aspect-ratio:1280/864;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:minmax(0,2fr) minmax(0,1fr);
+  gap:clamp(24px,1.25vw,32px);
+ }
 }
 
 .requiredMissing{
