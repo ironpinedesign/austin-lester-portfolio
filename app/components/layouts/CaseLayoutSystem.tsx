@@ -57,11 +57,13 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
   return <>
      <div className={cx(styles.asymmetricGrid02,!hasSupports&&styles.singleColumn)}>
         <div className={styles.dominantRegion}>{requiredNode(nodes,0,'Primary media')}</div>
-        {hasStack&&<div className={styles.asymmetricSupportStack}>
-         {supportA&&<div>{supportA}</div>}
-         {supportB&&<div>{supportB}</div>}
+        {hasSupports&&<div className={styles.supportRail}>
+         {hasStack&&<div className={styles.asymmetricSupportStack}>
+          {supportA&&<div>{supportA}</div>}
+          {supportB&&<div>{supportB}</div>}
+         </div>}
+         {supportC&&<div className={styles.supportWide}>{supportC}</div>}
         </div>}
-        {supportC&&<div className={styles.supportWide}>{supportC}</div>}
    </div>
    {note}
   </>;

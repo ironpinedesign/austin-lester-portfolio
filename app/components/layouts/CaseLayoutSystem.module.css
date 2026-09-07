@@ -167,6 +167,12 @@
  grid-template-rows:1fr 1fr;
 }
 
+.supportRail{
+ display:grid;
+ gap:16px;
+ grid-template-rows:1fr 1fr 1fr;
+}
+
 .dominantRegion :global(.media-frame){
  min-height:min(52svh,600px);
 }
@@ -182,9 +188,7 @@
  grid-row:1 / span 3;
 }
 
-.supportWide{
- grid-column:2;
-}
+.supportWide{}
 
 .specimenField01{
  display:grid;
@@ -353,76 +357,362 @@
  min-height:min(64svh,700px);
 }
 
-/* KIS_05 composition refinements: tighter rail, stronger evidence dominance. */
-:global(#kis_05_governing_system) .systemStage01{
- grid-template-columns:minmax(0,2.6fr) minmax(0,9.4fr);
- gap:26px;
-}
+/* Figma contract desktop geometry for Kryptek sections. */
+@media(min-width:1200px){
+ :global(#kis_02_complete_brand_world){
+  padding-top:0;
+  padding-bottom:0;
+  min-height:698px;
+ }
 
-:global(#kis_05_governing_system) .narrativeBlock{
- max-width:40ch;
-}
+ :global(#kis_02_complete_brand_world) .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1280px;
+  margin-inline:auto;
+  position:relative;
+  gap:0;
+ }
 
-:global(#kis_05_governing_system) .narrativeBlock :global(.prose){
- font-size:15px;
- line-height:1.7;
-}
+ :global(#kis_02_complete_brand_world) .layoutWrap > :global(.eyebrow){
+  position:absolute;
+  top:35px;
+  left:0;
+  margin:0;
+ }
 
-:global(#kis_05_governing_system) .systemNav li{
- padding:5px 0;
-}
+ :global(#kis_02_complete_brand_world) .layoutShell{
+  margin-top:75px;
+  gap:0;
+ }
 
-:global(#kis_05_governing_system) .specimenField02{
- grid-template-columns:2.5fr .72fr;
- gap:14px;
-}
+ :global(#kis_02_complete_brand_world) .fullBleedRegion,
+ :global(#kis_02_complete_brand_world) .defaultMediaRegion{
+  width:1280px;
+  height:560px;
+ }
 
-:global(#kis_05_governing_system) .specimenDominant :global(.media-frame){
- min-height:min(74svh,860px);
-}
+ :global(#kis_02_complete_brand_world) .fullBleedRegion :global(.media-frame),
+ :global(#kis_02_complete_brand_world) .defaultMediaRegion :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
 
-:global(#kis_05_governing_system) .specimenField02 > div:not(.specimenDominant) :global(.media-frame){
- aspect-ratio:1/1;
- min-height:min(20svh,220px);
-}
+ :global(#kis_03_inherited_brand_context){
+  padding-top:84px;
+  padding-bottom:46px;
+ }
 
-/* KIS_08 composition refinements: larger hero evidence, quieter sidecar. */
-:global(#kis_08_ecommerce_application) .mediaSidecar01{
- grid-template-columns:minmax(0,8.8fr) minmax(0,3.2fr);
-}
+ :global(#kis_05_governing_system){
+  padding-top:84px;
+  padding-bottom:41px;
+ }
 
-:global(#kis_08_ecommerce_application) .narrativeBlock{
- max-width:38ch;
-}
+ :global(#kis_08_ecommerce_application){
+  padding-top:84px;
+  padding-bottom:84px;
+ }
 
-:global(#kis_08_ecommerce_application) .narrativeBlock :global(.prose){
- font-size:16px;
- line-height:1.72;
-}
+ :global(#kis_10_campaign_application){
+  padding-top:84px;
+  padding-bottom:58px;
+ }
 
-:global(#kis_08_ecommerce_application) .dominantRegion :global(.media-frame){
- min-height:min(60svh,700px);
-}
+ :global(#kis_09_editorial_application){
+  padding-top:84px;
+  padding-bottom:35px;
+ }
 
-:global(#kis_08_ecommerce_application) .asymmetricSupportStack :global(.media-frame){
- aspect-ratio:1/1;
- min-height:min(22svh,240px);
-}
+ :global(#kis_03_inherited_brand_context) .layoutWrap,
+ :global(#kis_05_governing_system) .layoutWrap,
+ :global(#kis_08_ecommerce_application) .layoutWrap,
+ :global(#kis_10_campaign_application) .layoutWrap,
+ :global(#kis_09_editorial_application) .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1280px;
+  margin-inline:auto;
+    position:relative;
+    gap:0;
+ }
 
-/* KIS_09 hierarchy and inspect de-emphasis. */
-:global(#kis_09_editorial_intro) :global(.case-section-title){
- font-size:clamp(40px,3.8vw,64px);
- max-width:20ch;
-}
+ :global(#kis_03_inherited_brand_context) .layoutWrap > :global(.eyebrow),
+ :global(#kis_05_governing_system) .layoutWrap > :global(.eyebrow),
+ :global(#kis_08_ecommerce_application) .layoutWrap > :global(.eyebrow),
+ :global(#kis_10_campaign_application) .layoutWrap > :global(.eyebrow),
+ :global(#kis_09_editorial_application) .layoutWrap > :global(.eyebrow){
+    position:absolute;
+    top:0;
+    left:0;
+    margin:0;
+ }
 
-:global(#kis_09_editorial_application) :global(.media-inspect-trigger){
- font-size:9px;
- opacity:.6;
- letter-spacing:.14em;
-}
+ :global(#kis_03_inherited_brand_context) .layoutShell,
+ :global(#kis_08_ecommerce_application) .layoutShell,
+ :global(#kis_10_campaign_application) .layoutShell{
+  grid-template-columns:440px 760px;
+  gap:80px;
+ }
 
-:global(#kis_09_editorial_application) :global(.media-inspect-trigger:hover){
- opacity:.9;
+ :global(#kis_03_inherited_brand_context) .mediaPane,
+ :global(#kis_08_ecommerce_application) .mediaPane,
+ :global(#kis_10_campaign_application) .mediaPane{
+  width:760px;
+ }
+
+ :global(#kis_10_campaign_application) .narrativePane{
+  width:440px;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricGrid01{
+  width:760px;
+  height:664px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:420px 220px;
+  gap:24px;
+  align-items:stretch;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:220px;
+  gap:24px;
+  align-self:stretch;
+ }
+
+ :global(#kis_10_campaign_application) .dominantRegion :global(.media-frame),
+ :global(#kis_10_campaign_application) .asymmetricSupportStack > div :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* KIS_03: dominant + full-height three-row support rail. */
+ :global(#kis_03_inherited_brand_context) .asymmetricGrid02{
+  width:760px;
+  height:550px;
+  grid-template-columns:464px 284px;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:12px;
+  align-items:stretch;
+ }
+
+ :global(#kis_03_inherited_brand_context) .asymmetricGrid02 > .dominantRegion{
+  grid-column:1;
+  grid-row:1 / span 3;
+ }
+
+ :global(#kis_03_inherited_brand_context) .supportRail{
+  grid-column:2;
+  grid-row:1 / span 3;
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:12px;
+  align-self:stretch;
+ }
+
+ :global(#kis_03_inherited_brand_context) .asymmetricSupportStack{
+  grid-column:1;
+  grid-row:1 / span 2;
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-self:stretch;
+ }
+
+ :global(#kis_03_inherited_brand_context) .supportWide{
+  grid-column:1;
+  grid-row:3;
+ }
+
+ :global(#kis_03_inherited_brand_context) .dominantRegion :global(.media-frame),
+ :global(#kis_03_inherited_brand_context) .asymmetricSupportStack :global(.media-frame),
+ :global(#kis_03_inherited_brand_context) .supportWide :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* KIS_05: system rail + full-width primary with two support tiles below. */
+ :global(#kis_05_governing_system) .systemStage01{
+  grid-template-columns:440px 760px;
+  gap:80px;
+ }
+
+ :global(#kis_05_governing_system) .systemNav{
+  width:440px;
+    min-height:707px;
+    display:grid;
+    grid-template-rows:auto 1fr auto;
+    align-content:start;
+ }
+
+ :global(#kis_05_governing_system) .systemField{
+  width:760px;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02{
+  width:760px;
+  height:664px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:420px 220px;
+  gap:24px;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02 > .specimenDominant{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div{
+  grid-column:1;
+  grid-row:2;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div + div{
+  grid-column:2;
+  grid-row:2;
+ }
+
+ :global(#kis_05_governing_system) .specimenDominant :global(.media-frame),
+ :global(#kis_05_governing_system) .specimenField02 > div:not(.specimenDominant) :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* KIS_05 Extended Context: one compact intrinsic editorial object. */
+ :global(#kis_05_governing_system) :global(.info-disclosure){
+  margin-top:8px;
+  gap:10px;
+  justify-items:start;
+ }
+
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle){
+    position:relative;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    column-gap:8px;
+  width:174px;
+    height:26px;
+  min-width:0;
+    padding:0;
+  color:var(--ink);
+ }
+
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle::after){
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    content:'';
+    display:block;
+  width:100%;
+  min-width:0;
+  transform:none;
+  opacity:.55;
+ }
+
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle-label){
+  display:block;
+  max-width:10ch;
+    line-height:1.2;
+  white-space:normal;
+    padding-bottom:8px;
+ }
+
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle-indicator){
+  display:block;
+    font-size:14px;
+  line-height:1;
+  letter-spacing:0;
+    padding-bottom:8px;
+ }
+
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle:hover),
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle:focus-visible),
+ :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle[aria-expanded='true']){
+  color:var(--clay);
+ }
+
+ /* KIS_08: text-left, fixed stage width/height, aligned support rail. */
+ :global(#kis_08_ecommerce_application) .mediaPane{
+  grid-column:2;
+    grid-row:1;
+ }
+
+ :global(#kis_08_ecommerce_application) .sidecarPane{
+  grid-column:1;
+    grid-row:1;
+  width:440px;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricGrid01{
+  width:760px;
+  height:520px;
+  grid-template-columns:520px 216px;
+  grid-template-rows:520px;
+  gap:24px;
+  align-items:stretch;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricSupportStack{
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:24px;
+  align-self:stretch;
+ }
+
+ :global(#kis_08_ecommerce_application) .dominantRegion :global(.media-frame),
+ :global(#kis_08_ecommerce_application) .asymmetricSupportStack > div :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* KIS_09B: lead over 3-up support row, no staggered staircase. */
+ :global(#kis_09_editorial_application) .editorialSequence01{
+  width:1280px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:560px 280px;
+  gap:24px;
+  align-items:stretch;
+ }
+
+ :global(#kis_09_editorial_application) .sequenceLead{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_09_editorial_application) .sequenceSupportA,
+ :global(#kis_09_editorial_application) .sequenceSupportB,
+ :global(#kis_09_editorial_application) .sequenceClosing{
+  grid-row:2;
+  align-self:stretch;
+ }
+
+ :global(#kis_09_editorial_application) .sequenceSupportA{ grid-column:1; }
+ :global(#kis_09_editorial_application) .sequenceSupportB{ grid-column:2; }
+ :global(#kis_09_editorial_application) .sequenceClosing{
+  grid-column:3;
+  margin-top:0;
+ }
+
+ :global(#kis_09_editorial_application) .sequenceLead :global(.media-frame),
+ :global(#kis_09_editorial_application) .sequenceSupportA :global(.media-frame),
+ :global(#kis_09_editorial_application) .sequenceSupportB :global(.media-frame),
+ :global(#kis_09_editorial_application) .sequenceClosing :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
 }
 
 .annotatedStage01{
@@ -492,9 +782,14 @@
   grid-template-columns:repeat(2,minmax(0,1fr));
  }
 
- :global(#kis_05_governing_system) .systemStage01,
- :global(#kis_08_ecommerce_application) .mediaSidecar01{
+ :global(#kis_05_governing_system) .systemStage01{
   grid-template-columns:1fr;
+ }
+
+ :global(#kis_08_ecommerce_application) .mediaPane,
+ :global(#kis_08_ecommerce_application) .sidecarPane{
+  grid-column:auto;
+  width:auto;
  }
 }
 
@@ -559,5 +854,244 @@
 
  .archiveSupportRail{
   grid-template-columns:1fr;
+ }
+}
+
+@media(max-width:620px){
+ :global(#kis_02_complete_brand_world){
+  min-height:296px;
+  padding-top:0;
+  padding-bottom:0;
+  border-top:0;
+ }
+
+ :global(#kis_02_complete_brand_world) .layoutWrap{
+  width:342px;
+  max-width:342px;
+  position:relative;
+  gap:0;
+ }
+
+ :global(#kis_02_complete_brand_world) .layoutWrap > :global(.eyebrow){
+  position:absolute;
+  top:24px;
+  left:0;
+  margin:0;
+ }
+
+ :global(#kis_02_complete_brand_world) .layoutShell{
+  margin-top:56px;
+ }
+
+ :global(#kis_02_complete_brand_world) .fullBleedRegion,
+ :global(#kis_02_complete_brand_world) .defaultMediaRegion{
+  width:342px;
+  height:240px;
+ }
+
+ :global(#kis_02_complete_brand_world) :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ :global(#kis_03_inherited_brand_context){
+  min-height:916px;
+  padding-top:0;
+  padding-bottom:0;
+ }
+
+ :global(#kis_03_inherited_brand_context) .layoutWrap{
+  gap:0;
+ }
+
+ :global(#kis_03_inherited_brand_context) .case-section-title{
+  margin-bottom:14px;
+ }
+
+ :global(#kis_03_inherited_brand_context) :global(.prose){
+  font-size:15px;
+  line-height:1.65;
+ }
+
+ :global(#kis_03_inherited_brand_context) .layoutWrap,
+ :global(#kis_05_governing_system) .layoutWrap,
+ :global(#kis_08_ecommerce_application) .layoutWrap,
+ :global(#kis_09_editorial_application) .layoutWrap,
+ :global(#kis_10_campaign_application) .layoutWrap{
+  width:342px;
+  max-width:342px;
+  gap:12px;
+ }
+
+ :global(#kis_03_inherited_brand_context) .layoutShell,
+ :global(#kis_08_ecommerce_application) .layoutShell,
+ :global(#kis_10_campaign_application) .layoutShell{
+  grid-template-columns:1fr;
+  gap:12px;
+ }
+
+ :global(#kis_03_inherited_brand_context) .asymmetricGrid02{
+  width:342px;
+  height:332px;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:240px 80px;
+  column-gap:8px;
+  row-gap:12px;
+ }
+
+ :global(#kis_03_inherited_brand_context) .asymmetricGrid02 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_03_inherited_brand_context) .supportRail{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:80px;
+  gap:8px;
+ }
+
+ :global(#kis_03_inherited_brand_context) .asymmetricSupportStack{
+  display:contents;
+ }
+
+ :global(#kis_03_inherited_brand_context) .dominantRegion :global(.media-frame),
+ :global(#kis_03_inherited_brand_context) .supportRail :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ :global(#kis_05_governing_system){
+  min-height:1090px;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02{
+  width:342px;
+  height:332px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:200px 120px;
+  gap:12px;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02 > .specimenDominant{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div{grid-column:1;grid-row:2;}
+ :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div + div{grid-column:2;grid-row:2;}
+
+ :global(#kis_05_governing_system) .specimenField02 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ :global(#kis_08_ecommerce_application){
+  min-height:800px;
+  padding-top:28px;
+  padding-bottom:28px;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricGrid01{
+  width:342px;
+  height:412px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:240px 160px;
+  gap:12px;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:160px;
+  gap:12px;
+ }
+
+ :global(#kis_08_ecommerce_application) .asymmetricGrid01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ :global(#kis_09_editorial_application){
+  min-height:764px;
+  padding-top:0;
+  padding-bottom:0;
+ }
+
+ :global(#kis_09_editorial_application) .editorialSequence01{
+  width:342px;
+  grid-template-columns:1fr;
+  grid-template-rows:200px 140px 140px 140px;
+  gap:12px;
+ }
+
+ :global(#kis_09_editorial_application) .sequenceLead,
+ :global(#kis_09_editorial_application) .sequenceSupportA,
+ :global(#kis_09_editorial_application) .sequenceSupportB,
+ :global(#kis_09_editorial_application) .sequenceClosing{
+  grid-column:1;
+  height:100%;
+ }
+
+ :global(#kis_09_editorial_application) .sequenceLead{grid-row:1;}
+ :global(#kis_09_editorial_application) .sequenceSupportA{grid-row:2;}
+ :global(#kis_09_editorial_application) .sequenceSupportB{grid-row:3;}
+ :global(#kis_09_editorial_application) .sequenceClosing{grid-row:4;}
+
+ :global(#kis_09_editorial_application) .editorialSequence01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ :global(#kis_09_editorial_application) .captionRail{
+  display:none;
+ }
+
+ :global(#kis_09_editorial_application) :global(.media-inspect),
+ :global(#kis_09_editorial_application) :global(.media-inspect > div:first-child){
+  height:100%;
+ }
+
+ :global(#kis_10_campaign_application){
+  min-height:716px;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricGrid01{
+  width:342px;
+  height:332px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:200px 120px;
+  gap:12px;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:120px;
+  gap:12px;
+ }
+
+ :global(#kis_10_campaign_application) .asymmetricGrid01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
  }
 }

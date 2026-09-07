@@ -104,6 +104,11 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
   const creditFor=(slotName:string)=>s.interaction?.mediaCarousel?.credits?.[slotName];
   return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><div className="case-gallery-heading"><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}</div>{infoDisclosure}{useCarousel?<MediaCarousel label={s.heading||`${s.narrative_stage||'Project'} media carousel`} items={indexes.map((n)=>{const slotName=s.media_slots[n]||`slot_${n}`;return {id:slotName,content:renderSectionMedia(n,'portrait',kind),caption:captionFor(slotName),credit:creditFor(slotName)};})}/>:<div className={isGallery?'case-gallery':'case-visual'}>{indexes.map((n)=><div key={n}>{renderSectionMedia(n,isGallery?'portrait':'wide',kind)}</div>)}</div>}</div></section>;
  }
+
+ if(slug==='kryptek-identity-system'&&s.content_id==='credits'&&s.type==='text'){
+  return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap kryptek-credits-grid"><div><p className="eyebrow">{s.narrative_stage}</p><h2 className="case-section-title">{s.heading}</h2></div><div className="kryptek-credits-details">{narrativeNode}{infoDisclosure}</div></div></section>;
+ }
+
  return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap case-copy-grid"><p className="eyebrow">{s.narrative_stage}</p><div><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}{infoDisclosure}</div></div></section>;
 }
 
@@ -112,8 +117,9 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
  const navIndex=projects.findIndex((entry)=>entry.slug===navigationSlug);
  const prev=navIndex>=0?projects[(navIndex+projects.length-1)%projects.length]:null;
  const next=navIndex>=0?projects[(navIndex+1)%projects.length]:null;
+ const compactProjectNavigation=project.slug==='kryptek-identity-system';
 
- return <article>
+ return <article className={project.slug==='kryptek-identity-system'?'kryptek-case-study':undefined}>
   <section className="wrap page-opening case-opening">
    <p className="eyebrow">- {project.project_number} / {project.strategic_intent} · {project.year}{project.slug==='the-public-standard'?` · ${text('project.public_standard.opening.status_label')}`:''}</p>
    <div className="case-title-grid">
@@ -141,16 +147,24 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
 
     {project.content_sections.map((section)=><CaseSection key={section.content_id} s={section} slug={project.slug} projectId={project.content_id} map={map} text={text}/>)}
 
-  <section className="case-section dark">
-   <div className="wrap">
-    <p className="eyebrow">{text('global.project.continue_label')}</p>
-    {prev&&next&&projects.length>1&&<div className="next-projects">
-     <Link href={`/work/${prev.slug}`}><span className="eyebrow">{text('global.project.previous_label')}</span><h2>{prev.title}</h2></Link>
-     <Link href={`/work/${next.slug}`}><span className="eyebrow">{text('global.project.next_label')}</span><h2>{next.title}</h2></Link>
-    </div>}
-    {projects.filter((related)=>project.related_project_ids.includes(related.content_id)&&related.content_id!==project.content_id).map((related)=><div key={related.content_id} className="back-index"><p className="eyebrow">{text('global.project.related_label')}</p><Link className="text-link" href={`/work/${related.slug}`}>{related.title} ↗</Link></div>)}
-    <Link className="text-link back-index" href="/work">{text('global.project.index_label')}</Link>
-   </div>
-  </section>
+  {compactProjectNavigation
+   ?<section className="case-section project-navigation-row" aria-label="Project navigation">
+    <div className="wrap project-navigation-row-inner">
+     <div>{prev&&<Link className="project-navigation-link project-navigation-prev" href={`/work/${prev.slug}`}>{text('global.project.previous_label')}</Link>}</div>
+     <div><Link className="project-navigation-link project-navigation-center" href="/work">{text('global.project.index_label')}</Link></div>
+     <div>{next&&<Link className="project-navigation-link project-navigation-next" href={`/work/${next.slug}`}>{text('global.project.next_label')}</Link>}</div>
+    </div>
+   </section>
+   :<section className="case-section dark">
+    <div className="wrap">
+     <p className="eyebrow">{text('global.project.continue_label')}</p>
+     {prev&&next&&projects.length>1&&<div className="next-projects">
+      <Link href={`/work/${prev.slug}`}><span className="eyebrow">{text('global.project.previous_label')}</span><h2>{prev.title}</h2></Link>
+      <Link href={`/work/${next.slug}`}><span className="eyebrow">{text('global.project.next_label')}</span><h2>{next.title}</h2></Link>
+     </div>}
+     {projects.filter((related)=>project.related_project_ids.includes(related.content_id)&&related.content_id!==project.content_id).map((related)=><div key={related.content_id} className="back-index"><p className="eyebrow">{text('global.project.related_label')}</p><Link className="text-link" href={`/work/${related.slug}`}>{related.title} ↗</Link></div>)}
+     <Link className="text-link back-index" href="/work">{text('global.project.index_label')}</Link>
+    </div>
+   </section>}
  </article>;
 }

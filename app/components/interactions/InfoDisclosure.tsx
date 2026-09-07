@@ -16,7 +16,8 @@ export default function InfoDisclosure({label='INFO',heading,children,defaultExp
 
  return <section className={`info-disclosure ${open?'is-open':''} variant-${variant}`}>
   <button ref={triggerRef} type="button" className="interaction-toggle" aria-expanded={open} aria-controls={id} onClick={()=>setOpen(v=>!v)}>
-     {open?`${label} −`:`${label} +`}
+     <span className="interaction-toggle-label">{label}</span>
+     <span className="interaction-toggle-indicator" aria-hidden="true">{open?'−':'+'}</span>
   </button>
   <div id={id} hidden={!open} className="info-disclosure-panel">
    {heading&&<h3>{heading}</h3>}
