@@ -170,6 +170,48 @@
  body:has(.kryptek-case-study) .footer-bottom{align-self:end}
 }
 
+@media(min-width:1441px){
+ .kryptek-case-study>.page-opening.case-opening,
+ .kryptek-case-study #insight>.wrap.case-copy-grid,
+ .kryptek-case-study #outcome>.wrap.case-copy-grid,
+ .kryptek-credits-grid,
+ .kryptek-case-study #kis_09_editorial_intro>.wrap.case-copy-grid{
+  width:calc(100% - 160px);
+  max-width:1600px;
+ }
+
+ .kryptek-case-study .case-title-grid{
+  grid-template-columns:minmax(0,65.625%) minmax(0,28.125%);
+  column-gap:6.25%;
+ }
+
+ .kryptek-case-study .case-intro{
+  grid-template-columns:minmax(0,50.78125%) minmax(0,40.546875%);
+  column-gap:6.25%;
+ }
+
+ .kryptek-case-study .project-facts{
+  grid-template-columns:minmax(0,18.75%) minmax(0,12.5%) minmax(0,28.125%) minmax(0,35%);
+  column-gap:1.875%;
+ }
+
+ .kryptek-case-study #insight>.wrap.case-copy-grid,
+ .kryptek-case-study #outcome>.wrap.case-copy-grid{
+  grid-template-columns:minmax(0,18.75%) minmax(0,50%);
+  column-gap:12.5%;
+ }
+
+ .kryptek-credits-grid{
+  grid-template-columns:minmax(0,34.375%) minmax(0,59.375%);
+  column-gap:6.25%;
+ }
+
+ .kryptek-case-study #kis_09_editorial_intro>.wrap.case-copy-grid{
+  grid-template-columns:minmax(0,10.625%) minmax(0,54.6875%);
+  column-gap:15.078125%;
+ }
+}
+
 @media(max-width:620px){
  .site-nav{height:56px}
  .site-nav .wrap{width:calc(100% - 48px);max-width:342px}
