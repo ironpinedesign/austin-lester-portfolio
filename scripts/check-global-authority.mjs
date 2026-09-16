@@ -134,6 +134,35 @@ try{
   for(const target of kryptekTargets){
    assert(target.width>=44&&target.height>=44,`${width}: Kryptek control “${target.label}” measured ${target.width}×${target.height}`);
   }
+
+  const sidecars=await kryptekPage.evaluate(()=>[
+   {name:'text',selector:'#kis_03_inherited_brand_context'},
+   {name:'media',selector:'#kis_08_ecommerce_application'},
+  ].map(({name,selector})=>{
+   const section=document.querySelector(selector);
+   const rail=section?.querySelector('[class*="layoutWrap"]');
+   const shell=section?.querySelector('[class*="layoutShell"]');
+   const text=section?.querySelector('[class*="narrativePane"],[class*="sidecarPane"]');
+   const media=section?.querySelector('[class*="mediaPane"]');
+   if(!section||!rail||!shell||!text||!media)throw new Error(`Missing ${name} sidecar contract elements`);
+   const box=(element)=>{
+    const rect=element.getBoundingClientRect();
+    return {left:rect.left,right:rect.right,top:rect.top,bottom:rect.bottom,width:rect.width};
+   };
+   return {name,rail:box(rail),shell:box(shell),text:box(text),media:box(media)};
+  }));
+  for(const sidecar of sidecars){
+   const isTwoColumn=sidecar.text.right<=sidecar.media.left+1||sidecar.media.right<=sidecar.text.left+1;
+   if(width>=1024){
+    assert(isTwoColumn,`${width}: ${sidecar.name} sidecar did not use the approved two-column mode`);
+    assert(near(sidecar.text.top,sidecar.media.top),`${width}: ${sidecar.name} sidecar columns do not share a top edge`);
+   }else{
+    assert(!isTwoColumn,`${width}: ${sidecar.name} sidecar should remain stacked`);
+    assert(near(sidecar.text.left,sidecar.media.left),`${width}: ${sidecar.name} stacked panes do not share a left edge`);
+   }
+   assert(sidecar.text.width>=260,`${width}: ${sidecar.name} sidecar text measure is only ${sidecar.text.width}px`);
+   assert(sidecar.media.left>=sidecar.rail.left-1&&sidecar.media.right<=sidecar.rail.right+1,`${width}: ${sidecar.name} sidecar media escapes the canonical rail`);
+  }
   await kryptekPage.close();
  }
 

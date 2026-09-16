@@ -866,10 +866,21 @@
  background:color-mix(in srgb,var(--panel) 75%,#f0d6cd 25%);
 }
 
-@media(max-width:1100px){
+@media(max-width:1023px){
  .textSidecar01,
  .mediaSidecar01,
- .mediaSidecar02,
+ .mediaSidecar02{
+  grid-template-columns:1fr;
+ }
+
+ :global(#kis_08_ecommerce_application) .mediaPane,
+ :global(#kis_08_ecommerce_application) .sidecarPane{
+  grid-column:auto;
+  width:auto;
+ }
+}
+
+@media(max-width:1100px){
  .stickyNarrative01,
  .stickyNarrative02,
  .systemStage01,
@@ -887,12 +898,6 @@
 
  :global(#kis_05_governing_system) .systemStage01{
   grid-template-columns:1fr;
- }
-
- :global(#kis_08_ecommerce_application) .mediaPane,
- :global(#kis_08_ecommerce_application) .sidecarPane{
-  grid-column:auto;
-  width:auto;
  }
 }
 
