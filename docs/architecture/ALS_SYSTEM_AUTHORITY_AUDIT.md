@@ -8,7 +8,7 @@
 
 This audit compares the designated Figma authority pages, the current repository, and the live Cloudflare-served site. Figma page `10 — LIVE SITE REPLICA` was intentionally excluded. No Figma, application, content, asset, dependency, deployment, or Cloudflare configuration was changed.
 
-**Implementation update — 2026-09-16:** `ALS-AUTH-001`, `ALS-AUTH-002`, `ALS-AUTH-009`, and `ALS-AUTH-010` were implemented and verified in commit `714f66c`. Their evidence records below supersede the original implementation-status assessment; the remaining audit findings are unchanged.
+**Implementation update — 2026-09-16:** `ALS-AUTH-001`, `ALS-AUTH-002`, `ALS-AUTH-009`, and `ALS-AUTH-010` were implemented and verified in commit `714f66c`; `ALS-AUTH-003` was implemented and verified in commit `222fa0f`. Their evidence records below supersede the original implementation-status assessment; the remaining audit findings are unchanged.
 
 Status vocabulary used throughout: **ALIGNED**, **PARTIALLY ALIGNED**, **NOT ALIGNED**, **NOT IMPLEMENTED**, **FIGMA OUTDATED**, **IMPLEMENTATION OUTDATED**, and **AMBIGUOUS / AUTHORITY NOT YET DEFINED**.
 
@@ -101,7 +101,7 @@ Two Figma hygiene observations are important but are not design defects:
 
 ### ALS-AUTH-003 — Sidecars do not begin at the documented 1024 mode
 
-- **Status:** IMPLEMENTATION OUTDATED
+- **Status:** IMPLEMENTED
 - **Contract:** Page 02 introduces the text/media sidecar at 1024; page 04 defines the sidecar family and intermediate behavior.
 - **Figma:** 1024 is a two-column mode.
 - **Code:** Case sidecars collapse through `max-width: 1100px`.
@@ -110,6 +110,7 @@ Two Figma hygiene observations are important but are not design defects:
 - **Reason:** The 1024 rail, text column, media column, and gap values are already defined as a coordinated mode.
 - **Required Action:** Move the sidecar breakpoint to the canonical mode and verify text measure/media width at 1024.
 - **Affected Source:** `app/components/layouts/CaseLayoutSystem.module.css`.
+- **Implementation Evidence:** Commit `222fa0f`; `app/components/layouts/CaseLayoutSystem.module.css`; identifiers `.textSidecar01`, `.mediaSidecar01`, `.mediaSidecar02`, and `@media(max-width:1023px)`; verified for representative Kryptek text and media sidecars by `scripts/check-global-authority.mjs` at 390/768/1024/1440/1760.
 
 ### ALS-AUTH-004 — Typography scales fluidly where Figma requires explicit modes
 

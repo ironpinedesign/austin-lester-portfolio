@@ -193,6 +193,7 @@ Content-only changes follow [`CONTENT_AUTHORITY.md`](./CONTENT_AUTHORITY.md). Me
 | --- | --- | --- | --- | --- |
 | `ALS-AUTH-001` | `IMPLEMENTED` | `app/globals.css`: `--als-outer-gutter`, `--als-content-rail`, `.wrap`, `.about-wrap` | `scripts/check-global-authority.mjs`; `scripts/check-about-social-proof.mjs`; five canonical widths | `714f66c` |
 | `ALS-AUTH-002` | `IMPLEMENTED` | `app/globals.css`: `--als-nav-height`, `.site-nav`, `.filter-bar`, `.site-nav nav` | `scripts/check-global-authority.mjs`; five canonical widths | `714f66c` |
+| `ALS-AUTH-003` | `IMPLEMENTED` | `app/components/layouts/CaseLayoutSystem.module.css`: `.textSidecar01`, `.mediaSidecar01`, `.mediaSidecar02`, `@media(max-width:1023px)` | Representative Kryptek text/media sidecars in `scripts/check-global-authority.mjs`; five canonical widths | `222fa0f` |
 | `ALS-AUTH-009` | `IMPLEMENTED` | `app/globals.css`: `--als-interaction-target` and shared navigation/disclosure/media-control selectors | Rendered clickable bounds in `scripts/check-global-authority.mjs`; five canonical widths | `714f66c` |
 | `ALS-AUTH-010` | `IMPLEMENTED` | `app/layout.tsx`: `RootLayout`; `app/page.tsx`: `Home` intent navigation | Semantic-arrow assertions in `scripts/check-global-authority.mjs` | `714f66c` |
 
