@@ -1,0 +1,149 @@
+import fs from 'node:fs/promises';
+import {chromium} from 'playwright';
+
+const baseUrl=(process.env.GLOBAL_AUTHORITY_URL||'http://localhost:3000').replace(/\/$/,'');
+const outputDir=process.env.GLOBAL_AUTHORITY_OUTPUT||'/tmp/als-global-authority-qa';
+const widths=[390,768,1024,1440,1760];
+const expected={
+ 390:{gutter:24,rail:342,navHeight:56},
+ 768:{gutter:40,rail:688,navHeight:64},
+ 1024:{gutter:56,rail:912,navHeight:68},
+ 1440:{gutter:80,rail:1280,navHeight:68},
+ 1760:{gutter:80,rail:1600,navHeight:68},
+};
+const routes=[
+ {name:'home',path:'/',rail:'section.wrap.hero'},
+ {name:'about',path:'/about',rail:'section.about-wrap.page-opening'},
+ {name:'work',path:'/work/truckvault-3d-configurator',rail:'section.wrap.page-opening.case-opening'},
+ {name:'kryptek',path:'/work/kryptek-identity-system',rail:'.kryptek-case-study>.page-opening.case-opening'},
+];
+
+function assert(condition,message){
+ if(!condition)throw new Error(message);
+}
+
+function near(actual,expectedValue,tolerance=1){
+ return Math.abs(actual-expectedValue)<=tolerance;
+}
+
+await fs.mkdir(outputDir,{recursive:true});
+const browser=await chromium.launch({headless:true});
+const report=[];
+
+try{
+ for(const width of widths){
+  const contract=expected[width];
+  for(const route of routes){
+   const page=await browser.newPage({viewport:{width,height:1200},reducedMotion:'reduce'});
+   await page.goto(`${baseUrl}${route.path}`,{waitUntil:'networkidle'});
+   const metrics=await page.evaluate((railSelector)=>{
+    const rail=document.querySelector(railSelector);
+    const nav=document.querySelector('.site-nav');
+    const navInner=document.querySelector('.nav-inner');
+    const wordmark=document.querySelector('.wordmark');
+    const toggle=document.querySelector('.nav-toggle');
+    const navControl=toggle&&getComputedStyle(toggle).display!=='none'?toggle:document.querySelector('.site-nav nav');
+    const footer=document.querySelector('.site-footer>.wrap');
+    if(!rail||!nav||!navInner||!wordmark||!navControl||!footer)throw new Error(`Missing contract element for ${railSelector}`);
+    const rect=(element)=>{
+     const box=element.getBoundingClientRect();
+     return {left:box.left,right:innerWidth-box.right,width:box.width,height:box.height,centerY:box.top+(box.height/2)};
+    };
+    const navBox=rect(nav);
+    return {
+     rail:rect(rail),
+     nav:navBox,
+     navInner:rect(navInner),
+     wordmark:rect(wordmark),
+     navControl:rect(navControl),
+     footer:rect(footer),
+     horizontalOverflow:document.documentElement.scrollWidth-innerWidth,
+    };
+   },route.rail);
+
+   for(const [label,box] of [['content rail',metrics.rail],['navigation rail',metrics.navInner],['footer rail',metrics.footer]]){
+    assert(near(box.left,contract.gutter),`${width} ${route.name}: ${label} left gutter was ${box.left}, expected ${contract.gutter}`);
+    assert(near(box.right,contract.gutter),`${width} ${route.name}: ${label} right gutter was ${box.right}, expected ${contract.gutter}`);
+    assert(near(box.width,contract.rail),`${width} ${route.name}: ${label} width was ${box.width}, expected ${contract.rail}`);
+   }
+   assert(near(metrics.nav.height,contract.navHeight),`${width} ${route.name}: nav height was ${metrics.nav.height}, expected ${contract.navHeight}`);
+   assert(near(metrics.wordmark.centerY,metrics.nav.centerY),`${width} ${route.name}: wordmark is not vertically centered`);
+   assert(near(metrics.navControl.centerY,metrics.nav.centerY),`${width} ${route.name}: navigation control is not vertically centered`);
+   assert(metrics.horizontalOverflow<=0,`${width} ${route.name}: ${metrics.horizontalOverflow}px horizontal overflow`);
+
+   if(route.name==='about'){
+    const about=await page.evaluate(()=>{
+     const selectors=['.about-wrap.page-opening','.testimonial-slider','.client-wall-inner'];
+     return selectors.map((selector)=>{
+      const element=document.querySelector(selector);
+      if(!element)throw new Error(`Missing About contract element ${selector}`);
+      const box=element.getBoundingClientRect();
+      return {selector,left:box.left,right:innerWidth-box.right,width:box.width};
+     });
+    });
+    for(const box of about){
+     assert(near(box.left,contract.gutter),`${width} About ${box.selector}: left gutter changed to ${box.left}`);
+     assert(near(box.right,contract.gutter),`${width} About ${box.selector}: right gutter changed to ${box.right}`);
+     assert(near(box.width,contract.rail),`${width} About ${box.selector}: width changed to ${box.width}`);
+    }
+   }
+
+   await page.screenshot({path:`${outputDir}/${route.name}-${width}.png`});
+   report.push({width,route:route.name,...metrics});
+   await page.close();
+  }
+
+  const interactionPage=await browser.newPage({viewport:{width,height:1200},reducedMotion:'reduce'});
+  await interactionPage.goto(`${baseUrl}/work/interaction-lab`,{waitUntil:'networkidle'});
+  const targetSelectors=[
+   '.interaction-toggle',
+   '.media-carousel-controls button',
+   '.inline-loop-toggle',
+   '.media-inspect-trigger',
+   '.media-detail-trigger',
+  ];
+  const targets=await interactionPage.evaluate((selectors)=>selectors.flatMap((selector)=>[...document.querySelectorAll(selector)]
+   .filter((element)=>{
+    const style=getComputedStyle(element);
+    const box=element.getBoundingClientRect();
+    return style.visibility!=='hidden'&&style.display!=='none'&&box.width>0&&box.height>0;
+   })
+   .map((element)=>{
+    const box=element.getBoundingClientRect();
+    return {selector,label:element.getAttribute('aria-label')||element.textContent?.trim()||'',width:box.width,height:box.height};
+   })),targetSelectors);
+  assert(targets.length>0,`${width}: interaction lab exposed no shared controls`);
+  for(const target of targets){
+   assert(target.width>=44&&target.height>=44,`${width}: ${target.selector} “${target.label}” measured ${target.width}×${target.height}`);
+  }
+  await interactionPage.close();
+
+  const kryptekPage=await browser.newPage({viewport:{width,height:1200},reducedMotion:'reduce'});
+  await kryptekPage.goto(`${baseUrl}/work/kryptek-identity-system`,{waitUntil:'networkidle'});
+  const kryptekTargets=await kryptekPage.locator('.interaction-toggle,.media-inspect-trigger').evaluateAll((elements)=>elements
+   .filter((element)=>{
+    const style=getComputedStyle(element);
+    const box=element.getBoundingClientRect();
+    return style.visibility!=='hidden'&&style.display!=='none'&&box.width>0&&box.height>0;
+   })
+   .map((element)=>{
+    const box=element.getBoundingClientRect();
+    return {label:element.textContent?.trim()||'',width:box.width,height:box.height};
+   }));
+  assert(kryptekTargets.length>0,`${width}: Kryptek exposed no shared controls`);
+  for(const target of kryptekTargets){
+   assert(target.width>=44&&target.height>=44,`${width}: Kryptek control “${target.label}” measured ${target.width}×${target.height}`);
+  }
+  await kryptekPage.close();
+ }
+
+ const semanticPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+ await semanticPage.goto(`${baseUrl}/`,{waitUntil:'networkidle'});
+ assert(await semanticPage.locator('.intent-arrow').allTextContents().then((values)=>values.length>0&&values.every((value)=>value.trim()==='→')),'Homepage intent arrows must use →');
+ assert((await semanticPage.locator('.footer-title span').textContent())?.trim()==='→','Footer forward arrow must use →');
+ await semanticPage.close();
+}finally{
+ await browser.close();
+}
+
+console.log(JSON.stringify({status:'pass',widths,routes:routes.map(({name,path})=>({name,path})),samples:report.length,outputDir},null,2));
