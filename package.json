@@ -10,6 +10,8 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
+    "test:about-social-proof": "node --experimental-strip-types --test tests/about-social-proof.test.ts",
+    "check:about-social-proof": "node scripts/check-about-social-proof.mjs",
     "release:preflight": "node scripts/release-preflight.mjs",
     "deploy:production": "node scripts/deploy-production.mjs",
     "db:generate": "drizzle-kit generate",
