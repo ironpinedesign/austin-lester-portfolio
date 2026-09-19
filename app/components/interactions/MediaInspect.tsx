@@ -10,7 +10,7 @@ type Props={
  tone?:'bone'|'obsidian';
 };
 
-export default function MediaInspect({trigger,expanded,label='INSPECT ↗',caption,credit,tone='bone'}:Props){
+export default function MediaInspect({trigger,expanded,label='INSPECT →',caption,credit,tone='bone'}:Props){
  const titleId=useId();
  const buttonRef=useRef<HTMLButtonElement>(null);
  const closeRef=useRef<HTMLButtonElement>(null);

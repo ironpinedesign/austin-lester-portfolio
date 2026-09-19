@@ -64,7 +64,7 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    :<Media slot={slotKey} map={map} label={`${s.narrative_stage||'Project'} / ${String(n+1).padStart(2,'0')}`} className={className} controls kind={kind}/>;
 
   if(inspectSlots.has(slotName))node=<MediaInspect
-   label={s.interaction?.mediaInspect?.buttonLabel||'INSPECT ↗'}
+   label={s.interaction?.mediaInspect?.buttonLabel||'INSPECT →'}
    caption={s.interaction?.mediaInspect?.captions?.[slotName]}
    credit={s.interaction?.mediaInspect?.credits?.[slotName]}
    tone={s.interaction?.mediaInspect?.tone||'bone'}
@@ -162,7 +162,7 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
       <Link href={`/work/${prev.slug}`}><span className="eyebrow">{text('global.project.previous_label')}</span><h2>{prev.title}</h2></Link>
       <Link href={`/work/${next.slug}`}><span className="eyebrow">{text('global.project.next_label')}</span><h2>{next.title}</h2></Link>
      </div>}
-     {projects.filter((related)=>project.related_project_ids.includes(related.content_id)&&related.content_id!==project.content_id).map((related)=><div key={related.content_id} className="back-index"><p className="eyebrow">{text('global.project.related_label')}</p><Link className="text-link" href={`/work/${related.slug}`}>{related.title} ↗</Link></div>)}
+     {projects.filter((related)=>project.related_project_ids.includes(related.content_id)&&related.content_id!==project.content_id).map((related)=><div key={related.content_id} className="back-index"><p className="eyebrow">{text('global.project.related_label')}</p><Link className="text-link" href={`/work/${related.slug}`}>{related.title} →</Link></div>)}
      <Link className="text-link back-index" href="/work">{text('global.project.index_label')}</Link>
     </div>
    </section>}

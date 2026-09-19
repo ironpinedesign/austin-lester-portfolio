@@ -166,11 +166,51 @@ try{
   await kryptekPage.close();
  }
 
- const semanticPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
- await semanticPage.goto(`${baseUrl}/`,{waitUntil:'networkidle'});
- assert(await semanticPage.locator('.intent-arrow').allTextContents().then((values)=>values.length>0&&values.every((value)=>value.trim()==='→')),'Homepage intent arrows must use →');
- assert((await semanticPage.locator('.footer-title span').textContent())?.trim()==='→','Footer forward arrow must use →');
- await semanticPage.close();
+ const semanticRoutes=[
+  '/',
+  '/about',
+  '/work',
+  '/contact',
+  '/work/interaction-lab',
+  '/work/kryptek-identity-system',
+ ];
+
+ for(const route of semanticRoutes){
+  const semanticPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+  await semanticPage.goto(`${baseUrl}${route}`,{waitUntil:'networkidle'});
+
+  const visibleText=await semanticPage.locator('body').innerText();
+  assert(!visibleText.includes('↗'),`${route}: diagonal arrow ↗ violates the global directional-arrow contract`);
+
+  if(route==='/'){
+   assert(
+    await semanticPage.locator('.intent-arrow').allTextContents()
+     .then((values)=>values.length>0&&values.every((value)=>value.trim()==='→')),
+    'Homepage intent arrows must use →'
+   );
+   assert(
+    (await semanticPage.locator('.footer-title span').textContent())?.trim()==='→',
+    'Footer forward arrow must use →'
+   );
+
+   const heroSupportingType=await semanticPage.locator('.hero-rail p').evaluate((element)=>{
+    const style=getComputedStyle(element);
+    return {
+     fontSize:style.fontSize,
+     lineHeight:style.lineHeight,
+     fontFamily:style.fontFamily,
+     fontWeight:style.fontWeight,
+    };
+   });
+
+   assert(heroSupportingType.fontSize==='17px',`Homepage hero supporting copy font size was ${heroSupportingType.fontSize}, expected 17px`);
+   assert(near(parseFloat(heroSupportingType.lineHeight),30.6,.2),`Homepage hero supporting copy line height was ${heroSupportingType.lineHeight}, expected 30.6px`);
+   assert(heroSupportingType.fontFamily.includes('Archivo'),`Homepage hero supporting copy did not resolve to Archivo: ${heroSupportingType.fontFamily}`);
+   assert(heroSupportingType.fontWeight==='400',`Homepage hero supporting copy weight was ${heroSupportingType.fontWeight}, expected 400`);
+  }
+
+  await semanticPage.close();
+ }
 }finally{
  await browser.close();
 }

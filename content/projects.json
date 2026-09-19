@@ -397,7 +397,7 @@
         "interaction": {
           "mediaInspect": {
             "enabled": true,
-            "buttonLabel": "INSPECT ↗",
+            "buttonLabel": "INSPECT →",
             "tone": "bone",
             "slots": [
               "editorial_lead_spread",
