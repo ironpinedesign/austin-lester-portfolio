@@ -183,7 +183,7 @@ try{
   assert(!visibleText.includes('↗'),`${route}: diagonal arrow ↗ violates the global directional-arrow contract`);
 
   if(route==='/work/kryptek-identity-system'){
-   const backIndexLabel=(await semanticPage.locator('a.back-index[href="/work"]').textContent())?.trim();
+   const backIndexLabel=(await semanticPage.locator('a.project-navigation-center[href="/work"]').textContent())?.trim();
    assert(backIndexLabel?.startsWith('←'),`Case-study back-to-index action must use ←, received: ${backIndexLabel}`);
   }
 
