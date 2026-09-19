@@ -26,6 +26,31 @@ function near(actual,expectedValue,tolerance=1){
  return Math.abs(actual-expectedValue)<=tolerance;
 }
 
+const siteCopySource=await fs.readFile(
+ new URL('../content/site-copy.ts',import.meta.url),
+ 'utf8'
+);
+
+assert(
+ siteCopySource.includes("'home.hero.eyebrow':'Austin Lester / Creative Direction + Design'"),
+ 'Homepage eyebrow default does not match approved production copy'
+);
+
+assert(
+ siteCopySource.includes("'home.hero.headline':'The right solution is\\na consequence of\\nbetter understanding.'"),
+ 'Homepage hero headline default does not match approved production copy'
+);
+
+assert(
+ siteCopySource.includes("'home.hero.intro':'Creative director working across strategy, identity, campaigns, design, film, digital experiences, and technology. I bring the judgment to determine what the work requires and the capability to carry it through.'"),
+ 'Homepage hero intro default does not match approved production copy'
+);
+
+assert(
+ siteCopySource.includes("'home.approach.heading':'Not every problem needs every tool. The value is knowing what the work actually requires.'"),
+ 'Homepage approach heading default does not match approved production copy'
+);
+
 await fs.mkdir(outputDir,{recursive:true});
 const browser=await chromium.launch({headless:true});
 const report=[];
