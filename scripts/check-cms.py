@@ -48,10 +48,10 @@ try:
  page=req('/work/truckvault-3d-configurator');assert b'\xe2\x80\x94 Related' in page
 finally:req('/api/studio/content','POST',{'action':'restore','revision':state()['revision']})
 try:
- apply({'global.categories.art_direction.label':'Creative & Art Direction'})
- page=req('/work?intent=Creative%20%26%20Art%20Direction');assert b'2024 Big Game Guide' in page
+ apply({'global.categories.art_direction.label':'Temporary Art Direction Label'})
+ page=req('/work?intent=Temporary%20Art%20Direction%20Label');assert b'2024 Big Game Guide' in page
  assert b'Kryptek Merchandise' in page
- assert b'Creative &amp; Art Direction' in page
+ assert b'Temporary Art Direction Label' in page
 finally:req('/api/studio/content','POST',{'action':'restore','revision':state()['revision']})
 assert req('/api/studio/content?format=csv')==baseline
 for route in ['/','/work','/about','/contact','/studio','/studio/content','/studio/map']:

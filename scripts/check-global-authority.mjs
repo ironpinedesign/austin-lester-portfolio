@@ -218,6 +218,41 @@ try{
      .then((values)=>values.length>0&&values.every((value)=>value.trim()==='→')),
     'Homepage intent arrows must use →'
    );
+   const intentItems=await semanticPage.locator('.intent-grid>a').evaluateAll((links)=>
+    links.map((link)=>({
+     label:link.children[1]?.textContent?.trim()||'',
+     href:link.getAttribute('href')||'',
+     arrow:link.children[2]?.textContent?.trim()||'',
+    }))
+   );
+
+   const creativeArtIntent=intentItems.find((item)=>item.label==='Creative & Art Direction');
+   assert(creativeArtIntent,'Homepage Browse by Intent is missing Creative & Art Direction');
+   assert(
+    creativeArtIntent.href==='/work?intent=Creative%20%26%20Art%20Direction',
+    `Creative & Art Direction intent link has unexpected destination: ${creativeArtIntent.href}`
+   );
+
+   const intentResultPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+   await intentResultPage.goto(`${baseUrl}${creativeArtIntent.href}`,{waitUntil:'networkidle'});
+   const intentResultText=await intentResultPage.locator('body').innerText();
+   assert(intentResultText.includes('2024 Big Game Guide'),'Creative & Art Direction filter is missing 2024 Big Game Guide');
+   assert(intentResultText.includes('Kryptek Merchandise'),'Creative & Art Direction filter is missing Kryptek Merchandise');
+   await intentResultPage.close();
+
+   const approachHeading=(await semanticPage.locator('.approach h2').textContent())?.trim();
+   assert(
+    approachHeading==='Not every problem needs every tool. The value is knowing what the work actually requires.',
+    `Homepage Approach heading does not match approved copy: ${approachHeading}`
+   );
+
+   const approachLink=semanticPage.locator('.approach a.text-link[href="/about"]');
+   assert(await approachLink.count()===1,'Homepage Approach must link to /about');
+   assert(
+    (await approachLink.textContent())?.trim()==='More about Austin →',
+    'Homepage Approach CTA must use the approved forward-navigation label'
+   );
+
    assert(
     (await semanticPage.locator('.footer-title span').textContent())?.trim()==='→',
     'Footer forward arrow must use →'

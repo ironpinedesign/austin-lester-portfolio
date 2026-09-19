@@ -1,5 +1,5 @@
 import {siteCopy} from '../content/site-copy';
-import {projects,categories,categoryKeys,type Project,type MediaSlot} from './projects';
+import {projects,categories,categoryLabels,categoryKeys,type Project,type MediaSlot} from './projects';
 export type FieldType='text'|'richtext'|'link'|'list'|'boolean'|'number'|'image'|'video';
 export type ContentValues=Record<string,string>;
 export type Entry={id:string;page:string;route:string;section:string;field:string;location:string;type:FieldType;value:string;editable:boolean;required:boolean;order:number;sourceId?:string;projectId?:string;surface?:'project'|'selected'|'index';slot?:string;active:boolean;status?:'COMPLETE'|'MISSING'|'PLACEHOLDER';note?:string};
@@ -13,7 +13,7 @@ for(const [id,value] of Object.entries(siteCopy)){
  const type:FieldType=id.endsWith('.destination')||id==='contact.direct.linkedin'?'link':id.endsWith('.items')?'list':/headline|\.body$/.test(id)?'richtext':id.endsWith('.year')?'number':'text';
  add({id,page:page.name,route:page.route,section:human(p?rest[0]:section),field:human((p?rest.slice(1):rest).join(' / ')),type,value,editable:true,required:!id.startsWith('contact.direct.')||!['email','location','linkedin'].includes(rest[0]),projectId:p?.content_id});
 }
-categories.forEach((c,i)=>add({id:`global.categories.${categoryKeys[i]}.label`,page:'Site-wide',route:'/work',section:'Category filters',field:c,type:'text',value:c,editable:true,required:true}));
+categoryLabels.forEach((label,i)=>add({id:`global.categories.${categoryKeys[i]}.label`,page:'Site-wide',route:'/work',section:'Category filters',field:label,type:'text',value:label,editable:true,required:true}));
 export const projectFields:Record<string,FieldType>={title:'text',project_number:'text',subtitle:'text',client:'text',year:'number',role:'list',thesis:'text',summary:'richtext',strategic_intent:'text',discipline_tags:'list',featured:'boolean',featured_order:'number',index_order:'number',published:'boolean',related_project_ids:'list'};
 const group=(k:string)=>['featured','featured_order','index_order','published','related_project_ids'].includes(k)?'settings':'opening';
 export const projectFieldId=(p:Project,k:string)=>`project.${p.content_id}.${group(k)}.${k}`;

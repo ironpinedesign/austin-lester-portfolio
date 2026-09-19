@@ -49,6 +49,7 @@ export type Section={content_id:string;media_slots:string[];type:string;narrativ
 export type Project=Omit<(typeof records)[number],'content_sections'|'related_project_ids'>&{content_sections:Section[];related_project_ids:string[]};
 export const projects:Project[]=records as Project[];
 export const categories=['Brand & Narrative Strategy','Campaign Development','Identity & Design Systems','Creative Technology & Interactive','Art Direction','Photography & Film'];
+export const categoryLabels=categories.map(c=>c==='Art Direction'?'Creative & Art Direction':c);
 export const categoryKeys=['brand_strategy','campaign','identity','creative_technology','art_direction','photography_film'];
 export const featured=projects.filter(p=>p.featured&&p.published).sort((a,b)=>a.featured_order-b.featured_order);
 export const findProject=(slug:string)=>projects.find(p=>p.slug===slug&&p.published);
