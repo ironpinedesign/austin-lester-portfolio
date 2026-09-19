@@ -182,6 +182,11 @@ try{
   const visibleText=await semanticPage.locator('body').innerText();
   assert(!visibleText.includes('↗'),`${route}: diagonal arrow ↗ violates the global directional-arrow contract`);
 
+  if(route==='/work/kryptek-identity-system'){
+   const backIndexLabel=(await semanticPage.locator('a.back-index[href="/work"]').textContent())?.trim();
+   assert(backIndexLabel?.startsWith('←'),`Case-study back-to-index action must use ←, received: ${backIndexLabel}`);
+  }
+
   if(route==='/'){
    assert(
     await semanticPage.locator('.intent-arrow').allTextContents()
@@ -211,6 +216,12 @@ try{
 
   await semanticPage.close();
  }
+
+ const notFoundPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+ await notFoundPage.goto(`${baseUrl}/__als-authority-404__`,{waitUntil:'networkidle'});
+ const notFoundBackLabel=(await notFoundPage.locator('a.button[href="/work"]').textContent())?.trim();
+ assert(notFoundBackLabel?.startsWith('←'),`404 back-to-index action must use ←, received: ${notFoundBackLabel}`);
+ await notFoundPage.close();
 }finally{
  await browser.close();
 }
