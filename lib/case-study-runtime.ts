@@ -52,28 +52,23 @@ export function resolveSectionRuntime(section:Section):SectionRuntime{
   };
  }
 
- // Preserve transitional fields that do not yet have a modular home
- // (systemItems / annotations) while modular geometry and media values win.
  const layoutConfig:SectionLayoutConfig|null|undefined=modular.layout?{
-  ...(section.layout_system||{}),
   layout:modular.layout.id,
   mediaLayout:modular.media?.layout,
   viewportBleed:modular.layout.viewportBleed,
   reverse:modular.layout.reverse,
   caption:modular.media?.caption,
   metadata:modular.media?.metadata,
-  mediaNote:modular.media?.note
- }:section.layout_system;
+  mediaNote:modular.media?.note,
+  systemItems:modular.systemBrowser?.states
+ }:undefined;
 
  return {
   semanticRole:modular.semanticRole,
   specializedComponent:modular.specializedComponent,
   dark:modular.surface==='dark',
   mediaSlots:modular.media?.slots??section.media_slots,
-  // Specialized components may temporarily reuse the established interaction
-  // data until their dedicated renderer exists. Ordinary modular sections do
-  // not silently inherit legacy interaction behavior.
-  interaction:modular.interaction??(modular.specializedComponent?section.interaction:undefined),
+  interaction:modular.interaction,
   layoutConfig
  };
 }

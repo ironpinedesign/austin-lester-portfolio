@@ -77,6 +77,16 @@ export type ModularSectionMediaConfig={
  note?:string;
 };
 
+export type CaseSystemBrowserState={
+ id:string;
+ label:string;
+ description?:string;
+};
+
+export type CaseSystemBrowserConfig={
+ states:CaseSystemBrowserState[];
+};
+
 export type ModularSectionConfig={
  semanticRole:CaseSectionRole;
  surface:CaseSurface;
@@ -84,6 +94,7 @@ export type ModularSectionConfig={
  media?:ModularSectionMediaConfig;
  interaction?:SectionInteractionConfig;
  specializedComponent?:CaseSpecializedComponentId;
+ systemBrowser?:CaseSystemBrowserConfig;
 };
 
 export type CaseStudyOpeningConfig={
@@ -183,6 +194,13 @@ export function validateCaseStudyContract(project:CaseStudyContractProject):stri
 
   if(!config.specializedComponent&&enabledInteractionCount(config.interaction)>1){
    errors.push(`Section ${section.content_id} enables more than one primary interaction family.`);
+  }
+
+  if(config.specializedComponent==='SYSTEM BROWSER'){
+   const states=config.systemBrowser?.states||[];
+   if(states.length!==6)errors.push(`Section ${section.content_id} SYSTEM BROWSER requires exactly six semantic states.`);
+   const stateIds=new Set(states.map((state)=>state.id));
+   if(stateIds.size!==states.length)errors.push(`Section ${section.content_id} SYSTEM BROWSER state ids must be unique.`);
   }
  }
 

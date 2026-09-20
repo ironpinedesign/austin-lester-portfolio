@@ -85,27 +85,42 @@ test('modular section configuration wins for surface, media, layout, and interac
  assert.equal(runtime.interaction?.mediaCarousel,undefined);
 });
 
-test('specialized modular sections may preserve transitional component data',()=>{
+test('specialized modular sections own their structural and interaction data',()=>{
  const runtime=resolveSectionRuntime(section({
   media_slots:['primary'],
   layout_system:{
-   layout:'SYSTEM STAGE 01',
-   systemItems:[{id:'foundation',label:'Foundation'}]
+   layout:'FULL BLEED 01',
+   systemItems:[{id:'legacy',label:'Legacy'}]
   },
   interaction:{
-   infoDisclosure:{enabled:true,label:'Extended context',body:'More context'}
+   mediaCarousel:{enabled:true}
   },
   modular:{
    semanticRole:'narrative',
    surface:'light',
    layout:{id:'SYSTEM STAGE 01'},
    media:{slots:['primary']},
-   specializedComponent:'SYSTEM BROWSER'
+   specializedComponent:'SYSTEM BROWSER',
+   systemBrowser:{
+    states:[
+     {id:'foundation',label:'FOUNDATION'},
+     {id:'identity',label:'IDENTITY'},
+     {id:'language',label:'LANGUAGE'},
+     {id:'iconography',label:'ICONOGRAPHY'},
+     {id:'governance',label:'GOVERNANCE'},
+     {id:'application',label:'APPLICATION'}
+    ]
+   },
+   interaction:{
+    infoDisclosure:{enabled:true,label:'Extended context',body:'More context'}
+   }
   }
  }));
 
  assert.equal(runtime.specializedComponent,'SYSTEM BROWSER');
  assert.equal(runtime.layoutConfig?.layout,'SYSTEM STAGE 01');
  assert.equal(runtime.layoutConfig?.systemItems?.[0]?.id,'foundation');
+ assert.equal(runtime.layoutConfig?.systemItems?.some((item)=>item.id==='legacy'),false);
  assert.equal(runtime.interaction?.infoDisclosure?.enabled,true);
+ assert.equal(runtime.interaction?.mediaCarousel,undefined);
 });
