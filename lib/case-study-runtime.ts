@@ -1,5 +1,6 @@
 import type {
  CaseNavigationVariant,
+ CaseShellVariant,
  CaseSectionRole,
  CaseSpecializedComponentId,
  SectionInteractionConfig,
@@ -11,6 +12,7 @@ export type CaseStudyRuntime={
  showCover:boolean;
  coverSlotName:string;
  openingQualifier?:string;
+ shellVariant:CaseShellVariant;
  navigationVariant:CaseNavigationVariant;
  relatedProjectIds:string[];
 };
@@ -33,6 +35,7 @@ export function resolveCaseStudyRuntime(
   showCover:config?.opening.cover.enabled??fallback.showCover??true,
   coverSlotName:config?.opening.cover.slot||fallback.coverSlotName||'hero',
   openingQualifier:config?.opening.qualifier,
+  shellVariant:config?.shell?.variant||'default',
   // Slug behavior remains only as a legacy fallback. Modular projects must
   // express navigation through case_study.navigation.variant.
   navigationVariant:config?.navigation.variant||(project.slug==='kryptek-identity-system'?'compact':'continue'),

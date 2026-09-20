@@ -27,6 +27,7 @@ test('modular project configuration wins over renderer fallbacks',()=>{
   related_project_ids:['legacy-related'],
   case_study:{
    version:1,
+   shell:{variant:'canonical'},
    opening:{qualifier:'Internal candidate',cover:{enabled:false,slot:'candidate-cover'}},
    navigation:{variant:'compact',relatedProjectIds:['configured-related']}
   }
@@ -35,6 +36,7 @@ test('modular project configuration wins over renderer fallbacks',()=>{
  assert.equal(runtime.showCover,false);
  assert.equal(runtime.coverSlotName,'candidate-cover');
  assert.equal(runtime.openingQualifier,'Internal candidate');
+ assert.equal(runtime.shellVariant,'canonical');
  assert.equal(runtime.navigationVariant,'compact');
  assert.deepEqual(runtime.relatedProjectIds,['configured-related']);
 });

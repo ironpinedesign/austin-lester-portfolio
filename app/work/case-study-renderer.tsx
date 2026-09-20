@@ -199,8 +199,13 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
  const prev=navIndex>=0?projects[(navIndex+projects.length-1)%projects.length]:null;
  const next=navIndex>=0?projects[(navIndex+1)%projects.length]:null;
  const openingQualifier=runtime.openingQualifier??(!project.case_study&&project.slug==='the-public-standard'?text('project.public_standard.opening.status_label'):undefined);
+ const articleClassName=runtime.shellVariant==='canonical'
+  ?'case-study-canonical-shell'
+  :project.slug==='kryptek-identity-system'
+   ?'kryptek-case-study'
+   :undefined;
 
- return <article className={project.slug==='kryptek-identity-system'?'kryptek-case-study':undefined}>
+ return <article className={articleClassName}>
   <section className="wrap page-opening case-opening">
    <p className="eyebrow">- {project.project_number} / {project.strategic_intent} · {project.year}{openingQualifier?` · ${openingQualifier}`:''}</p>
    <div className="case-title-grid">

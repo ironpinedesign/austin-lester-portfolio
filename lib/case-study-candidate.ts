@@ -211,6 +211,7 @@ export function buildKryptekIdentityCandidateProject(base:Project):Project{
   content_sections:sections,
   case_study:{
    version:1,
+   shell:{variant:'canonical'},
    opening:{cover:{enabled:false}},
    navigation:{variant:'compact',relatedProjectIds:[...base.related_project_ids]}
   }

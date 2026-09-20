@@ -519,3 +519,217 @@
   line-height:1.8;
  }
 }
+
+/* =========================================================
+   CASE STUDY CANONICAL SHELL
+   Shared opening / compact navigation / footer geometry.
+   Modular sections retain their own layout authority.
+   ========================================================= */
+
+@media(min-width:1200px){
+
+ .case-study-canonical-shell>.page-opening.case-opening{
+  position:relative;
+  width:1280px;
+  max-width:1280px;
+  padding-top:0;
+  padding-bottom:0;
+  display:grid;
+  row-gap:0;
+ }
+
+ .case-study-canonical-shell>
+ .page-opening.case-opening>.eyebrow{
+  position:absolute;
+  top:30px;
+  left:0;
+  margin:0;
+ }
+
+ .case-study-canonical-shell .case-title-grid{
+  height:332px;
+  grid-template-columns:840px 360px;
+  column-gap:80px;
+  align-items:end;
+ }
+
+ .case-study-canonical-shell .case-title-grid>h1{
+  padding-bottom:8px;
+ }
+
+ .case-study-canonical-shell .case-intro{
+  height:302px;
+  margin-top:0;
+  padding-top:84px;
+  grid-template-columns:650px 519px;
+  column-gap:80px;
+  align-items:start;
+ }
+
+ .case-study-canonical-shell .project-facts{
+  height:154px;
+  margin-top:0;
+  padding-top:26px;
+  grid-template-columns:240px 160px 360px 448px;
+  column-gap:24px;
+  row-gap:0;
+  align-content:start;
+ }
+
+ .case-study-canonical-shell .project-navigation-row{
+  background:var(--paper);
+  min-height:128px;
+  padding-block:0;
+  border-color:var(--line);
+  border-top:0;
+ }
+
+ .case-study-canonical-shell .project-navigation-row-inner{
+  height:128px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+ }
+
+ body:has(.case-study-canonical-shell) .site-footer{
+  min-height:436px;
+  padding-block:0;
+ }
+
+ body:has(.case-study-canonical-shell) .site-footer .wrap{
+  min-height:436px;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding-top:84px;
+  padding-bottom:24px;
+ }
+
+ body:has(.case-study-canonical-shell) .footer-top{
+  align-items:start;
+  padding-bottom:28px;
+ }
+
+ body:has(.case-study-canonical-shell) .footer-bottom{
+  align-self:end;
+ }
+}
+
+
+@media(min-width:1441px){
+
+ .case-study-canonical-shell>.page-opening.case-opening{
+  width:calc(100% - 160px);
+  max-width:1600px;
+ }
+
+ .case-study-canonical-shell .case-title-grid{
+  grid-template-columns:
+   minmax(0,65.625%)
+   minmax(0,28.125%);
+  column-gap:6.25%;
+ }
+
+ .case-study-canonical-shell .case-intro{
+  grid-template-columns:
+   minmax(0,50.78125%)
+   minmax(0,40.546875%);
+  column-gap:6.25%;
+ }
+
+ .case-study-canonical-shell .project-facts{
+  grid-template-columns:
+   minmax(0,18.75%)
+   minmax(0,12.5%)
+   minmax(0,28.125%)
+   minmax(0,35%);
+  column-gap:1.875%;
+ }
+}
+
+
+@media(max-width:620px){
+
+ .case-study-canonical-shell>.page-opening.case-opening{
+  position:relative;
+  width:342px;
+  max-width:342px;
+  padding-top:0;
+  padding-bottom:0;
+ }
+
+ .case-study-canonical-shell>
+ .page-opening.case-opening>.eyebrow{
+  position:absolute;
+  top:24px;
+  left:0;
+  margin:0;
+ }
+
+ .case-study-canonical-shell .case-title-grid{
+  height:365px;
+  grid-template-columns:1fr;
+  gap:22px;
+  align-content:start;
+  margin-top:1px;
+ }
+
+ .case-study-canonical-shell .case-title-grid>h1{
+  padding-bottom:4px;
+ }
+
+ .case-study-canonical-shell .case-intro{
+  height:582px;
+  margin-top:1px;
+  grid-template-columns:1fr;
+  gap:26px;
+  align-content:start;
+ }
+
+ .case-study-canonical-shell .project-facts{
+  height:321px;
+  margin-top:1px;
+  padding-top:20px;
+  grid-template-columns:1fr 1fr;
+  column-gap:12px;
+  row-gap:14px;
+  align-content:start;
+ }
+
+ .case-study-canonical-shell .project-navigation-row{
+  min-height:79px;
+  padding-block:0;
+  border-top:0;
+ }
+
+ .case-study-canonical-shell .project-navigation-row-inner{
+  width:342px;
+  max-width:342px;
+  height:79px;
+  grid-template-columns:1fr auto 1fr;
+ }
+
+ body:has(.case-study-canonical-shell) .site-footer{
+  min-height:412px;
+  padding-block:0;
+ }
+
+ body:has(.case-study-canonical-shell) .site-footer .wrap{
+  width:342px;
+  max-width:342px;
+  min-height:412px;
+  display:grid;
+  grid-template-rows:1fr auto;
+  padding-top:56px;
+  padding-bottom:12px;
+ }
+
+ body:has(.case-study-canonical-shell) .footer-top{
+  display:grid;
+  gap:20px;
+  padding-bottom:20px;
+ }
+
+ body:has(.case-study-canonical-shell) .footer-bottom{
+  align-self:end;
+ }
+}

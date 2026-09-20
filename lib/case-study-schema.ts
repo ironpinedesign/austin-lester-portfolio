@@ -32,6 +32,7 @@ export const CASE_SECTION_ROLE_IDS=[
 
 export const CASE_SURFACE_IDS=['light','dark'] as const;
 export const CASE_NAVIGATION_VARIANTS=['continue','compact'] as const;
+export const CASE_SHELL_VARIANTS=['default','canonical'] as const;
 export const CASE_SPECIALIZED_COMPONENT_IDS=['SYSTEM BROWSER','VIDEO FEATURE'] as const;
 
 export type CaseSpatialLayoutId=(typeof CASE_SPATIAL_LAYOUT_IDS)[number];
@@ -39,6 +40,7 @@ export type CaseMediaLayoutId=(typeof CASE_MEDIA_LAYOUT_IDS)[number];
 export type CaseSectionRole=(typeof CASE_SECTION_ROLE_IDS)[number];
 export type CaseSurface=(typeof CASE_SURFACE_IDS)[number];
 export type CaseNavigationVariant=(typeof CASE_NAVIGATION_VARIANTS)[number];
+export type CaseShellVariant=(typeof CASE_SHELL_VARIANTS)[number];
 export type CaseSpecializedComponentId=(typeof CASE_SPECIALIZED_COMPONENT_IDS)[number];
 
 // Transitional layout contract used by the current renderer. New modular
@@ -117,6 +119,9 @@ export type CaseStudyNavigationConfig={
 
 export type CaseStudyConfig={
  version:1;
+ shell?:{
+  variant:CaseShellVariant;
+ };
  opening:CaseStudyOpeningConfig;
  navigation:CaseStudyNavigationConfig;
 };

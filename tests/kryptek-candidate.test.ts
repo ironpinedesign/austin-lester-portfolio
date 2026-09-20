@@ -163,6 +163,7 @@ test('candidate shell remains isolated from the published project',()=>{
  assert.equal(base.published,true);
  assert.equal(candidate.slug,'kryptek-identity-system-candidate');
  assert.equal(candidate.published,false);
+ assert.equal(candidate.case_study?.shell?.variant,'canonical');
  assert.equal(candidate.case_study?.opening.cover.enabled,false);
  assert.equal(candidate.case_study?.navigation.variant,'compact');
 });
