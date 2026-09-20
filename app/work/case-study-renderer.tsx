@@ -127,6 +127,25 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
   return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><div className="case-gallery-heading"><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}</div>{infoDisclosure}{useCarousel?<MediaCarousel label={s.heading||`${s.narrative_stage||'Project'} media carousel`} items={indexes.map((n)=>{const slotName=s.media_slots[n]||`slot_${n}`;return {id:slotName,content:renderSectionMedia(n,'portrait',kind),caption:captionFor(slotName),credit:creditFor(slotName)};})}/>:<div className={isGallery?'case-gallery':'case-visual'}>{indexes.map((n)=><div key={n}>{renderSectionMedia(n,isGallery?'portrait':'wide',kind)}</div>)}</div>}</div></section>;
  }
 
+ if(semanticRole==='credits'){
+  return <section
+   id={s.content_id}
+   className={`case-section case-role-credits ${dark?'dark':''}`}
+   data-case-role="credits"
+  >
+   <div className="wrap case-role-credits-grid">
+    <div className="case-role-credits-heading">
+     <p className="eyebrow">{s.narrative_stage}</p>
+     <h2 className="case-section-title">{s.heading}</h2>
+    </div>
+    <div className="case-role-credits-details">
+     {narrativeNode}
+     {infoDisclosure}
+    </div>
+   </div>
+  </section>;
+ }
+
  if(!s.modular&&slug==='kryptek-identity-system'&&s.content_id==='credits'&&s.type==='text'){
   return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap kryptek-credits-grid"><div><p className="eyebrow">{s.narrative_stage}</p><h2 className="case-section-title">{s.heading}</h2></div><div className="kryptek-credits-details">{narrativeNode}{infoDisclosure}</div></div></section>;
  }
