@@ -1203,3 +1203,627 @@
   height:100%;
  }
 }
+
+
+/* =========================================================
+   MODULAR CASE-STUDY GEOMETRY
+   Governing source: ALS Pages 04 / 07.
+   These rules apply to modular layout identity, not projects.
+   ========================================================= */
+
+.modularSection{}
+
+.fullBleedIntro{
+ display:grid;
+ gap:12px;
+ background:var(--panel);
+ padding:24px;
+}
+
+.fullBleedIntro > :global(.eyebrow){
+ margin:0;
+}
+
+.fullBleedIntroCopy{
+ min-width:0;
+ max-width:880px;
+}
+
+.fullBleedIntroCopy :global(.prose){
+ margin:0;
+ color:var(--muted);
+}
+
+/* KIS_02 / reusable FULL BLEED 01 preserves the authored
+   brand-world proportion instead of the generic 21:9 crop. */
+.modularSection[data-case-layout='FULL BLEED 01']
+ .fullBleedRegion .defaultMediaRegion{
+ aspect-ratio:16/7;
+}
+
+.modularSection[data-case-layout='FULL BLEED 01']
+ .fullBleedRegion :global(.media-frame){
+ aspect-ratio:auto;
+ min-height:0;
+ height:100%;
+}
+
+/* 1024 transitional sidecar authority:
+   340 narrative / 24 gap / 548 media. */
+@media(min-width:900px){
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 02'] .layoutWrap{
+  position:relative;
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01']
+  .layoutWrap > :global(.eyebrow),
+ .modularSection[data-case-layout='MEDIA SIDECAR 01']
+  .layoutWrap > :global(.eyebrow),
+ .modularSection[data-case-layout='MEDIA SIDECAR 02']
+  .layoutWrap > :global(.eyebrow){
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:340px 548px;
+  gap:24px;
+  align-items:start;
+ }
+
+ /* MEDIA SIDECAR 01: compact narrative left,
+    dominant visual evidence right. */
+ .modularSection .mediaSidecar01 .sidecarPane{
+  grid-column:1;
+  grid-row:1;
+ }
+
+ .modularSection .mediaSidecar01 .mediaPane{
+  grid-column:2;
+  grid-row:1;
+ }
+
+ .modularSection .textSidecar01 .narrativePane,
+ .modularSection .mediaSidecar01 .sidecarPane{
+  padding-top:28px;
+ }
+
+ .modularSection .textSidecar01 .narrativePane,
+ .modularSection .mediaSidecar01 .sidecarPane,
+ .modularSection .textSidecar01 .mediaPane,
+ .modularSection .mediaSidecar01 .mediaPane{
+  width:100%;
+ }
+
+ /* CONTEXT — ASYMMETRIC GRID 02 */
+ .modularSection .textSidecar01 .asymmetricGrid02{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/550;
+  grid-template-columns:
+   minmax(0,61.0526%)
+   minmax(0,37.3684%);
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  column-gap:1.5789%;
+  row-gap:2.1818%;
+  align-items:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 > .dominantRegion{
+  grid-column:1;
+  grid-row:1 / span 3;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .supportRail{
+  grid-column:2;
+  grid-row:1 / span 3;
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:4.22535%;
+  align-self:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .asymmetricSupportStack{
+  display:contents;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* ECOMMERCE — MEDIA SIDECAR 01 + ASYMMETRIC GRID 01 */
+ .modularSection .mediaSidecar01 .asymmetricGrid01{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/520;
+  grid-template-columns:
+   minmax(0,68.4211%)
+   minmax(0,28.4211%);
+  grid-template-rows:1fr;
+  column-gap:3.1578%;
+  row-gap:0;
+  align-items:stretch;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 > .dominantRegion{
+  grid-column:1;
+  grid-row:1;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
+  grid-column:2;
+  grid-row:1;
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:11.1111%;
+  align-self:stretch;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* CAMPAIGN — TEXT SIDECAR 01 + ASYMMETRIC GRID 01 */
+ .modularSection .textSidecar01 .asymmetricGrid01{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/664;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:minmax(0,1.909fr) minmax(0,1fr);
+  gap:3.1578%;
+  align-items:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:1fr;
+  gap:3.1578%;
+  align-self:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+}
+
+/* Primary desktop authority: 440 / 80 / 760. */
+@media(min-width:1200px){
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'],
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'],
+ .modularSection[data-case-layout='MEDIA SIDECAR 02']{
+  padding-top:84px;
+  padding-bottom:80px;
+ }
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 02'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1280px;
+  margin-inline:auto;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:440px 760px;
+  column-gap:80px;
+ }
+
+ /* BRAND WORLD */
+ .modularSection[data-case-layout='FULL BLEED 01']{
+  min-height:698px;
+  padding-block:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01'] .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1280px;
+  margin-inline:auto;
+  position:relative;
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .layoutWrap > :global(.eyebrow){
+  position:absolute;
+  top:35px;
+  left:0;
+  margin:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .layoutShell{
+  margin-top:75px;
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .fullBleedRegion,
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .defaultMediaRegion{
+  width:100%;
+  aspect-ratio:16/7;
+ }
+
+ /* EDITORIAL */
+ .modularSection[data-case-layout='FULL BLEED 02']{
+  padding-top:84px;
+  padding-bottom:35px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutShell{
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .fullBleedRegion{
+  gap:16px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .fullBleedIntro{
+  grid-template-columns:240px minmax(0,880px);
+  column-gap:80px;
+  align-items:start;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01{
+  width:100%;
+  height:864px;
+  aspect-ratio:auto;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:560px 280px;
+  gap:24px;
+  align-items:stretch;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceLead{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{
+  grid-row:2;
+  align-self:stretch;
+  margin-top:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA{grid-column:1;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB{grid-column:2;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{grid-column:3;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+}
+
+/* Large desktop: 550 / 100 / 950.
+   Internal type remains stable; composition expands. */
+@media(min-width:1441px){
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 02'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 01'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1600px;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:
+   minmax(0,34.375%)
+   minmax(0,59.375%);
+  column-gap:6.25%;
+ }
+
+ /* Large desktop preserves the approved Editorial hierarchy
+    while allowing the sequence to scale with the content rail. */
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01{
+  width:100%;
+  height:auto;
+  aspect-ratio:1280/864;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:minmax(0,2fr) minmax(0,1fr);
+  gap:clamp(24px,1.25vw,32px);
+ }
+}
+
+
+/* Media Inspect is geometry-transparent inside modular media cells. */
+.modularSection .mediaNode :global(.media-inspect){
+ position:relative;
+ display:block;
+ height:100%;
+ min-height:0;
+}
+
+.modularSection .mediaNode
+ :global(.media-inspect > div:first-child){
+ height:100%;
+ min-height:0;
+}
+
+.modularSection .mediaNode
+ :global(.media-inspect-trigger){
+ position:absolute;
+ left:12px;
+ bottom:12px;
+ z-index:2;
+}
+
+/* Mobile authority. */
+@media(max-width:620px){
+
+ .modularSection[data-case-layout='FULL BLEED 01']{
+  min-height:296px;
+  padding-block:0;
+  border-top:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01'] .layoutWrap{
+  width:342px;
+  max-width:342px;
+  position:relative;
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .layoutWrap > :global(.eyebrow){
+  position:absolute;
+  top:24px;
+  left:0;
+  margin:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .layoutShell{
+  margin-top:56px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .fullBleedRegion,
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .defaultMediaRegion{
+  width:342px;
+  height:240px;
+  aspect-ratio:auto;
+ }
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  width:342px;
+  max-width:342px;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01{
+  grid-template-columns:1fr;
+  gap:12px;
+ }
+
+ /* Context */
+ .modularSection[
+  data-case-layout='TEXT SIDECAR 01'
+ ][data-case-media-layout='ASYMMETRIC GRID 02']{
+  min-height:916px;
+  padding-block:0;
+ }
+
+ .modularSection .textSidecar01 .asymmetricGrid02{
+  width:342px;
+  height:332px;
+  aspect-ratio:auto;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:240px 80px;
+  column-gap:8px;
+  row-gap:12px;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .supportRail{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:80px;
+  gap:8px;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .asymmetricSupportStack{
+  display:contents;
+ }
+
+ /* Ecommerce */
+ .modularSection[
+  data-case-layout='MEDIA SIDECAR 01'
+ ][data-case-media-layout='ASYMMETRIC GRID 01']{
+  min-height:800px;
+  padding-top:28px;
+  padding-bottom:28px;
+ }
+
+ .modularSection .mediaSidecar01 .asymmetricGrid01{
+  width:342px;
+  height:412px;
+  aspect-ratio:auto;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:240px 160px;
+  gap:12px;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:160px;
+  gap:12px;
+ }
+
+ /* Campaign */
+ .modularSection[
+  data-case-layout='TEXT SIDECAR 01'
+ ][data-case-media-layout='ASYMMETRIC GRID 01']{
+  min-height:716px;
+ }
+
+ .modularSection .textSidecar01 .asymmetricGrid01{
+  width:342px;
+  height:332px;
+  aspect-ratio:auto;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:200px 120px;
+  gap:12px;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:120px;
+  gap:12px;
+ }
+
+ /* Authored mobile media cells own geometry.
+    Media content fills the cell rather than changing its height. */
+ .modularSection .textSidecar01
+  .asymmetricGrid02 :global(.media-frame),
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 :global(.media-frame),
+ .modularSection .textSidecar01
+  .asymmetricGrid01 :global(.media-frame),
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* Editorial */
+ .modularSection[data-case-layout='FULL BLEED 02']{
+  padding-block:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .fullBleedIntro{
+  grid-template-columns:1fr;
+  gap:12px;
+  padding:24px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01{
+  width:342px;
+  height:auto;
+  aspect-ratio:auto;
+  grid-template-columns:1fr;
+  grid-template-rows:200px 140px 140px 140px;
+  gap:12px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceLead,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{
+  grid-column:1;
+  height:100%;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceLead{grid-row:1;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA{grid-row:2;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB{grid-row:3;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{grid-row:4;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .captionRail{
+  display:none;
+ }
+}

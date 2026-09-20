@@ -120,6 +120,29 @@ test('system browser owns six semantic states in modular configuration',()=>{
  assert.equal(browser.modular?.interaction?.infoDisclosure?.enabled,true);
 });
 
+test('candidate exposes Insight and Outcome through reusable semantic roles',()=>{
+ const candidate=buildKryptekIdentityCandidateProject(baseProject());
+
+ const insight=candidate.content_sections.find(
+  (entry)=>entry.content_id==='candidate__insight'
+ );
+ const outcome=candidate.content_sections.find(
+  (entry)=>entry.content_id==='candidate__outcome'
+ );
+
+ assert.ok(insight);
+ assert.equal(insight.modular?.semanticRole,'insight');
+ assert.equal(insight.modular?.surface,'light');
+ assert.equal(insight.modular?.layout,undefined);
+ assert.equal(insight.modular?.media,undefined);
+
+ assert.ok(outcome);
+ assert.equal(outcome.modular?.semanticRole,'outcome');
+ assert.equal(outcome.modular?.surface,'light');
+ assert.equal(outcome.modular?.layout,undefined);
+ assert.equal(outcome.modular?.media,undefined);
+});
+
 test('candidate closing sequence exposes credits through the reusable semantic role',()=>{
  const candidate=buildKryptekIdentityCandidateProject(baseProject());
  const credits=candidate.content_sections.find(

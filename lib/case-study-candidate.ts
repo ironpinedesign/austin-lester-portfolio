@@ -91,7 +91,7 @@ const CANDIDATE_RECIPE:CandidateRecipe[]=[
  },
  {
   sourceId:'insight',
-  semanticRole:'narrative',
+  semanticRole:'insight',
   surface:'light'
  },
  {
@@ -127,7 +127,7 @@ const CANDIDATE_RECIPE:CandidateRecipe[]=[
  {
   sourceId:'outcome',
   semanticRole:'outcome',
-  surface:'dark'
+  surface:'light'
  },
  {
   sourceId:'credits',

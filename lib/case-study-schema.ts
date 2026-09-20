@@ -23,6 +23,7 @@ export const CASE_MEDIA_LAYOUT_IDS=[
 
 export const CASE_SECTION_ROLE_IDS=[
  'narrative',
+ 'insight',
  'quote',
  'metrics',
  'outcome',

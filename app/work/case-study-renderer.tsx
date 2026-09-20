@@ -106,6 +106,7 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    disclosure={infoDisclosure}
    mediaNodes={mediaNodes}
    dark={dark}
+   modular={!!s.modular}
    layoutConfig={runtime.layoutConfig}
   />;
  }
@@ -125,6 +126,44 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
   const captionFor=(slotName:string)=>interaction?.mediaCarousel?.captions?.[slotName];
   const creditFor=(slotName:string)=>interaction?.mediaCarousel?.credits?.[slotName];
   return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><div className="case-gallery-heading"><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}</div>{infoDisclosure}{useCarousel?<MediaCarousel label={s.heading||`${s.narrative_stage||'Project'} media carousel`} items={indexes.map((n)=>{const slotName=s.media_slots[n]||`slot_${n}`;return {id:slotName,content:renderSectionMedia(n,'portrait',kind),caption:captionFor(slotName),credit:creditFor(slotName)};})}/>:<div className={isGallery?'case-gallery':'case-visual'}>{indexes.map((n)=><div key={n}>{renderSectionMedia(n,isGallery?'portrait':'wide',kind)}</div>)}</div>}</div></section>;
+ }
+
+ if(semanticRole==='insight'){
+  return <section
+   id={s.content_id}
+   className="case-section case-semantic-card-section"
+   data-case-role="insight"
+  >
+   <div className="wrap case-semantic-card case-semantic-insight">
+    <div className="case-semantic-card-rail">
+     <p className="eyebrow">{s.narrative_stage||'Insight'}</p>
+    </div>
+    <div className="case-semantic-card-copy">
+     <h2>{s.heading}</h2>
+     {narrativeNode}
+     {infoDisclosure}
+    </div>
+   </div>
+  </section>;
+ }
+
+ if(semanticRole==='outcome'){
+  return <section
+   id={s.content_id}
+   className="case-section case-semantic-card-section"
+   data-case-role="outcome"
+  >
+   <div className="wrap case-semantic-card case-semantic-outcome">
+    <div className="case-semantic-card-rail">
+     <p className="eyebrow">{s.narrative_stage||'Outcome'}</p>
+    </div>
+    <div className="case-semantic-card-copy">
+     <h2>{s.heading}</h2>
+     {narrativeNode}
+     {infoDisclosure}
+    </div>
+   </div>
+  </section>;
  }
 
  if(semanticRole==='credits'){

@@ -10,6 +10,7 @@ type Props={
  disclosure?:ReactNode;
  mediaNodes:ReactNode[];
  dark?:boolean;
+ modular?:boolean;
  layoutConfig:SectionLayoutConfig;
 };
 
@@ -159,7 +160,7 @@ function renderNarrativePrimary(heading:Props['heading'],narrative:Props['narrat
  </div>;
 }
 
-export default function CaseLayoutSystem({sectionId,narrativeStage,heading,narrative,disclosure,mediaNodes,dark=false,layoutConfig}:Props){
+export default function CaseLayoutSystem({sectionId,narrativeStage,heading,narrative,disclosure,mediaNodes,dark=false,modular=false,layoutConfig}:Props){
  const spatialLayout:CaseSpatialLayoutId=layoutConfig.layout||'FULL BLEED 01';
  const narrativeBlock=renderNarrativeBlock(heading,narrative,disclosure);
  const narrativePrimary=renderNarrativePrimary(heading,narrative);
@@ -167,12 +168,43 @@ export default function CaseLayoutSystem({sectionId,narrativeStage,heading,narra
  const shellClass=getShellClass(spatialLayout);
  const reverseClass=layoutConfig.reverse?styles.reverse:false;
  const viewportBleedClass=layoutConfig.viewportBleed?styles.viewportBleed:false;
+ const integratedFullBleedIntro=!!(
+  modular&&
+  spatialLayout==='FULL BLEED 02'&&
+  narrative
+ );
+ const fullBleedIntro=integratedFullBleedIntro
+  ?<div className={styles.fullBleedIntro}>
+    {narrativeStage&&<p className="eyebrow">{narrativeStage}</p>}
+    <div className={styles.fullBleedIntroCopy}>{narrative}</div>
+   </div>
+  :null;
 
- return <section id={sectionId} className={cx('case-section',dark&&'dark',styles.layoutSection,viewportBleedClass)}>
+ return <section
+  id={sectionId}
+  className={cx(
+   'case-section',
+   dark&&'dark',
+   styles.layoutSection,
+   modular&&styles.modularSection,
+   viewportBleedClass
+  )}
+  data-case-layout={spatialLayout}
+  data-case-media-layout={layoutConfig.mediaLayout}
+ >
   <div className={cx('wrap',styles.layoutWrap)}>
-   {narrativeStage&&<p className="eyebrow">{narrativeStage}</p>}
+   {narrativeStage&&!integratedFullBleedIntro&&
+    <p className="eyebrow">{narrativeStage}</p>}
    <div className={cx(styles.layoutShell,shellClass,reverseClass)}>
-      {renderLayout(spatialLayout,narrativeBlock,narrativePrimary,disclosure,mediaRegion,layoutConfig)}
+      {renderLayout(
+       spatialLayout,
+       narrativeBlock,
+       narrativePrimary,
+       disclosure,
+       mediaRegion,
+       layoutConfig,
+       fullBleedIntro
+      )}
    </div>
   </div>
  </section>;
@@ -191,13 +223,14 @@ function getShellClass(layout:CaseSpatialLayoutId){
  return styles.annotatedStage01;
 }
 
-function renderLayout(layout:CaseSpatialLayoutId,narrativeBlock:ReactNode,narrativePrimary:ReactNode,disclosure:ReactNode,mediaRegion:ReactNode,layoutConfig:SectionLayoutConfig){
+function renderLayout(layout:CaseSpatialLayoutId,narrativeBlock:ReactNode,narrativePrimary:ReactNode,disclosure:ReactNode,mediaRegion:ReactNode,layoutConfig:SectionLayoutConfig,fullBleedIntro:ReactNode=null){
  const caption=layoutConfig.caption?<p className={styles.caption}>{layoutConfig.caption}</p>:null;
  const metadata=layoutConfig.metadata?<p className={styles.metadata}>{layoutConfig.metadata}</p>:null;
 
  if(layout==='FULL BLEED 01')return <div className={styles.fullBleedRegion}>{mediaRegion}</div>;
 
  if(layout==='FULL BLEED 02')return <div className={styles.fullBleedRegion}>
+  {fullBleedIntro}
   {mediaRegion}
   {(caption||metadata)&&<div className={styles.captionRail}>{caption}{metadata}</div>}
  </div>;

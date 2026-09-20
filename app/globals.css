@@ -428,3 +428,94 @@
  body:has(.kryptek-case-study) .footer-top{display:grid;gap:20px;padding-bottom:20px}
  .footer-utility{justify-items:start;text-align:left}
 }
+
+/* CASE SEMANTIC CARDS
+   Reusable Insight / Outcome narrative compositions. */
+.case-semantic-card-section{
+ padding-block:84px;
+}
+
+.case-semantic-card{
+ background:var(--panel);
+ display:grid;
+ grid-template-columns:240px minmax(0,880px);
+ column-gap:80px;
+ align-items:start;
+ overflow:hidden;
+}
+
+.case-semantic-card .eyebrow{
+ margin:0;
+ color:var(--clay);
+}
+
+.case-semantic-card-copy{
+ min-width:0;
+ display:grid;
+ gap:12px;
+}
+
+.case-semantic-card-copy h2{
+ margin:0;
+ max-width:880px;
+ font-size:36px;
+ line-height:1.15;
+ font-weight:600;
+ letter-spacing:-.035em;
+}
+
+.case-semantic-card-copy .prose{
+ max-width:760px;
+ font-size:17px;
+ line-height:1.8;
+ color:var(--muted);
+}
+
+.case-semantic-insight{
+ padding:36px;
+}
+
+.case-semantic-outcome{
+ padding:28px;
+}
+
+.case-semantic-outcome .case-semantic-card-copy{
+ gap:18px;
+}
+
+.case-semantic-outcome .case-semantic-card-copy .prose{
+ max-width:760px;
+ color:var(--ink);
+}
+
+@media(max-width:1023px){
+ .case-semantic-card{
+  grid-template-columns:1fr;
+  row-gap:24px;
+ }
+
+ .case-semantic-card-copy h2,
+ .case-semantic-card-copy .prose{
+  max-width:none;
+ }
+}
+
+@media(max-width:620px){
+ .case-semantic-card-section{
+  padding-block:48px;
+ }
+
+ .case-semantic-insight,
+ .case-semantic-outcome{
+  padding:24px;
+ }
+
+ .case-semantic-card{
+  row-gap:20px;
+ }
+
+ .case-semantic-card-copy .prose{
+  font-size:17px;
+  line-height:1.8;
+ }
+}
