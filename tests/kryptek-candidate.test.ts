@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
  KRYPTĒK_CANDIDATE_SOURCE_SECTION_IDS,
- buildKryptekIdentityCandidateProject
+ buildKryptekIdentityCandidateProject,
+ buildKryptekIdentityModularProject
 } from '../lib/case-study-candidate.ts';
 import type {Project,Section} from '../lib/projects.ts';
 
@@ -166,4 +167,52 @@ test('candidate shell remains isolated from the published project',()=>{
  assert.equal(candidate.case_study?.shell?.variant,'canonical');
  assert.equal(candidate.case_study?.opening.cover.enabled,false);
  assert.equal(candidate.case_study?.navigation.variant,'compact');
+});
+
+test('production modular project preserves public identity without legacy render ids',()=>{
+ const base=baseProject();
+ const project=buildKryptekIdentityModularProject(base);
+
+ assert.equal(project.slug,base.slug);
+ assert.equal(project.content_id,base.content_id);
+ assert.equal(project.published,true);
+ assert.equal(project.is_sample,false);
+ assert.equal(project.featured,true);
+
+ assert.deepEqual(
+  project.content_sections.map((entry)=>entry.content_id),
+  KRYPTĒK_CANDIDATE_SOURCE_SECTION_IDS.map(
+   (id)=>`modular__${id}`
+  )
+ );
+
+ assert.ok(
+  project.content_sections.every(
+   (entry)=>!entry.content_id.startsWith('candidate__')
+  )
+ );
+
+ assert.ok(
+  project.content_sections.every(
+   (entry)=>!/^kis_/.test(entry.content_id)
+  )
+ );
+
+ assert.equal(
+  project.case_study?.shell?.variant,
+  'canonical'
+ );
+ assert.equal(
+  project.case_study?.opening.cover.enabled,
+  false
+ );
+ assert.equal(
+  project.case_study?.navigation.variant,
+  'compact'
+ );
+
+ // Building the production render model must not mutate CMS/source data.
+ assert.equal(base.content_sections.some(
+  (entry)=>entry.content_id.startsWith('modular__')
+ ),false);
 });
