@@ -9,6 +9,7 @@ import MediaInspect from '../components/interactions/MediaInspect';
 import CaseLayoutSystem from '../components/layouts/CaseLayoutSystem';
 import Media from '../components/Media';
 import {type Project, type Section} from '../../lib/projects';
+import {resolveCaseStudyRuntime,resolveSectionRuntime} from '../../lib/case-study-runtime';
 import type {MediaMap} from '../../lib/storage';
 
 type CaseStudyArticleProps={
@@ -21,8 +22,8 @@ type CaseStudyArticleProps={
  navigationProjectSlug?:string;
 };
 
-function renderNarrative(s:Section){
- const config=s.interaction?.expandableNarrative;
+function renderNarrative(s:Section,interaction:Section['interaction']=s.interaction){
+ const config=interaction?.expandableNarrative;
  if(!s.body)return null;
  if(!config?.enabled)return <Prose text={s.body}/>;
  const paragraphs=s.body.split(/\n\s*\n/).filter(Boolean);
@@ -39,35 +40,38 @@ function renderNarrative(s:Section){
  />;
 }
 
-function renderInfoDisclosure(s:Section){
- const config=s.interaction?.infoDisclosure;
+function renderInfoDisclosure(s:Section,interaction:Section['interaction']=s.interaction){
+ const config=interaction?.infoDisclosure;
  if(!config?.enabled||!config.body)return null;
  return <InfoDisclosure label={config.label||'INFO'} heading={config.heading} variant={config.variant||'inline'}><p>{config.body}</p></InfoDisclosure>;
 }
 
 function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectId:string;map:MediaMap;text:(id:string)=>string}){
- const dark=s.background==='dark'||s.type==='dark_statement';
- const slot=(n=0)=>`project.${projectId}.${s.content_id}.${s.media_slots[n]||'primary_visual'}`;
- const narrativeNode=renderNarrative(s);
- const infoDisclosure=renderInfoDisclosure(s);
- const sectionKind=s.type==='video'||slug==='the-public-standard'?'video':'image / video';
- const detailItems=s.interaction?.mediaDetail?.enabled?s.interaction.mediaDetail.items:[];
- const inspectSlots=s.interaction?.mediaInspect?.enabled?new Set(s.interaction.mediaInspect.slots):new Set<string>();
- const loopSlots=s.interaction?.inlineLoop?.enabled?new Set(s.interaction.inlineLoop.slots):new Set<string>();
+ const runtime=resolveSectionRuntime(s);
+ const dark=runtime.dark;
+ const mediaSlots=runtime.mediaSlots;
+ const interaction=runtime.interaction;
+ const slot=(n=0)=>`project.${projectId}.${s.content_id}.${mediaSlots[n]||'primary_visual'}`;
+ const narrativeNode=renderNarrative(s,interaction);
+ const infoDisclosure=renderInfoDisclosure(s,interaction);
+ const sectionKind=runtime.specializedComponent==='VIDEO FEATURE'||s.type==='video'||(!s.modular&&slug==='the-public-standard')?'video':'image / video';
+ const detailItems=interaction?.mediaDetail?.enabled?interaction.mediaDetail.items:[];
+ const inspectSlots=interaction?.mediaInspect?.enabled?new Set(interaction.mediaInspect.slots):new Set<string>();
+ const loopSlots=interaction?.inlineLoop?.enabled?new Set(interaction.inlineLoop.slots):new Set<string>();
 
  const renderSectionMedia=(n:number,className:string,kind:string)=>{
-  const slotName=s.media_slots[n]||'';
+  const slotName=mediaSlots[n]||'';
   const slotKey=slot(n);
   const media=map[slotKey];
   let node=loopSlots.has(slotName)&&media?.mime.startsWith('video/')
-   ?<InlineLoop src={`/api/media/${media.id}`} label={media.alt||`${s.narrative_stage||'Project'} / ${slotName}`} className={`media-frame ${className}`} loop={s.interaction?.inlineLoop?.loop!==false}/>
+   ?<InlineLoop src={`/api/media/${media.id}`} label={media.alt||`${s.narrative_stage||'Project'} / ${slotName}`} className={`media-frame ${className}`} loop={interaction?.inlineLoop?.loop!==false}/>
    :<Media slot={slotKey} map={map} label={`${s.narrative_stage||'Project'} / ${String(n+1).padStart(2,'0')}`} className={className} controls kind={kind}/>;
 
   if(inspectSlots.has(slotName))node=<MediaInspect
-   label={s.interaction?.mediaInspect?.buttonLabel||'INSPECT →'}
-   caption={s.interaction?.mediaInspect?.captions?.[slotName]}
-   credit={s.interaction?.mediaInspect?.credits?.[slotName]}
-   tone={s.interaction?.mediaInspect?.tone||'bone'}
+   label={interaction?.mediaInspect?.buttonLabel||'INSPECT →'}
+   caption={interaction?.mediaInspect?.captions?.[slotName]}
+   credit={interaction?.mediaInspect?.credits?.[slotName]}
+   tone={interaction?.mediaInspect?.tone||'bone'}
    trigger={node}
    expanded={<Media slot={slotKey} map={map} label={`${s.heading||s.narrative_stage||'Project'} / Inspect`} className="wide" controls kind={kind}/>}
   />;
@@ -78,8 +82,8 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
   return node;
  };
 
- if(s.layout_system?.layout){
-  const mediaNodes=s.media_slots.map((_,index)=><div key={`${s.content_id}-${index}`}>{renderSectionMedia(index,'wide',sectionKind)}</div>);
+ if(runtime.layoutConfig?.layout){
+  const mediaNodes=mediaSlots.map((_,index)=><div key={`${s.content_id}-${index}`}>{renderSectionMedia(index,'wide',sectionKind)}</div>);
   return <CaseLayoutSystem
    sectionId={s.content_id}
    narrativeStage={s.narrative_stage}
@@ -88,24 +92,28 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    disclosure={infoDisclosure}
    mediaNodes={mediaNodes}
    dark={dark}
-   layoutConfig={s.layout_system}
+   layoutConfig={runtime.layoutConfig}
   />;
  }
 
- if(s.type==='pull_quote')return <section id={s.content_id} className={`case-section quote-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><blockquote><span>&ldquo;</span>{s.quote}<span>&rdquo;</span></blockquote>{s.quote_attribution&&<p className="quote-attribution">{s.quote_attribution}</p>}</div></section>;
- if(s.type==='metrics')return <section id={s.content_id} className="case-section dark"><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><h2 className="case-section-title">{s.heading}</h2><div className="metrics">{s.metrics?.map((m)=><div key={m.label}><strong>{m.value}</strong><span className="eyebrow">{m.label}</span></div>)}</div>{infoDisclosure}{slug==='kryptek-paid-media-system'&&<p className="metric-note">{text('project.kryptek_paid_media.outcome.attribution')}</p>}</div></section>;
+ const semanticRole=runtime.semanticRole;
+ const isQuote=semanticRole==='quote'||(!semanticRole&&s.type==='pull_quote');
+ const isMetrics=semanticRole==='metrics'||(!semanticRole&&s.type==='metrics');
+
+ if(isQuote)return <section id={s.content_id} className={`case-section quote-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><blockquote><span>&ldquo;</span>{s.quote}<span>&rdquo;</span></blockquote>{s.quote_attribution&&<p className="quote-attribution">{s.quote_attribution}</p>}</div></section>;
+ if(isMetrics)return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><h2 className="case-section-title">{s.heading}</h2><div className="metrics">{s.metrics?.map((m)=><div key={m.label}><strong>{m.value}</strong><span className="eyebrow">{m.label}</span></div>)}</div>{infoDisclosure}{!s.modular&&slug==='kryptek-paid-media-system'&&<p className="metric-note">{text('project.kryptek_paid_media.outcome.attribution')}</p>}</div></section>;
  if(['split_text_image','text_image'].includes(s.type))return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><div className={`case-split ${s.layout==='right'?'image-first':''}`}><div><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}{infoDisclosure}</div>{renderSectionMedia(0,'portrait','image / video')}</div></div></section>;
  if(['gallery','diptych','full_image','full_visual','video'].includes(s.type)){
   const isGallery=['gallery','diptych'].includes(s.type);
   const indexes=isGallery?[0,1,2]:[0];
-  const useCarousel=!!(isGallery&&s.interaction?.mediaCarousel?.enabled);
+  const useCarousel=!!(isGallery&&interaction?.mediaCarousel?.enabled);
   const kind=sectionKind;
-  const captionFor=(slotName:string)=>s.interaction?.mediaCarousel?.captions?.[slotName];
-  const creditFor=(slotName:string)=>s.interaction?.mediaCarousel?.credits?.[slotName];
+  const captionFor=(slotName:string)=>interaction?.mediaCarousel?.captions?.[slotName];
+  const creditFor=(slotName:string)=>interaction?.mediaCarousel?.credits?.[slotName];
   return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap"><p className="eyebrow">{s.narrative_stage}</p><div className="case-gallery-heading"><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}</div>{infoDisclosure}{useCarousel?<MediaCarousel label={s.heading||`${s.narrative_stage||'Project'} media carousel`} items={indexes.map((n)=>{const slotName=s.media_slots[n]||`slot_${n}`;return {id:slotName,content:renderSectionMedia(n,'portrait',kind),caption:captionFor(slotName),credit:creditFor(slotName)};})}/>:<div className={isGallery?'case-gallery':'case-visual'}>{indexes.map((n)=><div key={n}>{renderSectionMedia(n,isGallery?'portrait':'wide',kind)}</div>)}</div>}</div></section>;
  }
 
- if(slug==='kryptek-identity-system'&&s.content_id==='credits'&&s.type==='text'){
+ if(!s.modular&&slug==='kryptek-identity-system'&&s.content_id==='credits'&&s.type==='text'){
   return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap kryptek-credits-grid"><div><p className="eyebrow">{s.narrative_stage}</p><h2 className="case-section-title">{s.heading}</h2></div><div className="kryptek-credits-details">{narrativeNode}{infoDisclosure}</div></div></section>;
  }
 
@@ -113,15 +121,16 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
 }
 
 export function CaseStudyArticle({project,projects,map,text,showCover=true,coverSlotName='hero',navigationProjectSlug}:CaseStudyArticleProps){
+ const runtime=resolveCaseStudyRuntime(project,{showCover,coverSlotName});
  const navigationSlug=navigationProjectSlug||project.slug;
  const navIndex=projects.findIndex((entry)=>entry.slug===navigationSlug);
  const prev=navIndex>=0?projects[(navIndex+projects.length-1)%projects.length]:null;
  const next=navIndex>=0?projects[(navIndex+1)%projects.length]:null;
- const compactProjectNavigation=project.slug==='kryptek-identity-system';
+ const openingQualifier=runtime.openingQualifier??(!project.case_study&&project.slug==='the-public-standard'?text('project.public_standard.opening.status_label'):undefined);
 
  return <article className={project.slug==='kryptek-identity-system'?'kryptek-case-study':undefined}>
   <section className="wrap page-opening case-opening">
-   <p className="eyebrow">- {project.project_number} / {project.strategic_intent} · {project.year}{project.slug==='the-public-standard'?` · ${text('project.public_standard.opening.status_label')}`:''}</p>
+   <p className="eyebrow">- {project.project_number} / {project.strategic_intent} · {project.year}{openingQualifier?` · ${openingQualifier}`:''}</p>
    <div className="case-title-grid">
     <h1>{project.title}</h1>
     <div>
@@ -141,13 +150,13 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
    </dl>
   </section>
 
-  {showCover&&<div className="wrap case-cover">
-   <Media map={map} slot={`project.${project.content_id}.opening.${coverSlotName}`} label={`${project.title} / Cover`} className="cinematic" controls/>
+  {runtime.showCover&&<div className="wrap case-cover">
+   <Media map={map} slot={`project.${project.content_id}.opening.${runtime.coverSlotName}`} label={`${project.title} / Cover`} className="cinematic" controls/>
   </div>}
 
     {project.content_sections.map((section)=><CaseSection key={section.content_id} s={section} slug={project.slug} projectId={project.content_id} map={map} text={text}/>)}
 
-  {compactProjectNavigation
+  {runtime.navigationVariant==='compact'
    ?<section className="case-section project-navigation-row" aria-label="Project navigation">
     <div className="wrap project-navigation-row-inner">
      <div>{prev&&<Link className="project-navigation-link project-navigation-prev" href={`/work/${prev.slug}`}>{text('global.project.previous_label')}</Link>}</div>
@@ -162,7 +171,7 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
       <Link href={`/work/${prev.slug}`}><span className="eyebrow">{text('global.project.previous_label')}</span><h2>{prev.title}</h2></Link>
       <Link href={`/work/${next.slug}`}><span className="eyebrow">{text('global.project.next_label')}</span><h2>{next.title}</h2></Link>
      </div>}
-     {projects.filter((related)=>project.related_project_ids.includes(related.content_id)&&related.content_id!==project.content_id).map((related)=><div key={related.content_id} className="back-index"><p className="eyebrow">{text('global.project.related_label')}</p><Link className="text-link" href={`/work/${related.slug}`}>{related.title} →</Link></div>)}
+     {projects.filter((related)=>runtime.relatedProjectIds.includes(related.content_id)&&related.content_id!==project.content_id).map((related)=><div key={related.content_id} className="back-index"><p className="eyebrow">{text('global.project.related_label')}</p><Link className="text-link" href={`/work/${related.slug}`}>{related.title} →</Link></div>)}
      <Link className="text-link back-index" href="/work">{text('global.project.index_label')}</Link>
     </div>
    </section>}

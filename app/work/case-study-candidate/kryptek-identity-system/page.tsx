@@ -21,15 +21,11 @@ export default async function KryptekIdentityCandidatePage(){
  const candidate=buildKryptekIdentityCandidateProject(base);
  const productionMap=await mediaMap();
  const candidateMap=buildKryptekIdentityCandidateMediaMap(base,candidate,productionMap);
- const cover=candidate.case_study?.opening.cover;
-
  return <CaseStudyArticle
   project={candidate}
   projects={projects}
   map={candidateMap}
   text={text}
-  showCover={cover?.enabled!==false}
-  coverSlotName={cover?.slot||'hero'}
   navigationProjectSlug={base.slug}
  />;
 }
