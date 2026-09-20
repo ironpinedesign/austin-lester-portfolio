@@ -80,6 +80,10 @@ export type ModularSectionMediaConfig={
 export type CaseSystemBrowserState={
  id:string;
  label:string;
+ title:string;
+ body:string;
+ evidenceLabels:readonly [string,string,string];
+ mediaSlots?:readonly [string,string,string];
  description?:string;
 };
 
@@ -201,6 +205,16 @@ export function validateCaseStudyContract(project:CaseStudyContractProject):stri
    if(states.length!==6)errors.push(`Section ${section.content_id} SYSTEM BROWSER requires exactly six semantic states.`);
    const stateIds=new Set(states.map((state)=>state.id));
    if(stateIds.size!==states.length)errors.push(`Section ${section.content_id} SYSTEM BROWSER state ids must be unique.`);
+   for(const state of states){
+    if(!state.title?.trim())errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} requires a title.`);
+    if(!state.body?.trim())errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} requires narrative copy.`);
+    if(!Array.isArray(state.evidenceLabels)||state.evidenceLabels.length!==3){
+     errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} requires three evidence labels.`);
+    }
+    if(state.mediaSlots&&state.mediaSlots.length!==3){
+     errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} mediaSlots must contain exactly three slots.`);
+    }
+   }
   }
  }
 

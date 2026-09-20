@@ -2,6 +2,7 @@ import Link from '../components/SiteLink';
 import {ProseCopy as Prose} from '../components/Copy';
 import ExpandableNarrative from '../components/interactions/ExpandableNarrative';
 import InfoDisclosure from '../components/interactions/InfoDisclosure';
+import SystemBrowser from '../components/interactions/SystemBrowser';
 import InlineLoop from '../components/interactions/InlineLoop';
 import MediaCarousel from '../components/interactions/MediaCarousel';
 import MediaDetail from '../components/interactions/MediaDetail';
@@ -51,6 +52,19 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
  const dark=runtime.dark;
  const mediaSlots=runtime.mediaSlots;
  const interaction=runtime.interaction;
+
+ if(runtime.specializedComponent==='SYSTEM BROWSER'&&s.modular?.systemBrowser){
+  return <SystemBrowser
+   sectionId={s.content_id}
+   eyebrow={s.narrative_stage||'KIS_05 · Governing System'}
+   states={s.modular.systemBrowser.states}
+   mediaSlots={mediaSlots}
+   projectId={projectId}
+   map={map}
+   disclosure={interaction?.infoDisclosure}
+  />;
+ }
+
  const slot=(n=0)=>`project.${projectId}.${s.content_id}.${mediaSlots[n]||'primary_visual'}`;
  const narrativeNode=renderNarrative(s,interaction);
  const infoDisclosure=renderInfoDisclosure(s,interaction);

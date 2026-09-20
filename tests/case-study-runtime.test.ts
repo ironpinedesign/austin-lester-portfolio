@@ -103,12 +103,12 @@ test('specialized modular sections own their structural and interaction data',()
    specializedComponent:'SYSTEM BROWSER',
    systemBrowser:{
     states:[
-     {id:'foundation',label:'FOUNDATION'},
-     {id:'identity',label:'IDENTITY'},
-     {id:'language',label:'LANGUAGE'},
-     {id:'iconography',label:'ICONOGRAPHY'},
-     {id:'governance',label:'GOVERNANCE'},
-     {id:'application',label:'APPLICATION'}
+     {id:'foundation',label:'FOUNDATION',title:'Foundation',body:'Foundation body',evidenceLabels:['A','B','C']},
+     {id:'identity',label:'IDENTITY',title:'Identity',body:'Identity body',evidenceLabels:['A','B','C']},
+     {id:'language',label:'LANGUAGE',title:'Language',body:'Language body',evidenceLabels:['A','B','C']},
+     {id:'iconography',label:'ICONOGRAPHY',title:'Iconography',body:'Iconography body',evidenceLabels:['A','B','C']},
+     {id:'governance',label:'GOVERNANCE',title:'Governance',body:'Governance body',evidenceLabels:['A','B','C']},
+     {id:'application',label:'APPLICATION',title:'Application',body:'Application body',evidenceLabels:['A','B','C']}
     ]
    },
    interaction:{

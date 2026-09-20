@@ -108,10 +108,15 @@ test('system browser owns six semantic states in modular configuration',()=>{
  const browser=candidate.content_sections.find((entry)=>entry.content_id==='candidate__kis_05_governing_system');
  assert.ok(browser);
  assert.equal(browser.modular?.specializedComponent,'SYSTEM BROWSER');
+ const states=browser.modular?.systemBrowser?.states||[];
  assert.deepEqual(
-  browser.modular?.systemBrowser?.states.map((state)=>state.id),
+  states.map((state)=>state.id),
   ['foundation','identity','language','iconography','governance','application']
  );
+ assert.equal(states[0]?.title,'Preserve recognition.\nDefine the logic.');
+ assert.equal(states[2]?.evidenceLabels[0],'VOICE & MANIFESTO');
+ assert.equal(states[5]?.evidenceLabels[2],'PHYSICAL TOUCHPOINTS');
+ assert.ok(states.every((state)=>state.title&&state.body&&state.evidenceLabels.length===3));
  assert.equal(browser.modular?.interaction?.infoDisclosure?.enabled,true);
 });
 
