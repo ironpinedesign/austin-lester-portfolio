@@ -15,7 +15,7 @@ const routes=[
  {name:'home',path:'/',rail:'section.wrap.hero'},
  {name:'about',path:'/about',rail:'section.about-wrap.page-opening'},
  {name:'work',path:'/work/truckvault-3d-configurator',rail:'section.wrap.page-opening.case-opening'},
- {name:'kryptek',path:'/work/kryptek-identity-system',rail:'.kryptek-case-study>.page-opening.case-opening'},
+ {name:'kryptek',path:'/work/kryptek-identity-system',rail:'.case-study-canonical-shell>.page-opening.case-opening'},
 ];
 
 function assert(condition,message){
@@ -161,8 +161,8 @@ try{
   }
 
   const sidecars=await kryptekPage.evaluate(()=>[
-   {name:'text',selector:'#kis_03_inherited_brand_context'},
-   {name:'media',selector:'#kis_08_ecommerce_application'},
+   {name:'text',selector:'[data-case-layout="TEXT SIDECAR 01"]'},
+   {name:'media',selector:'[data-case-layout="MEDIA SIDECAR 01"]'},
   ].map(({name,selector})=>{
    const section=document.querySelector(selector);
    const rail=section?.querySelector('[class*="layoutWrap"]');

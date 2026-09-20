@@ -2,6 +2,10 @@ import type {Metadata} from 'next';
 import {notFound} from 'next/navigation';
 import {CaseStudyArticle} from '../case-study-renderer';
 import {getContent} from '../../../lib/content';
+import {
+ buildKryptekIdentityModularMediaMap,
+ buildKryptekIdentityModularProject
+} from '../../../lib/case-study-candidate';
 import {mediaMap} from '../../../lib/storage';
 
 export const dynamic='force-dynamic';
@@ -26,11 +30,19 @@ export default async function CaseStudy({params}:{params:Promise<{slug:string}>}
  const p=projects.find((project)=>project.slug===slug);
  if(!p)notFound();
 
+ const productionMap=await mediaMap();
+ const project=p.slug==='kryptek-identity-system'
+  ?buildKryptekIdentityModularProject(p)
+  :p;
+ const map=p.slug==='kryptek-identity-system'
+  ?buildKryptekIdentityModularMediaMap(p,project,productionMap)
+  :productionMap;
+
  return <CaseStudyArticle
-  project={p}
+  project={project}
   projects={projects}
-  map={await mediaMap()}
+  map={map}
   text={text}
-    showCover={p.slug!=='kryptek-identity-system'}
+  showCover={p.slug!=='kryptek-identity-system'}
  />;
 }
