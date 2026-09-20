@@ -11,6 +11,7 @@
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "test:about-social-proof": "node --experimental-strip-types --test tests/about-social-proof.test.ts",
+    "test:case-study-schema": "node --experimental-strip-types --test tests/case-study-schema.test.ts",
     "check:about-social-proof": "node scripts/check-about-social-proof.mjs",
     "check:global-authority": "node scripts/check-global-authority.mjs",
     "release:preflight": "node scripts/release-preflight.mjs",

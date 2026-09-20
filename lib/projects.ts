@@ -1,52 +1,50 @@
 import records from '../content/projects.json';
-export const CASE_SPATIAL_LAYOUT_IDS=[
- 'FULL BLEED 01',
- 'FULL BLEED 02',
- 'TEXT SIDECAR 01',
- 'MEDIA SIDECAR 01',
- 'MEDIA SIDECAR 02',
- 'STICKY NARRATIVE 01',
- 'STICKY NARRATIVE 02',
- 'STATE COMPARE 01',
- 'SYSTEM STAGE 01',
- 'ANNOTATED STAGE 01'
-] as const;
+import type {CaseStudyConfig,ModularSectionConfig} from './case-study-schema';
+export {
+ CASE_MEDIA_LAYOUT_IDS,
+ CASE_NAVIGATION_VARIANTS,
+ CASE_SECTION_ROLE_IDS,
+ CASE_SPATIAL_LAYOUT_IDS,
+ CASE_SPECIALIZED_COMPONENT_IDS,
+ CASE_SURFACE_IDS
+} from './case-study-schema';
+export type {
+ CaseMediaLayoutId,
+ CaseNavigationVariant,
+ CaseSectionRole,
+ CaseSpatialLayoutId,
+ CaseSpecializedComponentId,
+ CaseStudyConfig,
+ CaseSurface,
+ ModularSectionConfig,
+ SectionInteractionConfig,
+ SectionLayoutConfig
+} from './case-study-schema';
+import type {SectionInteractionConfig,SectionLayoutConfig} from './case-study-schema';
 
-export const CASE_MEDIA_LAYOUT_IDS=[
- 'ASYMMETRIC GRID 01',
- 'ASYMMETRIC GRID 02',
- 'SPECIMEN FIELD 01',
- 'SPECIMEN FIELD 02',
- 'EDITORIAL SEQUENCE 01',
- 'ARCHIVE GRID 01',
- 'ARCHIVE GRID 02'
-] as const;
-
-export type CaseSpatialLayoutId=(typeof CASE_SPATIAL_LAYOUT_IDS)[number];
-export type CaseMediaLayoutId=(typeof CASE_MEDIA_LAYOUT_IDS)[number];
-
-export type SectionLayoutConfig={
- layout?:CaseSpatialLayoutId;
- mediaLayout?:CaseMediaLayoutId;
- viewportBleed?:boolean;
- reverse?:boolean;
- caption?:string;
- metadata?:string;
- mediaNote?:string;
- systemItems?:{id:string;label:string;description?:string}[];
- annotations?:{title:string;body:string}[];
+export type Section={
+ content_id:string;
+ media_slots:string[];
+ type:string;
+ narrative_stage?:string|null;
+ heading?:string|null;
+ body?:string|null;
+ background?:string|null;
+ layout?:string|null;
+ layout_system?:SectionLayoutConfig|null;
+ quote?:string|null;
+ quote_attribution?:string|null;
+ metrics?:{content_id:string;label:string;value:string;kind?:string}[];
+ images?:string[];
+ caption?:string|null;
+ interaction?:SectionInteractionConfig;
+ modular?:ModularSectionConfig|null;
 };
-
-export type SectionInteractionConfig={
- expandableNarrative?:{enabled:boolean;previewParagraphs?:number;fade?:boolean;readMoreLabel?:string;showLessLabel?:string};
- infoDisclosure?:{enabled:boolean;label?:string;heading?:string;body?:string;variant?:'inline'|'row'};
- mediaDetail?:{enabled:boolean;items:{slot:string;body:string;title?:string;label?:string;x?:number;y?:number}[]};
- mediaCarousel?:{enabled:boolean;captions?:Record<string,string>;credits?:Record<string,string>};
- inlineLoop?:{enabled:boolean;slots:string[];loop?:boolean};
- mediaInspect?:{enabled:boolean;slots:string[];buttonLabel?:string;captions?:Record<string,string>;credits?:Record<string,string>;tone?:'bone'|'obsidian'};
+export type Project=Omit<(typeof records)[number],'content_sections'|'related_project_ids'>&{
+ content_sections:Section[];
+ related_project_ids:string[];
+ case_study?:CaseStudyConfig|null;
 };
-export type Section={content_id:string;media_slots:string[];type:string;narrative_stage?:string|null;heading?:string|null;body?:string|null;background?:string|null;layout?:string|null;layout_system?:SectionLayoutConfig|null;quote?:string|null;quote_attribution?:string|null;metrics?:{content_id:string;label:string;value:string;kind?:string}[];images?:string[];caption?:string|null;interaction?:SectionInteractionConfig};
-export type Project=Omit<(typeof records)[number],'content_sections'|'related_project_ids'>&{content_sections:Section[];related_project_ids:string[]};
 export const projects:Project[]=records as Project[];
 export const categories=['Brand & Narrative Strategy','Campaign Development','Identity & Design Systems','Creative Technology & Interactive','Art Direction','Photography & Film'];
 export const categoryLabels=categories.map(c=>c==='Art Direction'?'Creative & Art Direction':c);
