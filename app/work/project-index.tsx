@@ -6,6 +6,8 @@ import type {MediaMap} from '../../lib/storage';
 import Media from '../components/Media';
 export default function ProjectIndex({projects,categories,initialIntent,map,copy}:{projects:Project[];categories:string[];initialIntent:string;map:MediaMap;copy:Record<string,string>}){
  const [intent,setIntent]=useState(initialIntent);
+ // Router-provided intent intentionally re-synchronizes the interactive filter state.
+ // eslint-disable-next-line react-hooks/set-state-in-effect
  useEffect(()=>{setIntent(initialIntent)},[initialIntent]);
  useEffect(()=>{const update=()=>{const v=new URLSearchParams(location.search).get('intent');setIntent(v&&categories.includes(v)?v:'All')};window.addEventListener('popstate',update);return()=>window.removeEventListener('popstate',update)},[categories]);
  const rows=projects.filter(p=>intent==='All'||p.strategic_intent===intent).sort((a,b)=>a.index_order-b.index_order);

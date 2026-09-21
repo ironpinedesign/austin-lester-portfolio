@@ -8,7 +8,10 @@ type ApiResult=Preview&{revision:number;canRestore:boolean;entries:Entry[];chang
 async function call(body?:unknown):Promise<ApiResult>{const r=await fetch('/api/studio/content',body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);if(!r.ok){let msg=await r.text();try{msg=JSON.parse(msg).error||msg}catch{}throw Error(msg)}return r.json() as Promise<ApiResult>}
 export default function ContentManager(){
  const [state,setState]=useState<{revision:number;canRestore:boolean;entries:Entry[]}|null>(null),[csv,setCsv]=useState(''),[filename,setFilename]=useState(''),[preview,setPreview]=useState<(Preview&{revision:number})|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState(''),[restore,setRestore]=useState(false);const input=useRef<HTMLInputElement>(null);
- async function refresh(){setState(await call())}useEffect(()=>{refresh().catch(e=>setError(e.message))},[]);
+ async function refresh(){setState(await call())}
+ // Initial remote load is intentional; refresh is async and reused after mutations.
+ // eslint-disable-next-line react-hooks/set-state-in-effect
+ useEffect(()=>{refresh().catch(e=>setError(e.message))},[]);
  async function action(fn:()=>Promise<void>){setBusy(true);setError('');setNotice('');try{await fn()}catch(e){setError(e instanceof Error?e.message:'Please try again.')}finally{setBusy(false)}}
  return <section className="wrap studio"><div className="studio-heading"><div><p className="eyebrow">— Private workspace</p><h1>Content <em>/ CSV.</em></h1></div><Link className="text-link" href="/">View portfolio →</Link></div><AdminNav active="content"/>
  <p className="studio-intro">Export current copy, edit the value column, then review exactly what will change before applying it.</p>

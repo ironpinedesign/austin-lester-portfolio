@@ -14,8 +14,12 @@ export default function Studio({claimed,isOwner,displayName,projects,slots,initi
  const input=useRef<HTMLInputElement>(null),uploadLock=useRef(false);
  const [dragging,setDragging]=useState(false),[uploadLabel,setUploadLabel]=useState(''),[uploadIssues,setUploadIssues]=useState<string[]>([]);
  async function refresh(){const data=await request('/api/studio/media');setMedia(data.media);setPlacements(data.placements)}
+ // Initial owner media load intentionally synchronizes remote data into local UI state.
+ // eslint-disable-next-line react-hooks/set-state-in-effect
  useEffect(()=>{if(isOwner)refresh().catch(e=>setError(e.message)).finally(()=>setLoading(false))},[isOwner]);
  const item=media.find(m=>m.id===selected);const currentSlots=slots.filter(s=>s.projectSlug===project);
+ // Selection changes intentionally reset the editable description and delete confirmation.
+ // eslint-disable-next-line react-hooks/set-state-in-effect
  useEffect(()=>{setAlt(item?.alt||'');setConfirmDelete(false)},[item?.id,item?.alt]);
  async function action(fn:()=>Promise<void>,message:string){setError('');setNotice('');setBusy(true);try{await fn();setNotice(message)}catch(e){setError(e instanceof Error?e.message:'Please try again.')}finally{setBusy(false)}}
  async function upload(source:File[]|DropSnapshot,fromDrop=false){
@@ -68,6 +72,8 @@ export default function Studio({claimed,isOwner,displayName,projects,slots,initi
  },[isOwner,busy]);
  const disabled=busy||uploading;
  const usage=(id:string)=>placements.filter(p=>p.media_id===id).map(p=>slots.find(s=>s.key===p.slot)?.location||p.slot);
+ // Query parameters intentionally initialize Studio navigation state after mount.
+ // eslint-disable-next-line react-hooks/set-state-in-effect
  useEffect(()=>{const q=new URLSearchParams(window.location.search);if(q.get('page'))setProject(q.get('page')!);const slot=q.get('slot');if(slot)requestAnimationFrame(()=>document.getElementById(`slot-${slot}`)?.scrollIntoView({block:'center'}))},[]);
  return <section className="wrap studio"><div className="studio-heading"><div><p className="eyebrow">— Private workspace</p><h1>Media <em>studio.</em></h1></div><Link href="/" className="text-link">View portfolio →</Link></div><p className="studio-intro">Upload your images and videos. Place them in the portfolio when they’re ready.</p>
  <div className="studio-account"><span>Signed in as {displayName} ({provider})</span>{signOutUrl?<a href={signOutUrl}>Sign out</a>:<span>Sign-out is managed by your identity gateway.</span>}</div>
