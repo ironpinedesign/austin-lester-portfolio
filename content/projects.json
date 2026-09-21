@@ -282,7 +282,22 @@
         "media_slots": [
           "governing_master_identity",
           "governing_voice_manifesto",
-          "governing_icon_system"
+          "governing_icon_system",
+          "governing_foundation_primary",
+          "governing_foundation_color",
+          "governing_foundation_type",
+          "governing_identity_lockup",
+          "governing_identity_usage",
+          "governing_language_tone",
+          "governing_language_rules",
+          "governing_icon_construction",
+          "governing_icon_application",
+          "governing_guideline_spreads",
+          "governing_decision_rules",
+          "governing_hierarchy_usage",
+          "governing_application_primary",
+          "governing_digital_touchpoints",
+          "governing_physical_touchpoints"
         ],
         "layout_system": {
           "layout": "SYSTEM STAGE 01",

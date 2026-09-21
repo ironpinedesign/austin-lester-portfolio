@@ -12,7 +12,6 @@ type Props={
  sectionId:string;
  eyebrow:string;
  states:CaseSystemBrowserState[];
- mediaSlots:string[];
  projectId:string;
  map:MediaMap;
  disclosure?:DisclosureConfig;
@@ -26,7 +25,6 @@ export default function SystemBrowser({
  sectionId,
  eyebrow,
  states,
- mediaSlots,
  projectId,
  map,
  disclosure
@@ -38,7 +36,7 @@ export default function SystemBrowser({
  const [vertical,setVertical]=useState(false);
 
  useEffect(()=>{
-  const media=window.matchMedia('(min-width:900px)');
+  const media=window.matchMedia('(min-width:1024px)');
   const sync=()=>setVertical(media.matches);
   sync();
   media.addEventListener('change',sync);
@@ -49,8 +47,7 @@ export default function SystemBrowser({
  const active=states[activeIndex]||states[0];
  if(!active)return null;
 
- const selectedMedia=active.mediaSlots?.length===3?active.mediaSlots:mediaSlots;
- const evidenceSlots=[0,1,2].map((index)=>selectedMedia[index]||mediaSlots[index]||`evidence_${index+1}`);
+ const evidenceSlots=active.mediaSlots;
  const panelId=`${uid}-panel`;
  const contextId=`${uid}-context`;
 
@@ -88,7 +85,12 @@ export default function SystemBrowser({
   return `project.${projectId}.${sectionId}.${slotName}`;
  }
 
- return <section id={sectionId} className={`case-section ${styles.root}`} data-system-browser>
+ return <section
+  id={sectionId}
+  className={`case-section ${styles.root}`}
+  data-system-browser
+  data-system-browser-state={active.id}
+ >
   <div className={styles.inner}>
    <div className={styles.layout}>
     <div className={styles.controlRail}>

@@ -1250,7 +1250,7 @@
 
 /* 1024 transitional sidecar authority:
    340 narrative / 24 gap / 548 media. */
-@media(min-width:900px){
+@media(min-width:1024px){
 
  .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
  .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,

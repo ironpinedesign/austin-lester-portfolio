@@ -105,12 +105,12 @@ test('specialized modular sections own their structural and interaction data',()
    specializedComponent:'SYSTEM BROWSER',
    systemBrowser:{
     states:[
-     {id:'foundation',label:'FOUNDATION',title:'Foundation',body:'Foundation body',evidenceLabels:['A','B','C']},
-     {id:'identity',label:'IDENTITY',title:'Identity',body:'Identity body',evidenceLabels:['A','B','C']},
-     {id:'language',label:'LANGUAGE',title:'Language',body:'Language body',evidenceLabels:['A','B','C']},
-     {id:'iconography',label:'ICONOGRAPHY',title:'Iconography',body:'Iconography body',evidenceLabels:['A','B','C']},
-     {id:'governance',label:'GOVERNANCE',title:'Governance',body:'Governance body',evidenceLabels:['A','B','C']},
-     {id:'application',label:'APPLICATION',title:'Application',body:'Application body',evidenceLabels:['A','B','C']}
+     {id:'foundation',label:'FOUNDATION',title:'Foundation',body:'Foundation body',evidenceLabels:['A','B','C'],mediaSlots:['primary','primary','primary']},
+     {id:'identity',label:'IDENTITY',title:'Identity',body:'Identity body',evidenceLabels:['A','B','C'],mediaSlots:['primary','primary','primary']},
+     {id:'language',label:'LANGUAGE',title:'Language',body:'Language body',evidenceLabels:['A','B','C'],mediaSlots:['primary','primary','primary']},
+     {id:'iconography',label:'ICONOGRAPHY',title:'Iconography',body:'Iconography body',evidenceLabels:['A','B','C'],mediaSlots:['primary','primary','primary']},
+     {id:'governance',label:'GOVERNANCE',title:'Governance',body:'Governance body',evidenceLabels:['A','B','C'],mediaSlots:['primary','primary','primary']},
+     {id:'application',label:'APPLICATION',title:'Application',body:'Application body',evidenceLabels:['A','B','C'],mediaSlots:['primary','primary','primary']}
     ]
    },
    interaction:{

@@ -3,6 +3,7 @@ import test from 'node:test';
 import {
  KRYPTĒK_CANDIDATE_SOURCE_SECTION_IDS,
  buildKryptekIdentityCandidateProject,
+ buildKryptekIdentityModularMediaMap,
  buildKryptekIdentityModularProject
 } from '../lib/case-study-candidate.ts';
 import type {Project,Section} from '../lib/projects.ts';
@@ -54,7 +55,26 @@ function baseProject():Project{
     narrative_stage:'KIS_09 · Editorial Application'
    }),
    section('kis_05_governing_system',{
-    media_slots:['governing_master_identity'],
+    media_slots:[
+     'governing_master_identity',
+     'governing_voice_manifesto',
+     'governing_icon_system',
+     'governing_foundation_primary',
+     'governing_foundation_color',
+     'governing_foundation_type',
+     'governing_identity_lockup',
+     'governing_identity_usage',
+     'governing_language_tone',
+     'governing_language_rules',
+     'governing_icon_construction',
+     'governing_icon_application',
+     'governing_guideline_spreads',
+     'governing_decision_rules',
+     'governing_hierarchy_usage',
+     'governing_application_primary',
+     'governing_digital_touchpoints',
+     'governing_physical_touchpoints'
+    ],
     interaction:{infoDisclosure:{enabled:true,label:'Extended Context',body:'System context'}}
    }),
    section('kis_02_complete_brand_world',{media_slots:['hero_primary']}),
@@ -101,6 +121,10 @@ test('editorial intro and media sequence become one modular section',()=>{
  assert.deepEqual(editorial.media_slots,['editorial_lead_spread']);
  assert.equal(editorial.modular?.media?.layout,'EDITORIAL SEQUENCE 01');
  assert.equal(editorial.modular?.interaction?.mediaInspect?.enabled,true);
+ assert.deepEqual(
+  editorial.modular?.sourceIds,
+  ['kis_09_editorial_intro','kis_09_editorial_application']
+ );
  assert.equal(candidate.content_sections.some((entry)=>entry.content_id.includes('editorial_intro')),false);
 });
 
@@ -117,7 +141,27 @@ test('system browser owns six semantic states in modular configuration',()=>{
  assert.equal(states[0]?.title,'Preserve recognition.\nDefine the logic.');
  assert.equal(states[2]?.evidenceLabels[0],'VOICE & MANIFESTO');
  assert.equal(states[5]?.evidenceLabels[2],'PHYSICAL TOUCHPOINTS');
- assert.ok(states.every((state)=>state.title&&state.body&&state.evidenceLabels.length===3));
+
+ assert.deepEqual(
+  browser.media_slots.slice(0,3),
+  [
+   'governing_master_identity',
+   'governing_voice_manifesto',
+   'governing_icon_system'
+  ]
+ );
+
+ const evidenceSlots=states.flatMap((state)=>[...state.mediaSlots]);
+
+ assert.ok(states.every(
+  (state)=>state.title&&
+   state.body&&
+   state.evidenceLabels.length===3&&
+   state.mediaSlots.length===3
+ ));
+ assert.equal(evidenceSlots.length,18);
+ assert.equal(new Set(evidenceSlots).size,18);
+ assert.ok(evidenceSlots.every((slot)=>browser.media_slots.includes(slot)));
  assert.equal(browser.modular?.interaction?.infoDisclosure?.enabled,true);
 });
 
@@ -198,6 +242,13 @@ test('production modular project preserves public identity without legacy render
   )
  );
 
+ assert.deepEqual(
+  project.content_sections
+   .flatMap((entry)=>entry.modular?.sourceIds||[])
+   .sort(),
+  base.content_sections.map((entry)=>entry.content_id).sort()
+ );
+
  assert.equal(
   project.case_study?.shell?.variant,
   'canonical'
@@ -215,4 +266,41 @@ test('production modular project preserves public identity without legacy render
  assert.equal(base.content_sections.some(
   (entry)=>entry.content_id.startsWith('modular__')
  ),false);
+});
+
+test('production modular media map aliases all System Browser evidence slots',()=>{
+ const base=baseProject();
+ const project=buildKryptekIdentityModularProject(base);
+ const source=base.content_sections.find(
+  (entry)=>entry.content_id==='kis_05_governing_system'
+ );
+ assert.ok(source);
+
+ const productionMap=Object.fromEntries(
+  source.media_slots.map((slot,index)=>{
+   const key=`project.${base.content_id}.${source.content_id}.${slot}`;
+   return [
+    key,
+    {
+     id:`media-${index}`,
+     mime:'image/jpeg',
+     alt:slot,
+     slot:key
+    }
+   ];
+  })
+ );
+
+ const mapped=buildKryptekIdentityModularMediaMap(
+  base,
+  project,
+  productionMap
+ );
+
+ for(const [index,slot] of source.media_slots.entries()){
+  const key=
+   `project.${project.content_id}.modular__kis_05_governing_system.${slot}`;
+  assert.equal(mapped[key]?.id,`media-${index}`);
+  assert.equal(mapped[key]?.slot,key);
+ }
 });

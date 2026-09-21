@@ -377,7 +377,22 @@
  }
 }
 
-@media(min-width:900px){
+@media(min-width:768px) and (max-width:1023px){
+ .root{
+  min-height:1180px;
+ }
+
+ .narrativeStack{
+  height:316px;
+  min-height:316px;
+ }
+
+ .body p+p{
+  margin-top:19px;
+ }
+}
+
+@media(min-width:1024px){
  .root{
   min-height:800px;
  }

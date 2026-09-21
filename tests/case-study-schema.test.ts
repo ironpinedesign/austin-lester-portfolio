@@ -77,3 +77,29 @@ test('limits ordinary sections to one primary interaction family',()=>{
  };
  assert.ok(validateCaseStudyContract(project).some((error)=>error.includes('more than one primary interaction family')));
 });
+
+test('requires System Browser evidence slots to be declared by the section',()=>{
+ const project=validProject();
+ const section=project.content_sections[0];
+ section.media_slots=['a','b','c'];
+ section.modular!.media={slots:['a','b','c']};
+ section.modular!.specializedComponent='SYSTEM BROWSER';
+
+ const ids=['foundation','identity','language','iconography','governance','application'];
+ section.modular!.systemBrowser={
+  states:ids.map((id,index)=>({
+   id,
+   label:id.toUpperCase(),
+   title:id,
+   body:`${id} body`,
+   evidenceLabels:['A','B','C'] as [string,string,string],
+   mediaSlots:(index===5?['a','b','missing']:['a','b','c']) as [string,string,string]
+  }))
+ };
+
+ assert.ok(
+  validateCaseStudyContract(project).some(
+   (error)=>error.includes('references undeclared media slot missing')
+  )
+ );
+});

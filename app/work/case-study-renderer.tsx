@@ -1,3 +1,4 @@
+import {Fragment} from 'react';
 import Link from '../components/SiteLink';
 import {ProseCopy as Prose} from '../components/Copy';
 import ExpandableNarrative from '../components/interactions/ExpandableNarrative';
@@ -58,7 +59,6 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    sectionId={s.content_id}
    eyebrow={s.narrative_stage||'KIS_05 · Governing System'}
    states={s.modular.systemBrowser.states}
-   mediaSlots={mediaSlots}
    projectId={projectId}
    map={map}
    disclosure={interaction?.infoDisclosure}
@@ -231,7 +231,22 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
    <Media map={map} slot={`project.${project.content_id}.opening.${runtime.coverSlotName}`} label={`${project.title} / Cover`} className="cinematic" controls/>
   </div>}
 
-    {project.content_sections.map((section)=><CaseSection key={section.content_id} s={section} slug={project.slug} projectId={project.content_id} map={map} text={text}/>)}
+  {project.content_sections.map((section)=><Fragment key={section.content_id}>
+   {(section.modular?.sourceIds||[]).map((sourceId)=><span
+    key={sourceId}
+    id={sourceId}
+    className="case-source-anchor"
+    data-case-source-anchor
+    aria-hidden="true"
+   />)}
+   <CaseSection
+    s={section}
+    slug={project.slug}
+    projectId={project.content_id}
+    map={map}
+    text={text}
+   />
+  </Fragment>)}
 
   {runtime.navigationVariant==='compact'
    ?<section className="case-section project-navigation-row" aria-label="Project navigation">

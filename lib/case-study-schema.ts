@@ -86,7 +86,7 @@ export type CaseSystemBrowserState={
  title:string;
  body:string;
  evidenceLabels:readonly [string,string,string];
- mediaSlots?:readonly [string,string,string];
+ mediaSlots:readonly [string,string,string];
  description?:string;
 };
 
@@ -97,6 +97,7 @@ export type CaseSystemBrowserConfig={
 export type ModularSectionConfig={
  semanticRole:CaseSectionRole;
  surface:CaseSurface;
+ sourceIds?:string[];
  layout?:ModularSectionLayoutConfig;
  media?:ModularSectionMediaConfig;
  interaction?:SectionInteractionConfig;
@@ -191,6 +192,15 @@ export function validateCaseStudyContract(project:CaseStudyContractProject):stri
    continue;
   }
 
+  if(config.sourceIds){
+   if(config.sourceIds.some((id)=>!id.trim())){
+    errors.push(`Section ${section.content_id} sourceIds must not contain empty ids.`);
+   }
+   if(new Set(config.sourceIds).size!==config.sourceIds.length){
+    errors.push(`Section ${section.content_id} sourceIds must be unique.`);
+   }
+  }
+
   if(config.layout&&!CASE_SPATIAL_LAYOUT_IDS.includes(config.layout.id))errors.push(`Section ${section.content_id} uses an unsupported spatial layout.`);
   if(config.media?.layout&&!CASE_MEDIA_LAYOUT_IDS.includes(config.media.layout))errors.push(`Section ${section.content_id} uses an unsupported media layout.`);
 
@@ -217,8 +227,14 @@ export function validateCaseStudyContract(project:CaseStudyContractProject):stri
     if(!Array.isArray(state.evidenceLabels)||state.evidenceLabels.length!==3){
      errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} requires three evidence labels.`);
     }
-    if(state.mediaSlots&&state.mediaSlots.length!==3){
+    if(!Array.isArray(state.mediaSlots)||state.mediaSlots.length!==3){
      errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} mediaSlots must contain exactly three slots.`);
+    }else{
+     for(const slot of state.mediaSlots){
+      if(!modularSlots.includes(slot)){
+       errors.push(`Section ${section.content_id} SYSTEM BROWSER state ${state.id} references undeclared media slot ${slot}.`);
+      }
+     }
     }
    }
   }

@@ -16,6 +16,7 @@
     "test:kryptek-candidate": "node --experimental-strip-types --test tests/kryptek-candidate.test.ts",
     "check:about-social-proof": "node scripts/check-about-social-proof.mjs",
     "check:global-authority": "node scripts/check-global-authority.mjs",
+    "check:kryptek-modular": "node scripts/check-kryptek-modular.mjs",
     "release:preflight": "node scripts/release-preflight.mjs",
     "deploy:production": "node scripts/deploy-production.mjs",
     "db:generate": "drizzle-kit generate",

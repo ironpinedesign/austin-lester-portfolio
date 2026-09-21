@@ -61,7 +61,7 @@
  margin-top:25.5px;
 }
 
-@media(min-width:900px){
+@media(min-width:1024px){
  .case-role-credits{
   min-height:420px;
  }
@@ -427,6 +427,27 @@
  body:has(.kryptek-case-study) .site-footer .wrap{width:342px;max-width:342px;min-height:412px;display:grid;grid-template-rows:1fr auto;padding-top:56px;padding-bottom:12px}
  body:has(.kryptek-case-study) .footer-top{display:grid;gap:20px;padding-bottom:20px}
  .footer-utility{justify-items:start;text-align:left}
+}
+
+/* Modular source anchors preserve CMS/deep-link identity while
+   render sections keep isolated modular__ ids. The anchors are empty
+   siblings, so legacy #kis_* descendant selectors cannot regain
+   presentation authority. */
+.case-source-anchor{
+ display:block!important;
+ position:relative!important;
+ width:0!important;
+ height:0!important;
+ min-width:0!important;
+ min-height:0!important;
+ margin:0!important;
+ padding:0!important;
+ border:0!important;
+ background:none!important;
+ font-size:0!important;
+ line-height:0!important;
+ overflow:visible!important;
+ scroll-margin-top:calc(var(--als-nav-height) + 16px)!important;
 }
 
 /* CASE SEMANTIC CARDS
