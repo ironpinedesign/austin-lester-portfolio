@@ -618,6 +618,12 @@
 
  .case-study-canonical-shell .case-title-grid>h1{
   padding-bottom:0;
+  font-size:109px;
+  font-weight:900;
+  font-stretch:100%;
+  font-variation-settings:"wdth" 100;
+  line-height:.93;
+  letter-spacing:-.055em;
  }
 
  .case-study-canonical-shell .case-title-grid>div{
