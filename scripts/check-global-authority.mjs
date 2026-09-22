@@ -253,9 +253,34 @@ try{
     'Homepage Approach CTA must use the approved forward-navigation label'
    );
 
+   const footerTitle=semanticPage.locator('.footer-title');
    assert(
-    (await semanticPage.locator('.footer-title span').textContent())?.trim()==='→',
-    'Footer forward arrow must use →'
+    await footerTitle.count()===1,
+    'Global footer must render one Contact CTA'
+   );
+   assert(
+    (await footerTitle.textContent())?.trim()==='Let’s make it matter',
+    'Footer CTA copy drifted'
+   );
+   assert(
+    await footerTitle.getAttribute('href')==='/contact',
+    'Footer CTA must link to /contact'
+   );
+   assert(
+    await footerTitle.locator('span').count()===0,
+    'Footer CTA must not carry a separate arrow'
+   );
+
+   const footerStudio=semanticPage.locator(
+    '.footer-studio-link,.footer-studio-label'
+   ).first();
+   assert(
+    await footerStudio.count()===1,
+    'Global footer must render the Media studio utility'
+   );
+   assert(
+    (await footerStudio.textContent())?.trim()==='Media studio →',
+    'Footer Studio utility must use the canonical forward label'
    );
 
    const heroSupportingType=await semanticPage.locator('.hero-rail p').evaluate((element)=>{
