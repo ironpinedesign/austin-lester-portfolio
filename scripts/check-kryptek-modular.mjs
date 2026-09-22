@@ -102,6 +102,86 @@ async function creditsMode(page,width){
  }
 }
 
+function expectedSectionPadding(width){
+ if(width>=1440)return 84;
+ if(width>=1024)return 72;
+ if(width>=768)return 64;
+ return 48;
+}
+
+async function sectionPadding(page,width){
+ const expected=expectedSectionPadding(width);
+
+ const semantic=await page
+  .locator('[data-case-role="insight"],[data-case-role="outcome"]')
+  .evaluateAll((elements)=>elements.map((element)=>{
+   const style=getComputedStyle(element);
+   return {
+    id:element.id,
+    top:parseFloat(style.paddingTop),
+    bottom:parseFloat(style.paddingBottom),
+   };
+  }));
+
+ assert(
+  semantic.length===2,
+  `${width}: expected Insight and Outcome semantic sections`
+ );
+
+ for(const section of semantic){
+  assert(
+   near(section.top,expected)&&near(section.bottom,expected),
+   `${width}: ${section.id} padding ${section.top}/${section.bottom}, expected ${expected}`
+  );
+ }
+
+ if(width>=768){
+  const sidecars=await page
+   .locator(
+    '[data-case-layout="TEXT SIDECAR 01"],' +
+    '[data-case-layout="MEDIA SIDECAR 01"]'
+   )
+   .evaluateAll((elements)=>elements.map((element)=>{
+    const style=getComputedStyle(element);
+    return {
+     id:element.id,
+     top:parseFloat(style.paddingTop),
+     bottom:parseFloat(style.paddingBottom),
+    };
+   }));
+
+  for(const section of sidecars){
+   assert(
+    near(section.top,expected)&&near(section.bottom,expected),
+    `${width}: ${section.id} padding ${section.top}/${section.bottom}, expected ${expected}`
+   );
+  }
+
+  const editorial=await page
+   .locator('#modular__kis_09_editorial_application')
+   .evaluate((element)=>{
+    const style=getComputedStyle(element);
+    return {
+     top:parseFloat(style.paddingTop),
+     bottom:parseFloat(style.paddingBottom),
+    };
+   });
+
+  assert(
+   near(editorial.top,expected),
+   `${width}: editorial top padding ${editorial.top}, expected ${expected}`
+  );
+
+  // Page 07 gives Editorial its own closing cadence on desktop.
+  if(width<1440){
+   assert(
+    near(editorial.bottom,expected),
+    `${width}: editorial bottom padding ${editorial.bottom}, expected ${expected}`
+   );
+  }
+ }
+}
+
 async function auditPublic(browser,width,expectedHeight=null){
  const page=await browser.newPage({
   viewport:{width,height:1200},
@@ -176,6 +256,7 @@ async function auditPublic(browser,width,expectedHeight=null){
 
  await sidecarModes(page,width);
  await creditsMode(page,width);
+ await sectionPadding(page,width);
 
  for(const role of ['insight','outcome','credits']){
   assert(

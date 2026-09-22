@@ -1,5 +1,5 @@
 .layoutSection{
- padding-block:72px;
+ padding-block:var(--als-case-section-pad);
 }
 
 .layoutWrap{
@@ -1443,8 +1443,7 @@
  .modularSection[data-case-layout='TEXT SIDECAR 01'],
  .modularSection[data-case-layout='MEDIA SIDECAR 01'],
  .modularSection[data-case-layout='MEDIA SIDECAR 02']{
-  padding-top:84px;
-  padding-bottom:80px;
+  padding-block:var(--als-case-section-pad);
  }
 
  .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
