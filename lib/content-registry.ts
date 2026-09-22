@@ -1,4 +1,9 @@
 import {siteCopy} from '../content/site-copy';
+import {
+ KRYPTĒK_SYSTEM_BROWSER_COPY,
+ kryptekSystemBrowserFieldId,
+ type KryptekSystemBrowserField
+} from './kryptek-system-browser';
 import {projects,categories,categoryLabels,categoryKeys,type Project,type MediaSlot} from './projects';
 export type FieldType='text'|'richtext'|'link'|'list'|'boolean'|'number'|'image'|'video';
 export type ContentValues=Record<string,string>;
@@ -41,6 +46,69 @@ for(const p of projects){
   for(const name of s.media_slots)media(`${prefix}.${name}`,p.title,`/work/${p.slug}#${s.content_id}`,section,human(name)+(s.type==='video'?' (video)':' (image / video)'),p,'project',s.type==='video'?'video':'image');
  }
 }
+const kryptekSystemBrowserProject=projects.find(
+ p=>p.content_id==='kryptek_identity'
+);
+
+if(kryptekSystemBrowserProject){
+ const evidenceFields=[
+  'evidence_1',
+  'evidence_2',
+  'evidence_3'
+ ] as const;
+
+ for(const [stateId,copy] of Object.entries(
+  KRYPTĒK_SYSTEM_BROWSER_COPY
+ )){
+  const common={
+   page:kryptekSystemBrowserProject.title,
+   route:`/work/${kryptekSystemBrowserProject.slug}#kis_05_governing_system`,
+   section:`Governing System / System Browser / ${human(stateId)}`,
+   editable:true,
+   required:true,
+   projectId:kryptekSystemBrowserProject.content_id,
+   surface:'project' as const
+  };
+
+  add({
+   ...common,
+   id:kryptekSystemBrowserFieldId(stateId,'label'),
+   field:'Tab Label',
+   type:'text',
+   value:copy.label
+  });
+
+  add({
+   ...common,
+   id:kryptekSystemBrowserFieldId(stateId,'title'),
+   field:'State Title',
+   type:'text',
+   value:copy.title
+  });
+
+  add({
+   ...common,
+   id:kryptekSystemBrowserFieldId(stateId,'body'),
+   field:'Narrative',
+   type:'richtext',
+   value:copy.body
+  });
+
+  for(const [index,field] of evidenceFields.entries()){
+   add({
+    ...common,
+    id:kryptekSystemBrowserFieldId(
+     stateId,
+     field as KryptekSystemBrowserField
+    ),
+    field:`Evidence ${index+1} Label`,
+    type:'text',
+    value:copy.evidenceLabels[index]
+   });
+  }
+ }
+}
+
 media('home.hero.image','Homepage','/','Hero','Featured image / video');
 media('home.hero.detail_image','Homepage','/','Hero','Detail image / video');
 export const registry=fields;

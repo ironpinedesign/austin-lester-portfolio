@@ -7,6 +7,10 @@ import {
  buildKryptekIdentityModularProject
 } from '../lib/case-study-candidate.ts';
 import type {Project,Section} from '../lib/projects.ts';
+import {
+ kryptekSystemBrowserDefaultText,
+ kryptekSystemBrowserFieldId
+} from '../lib/kryptek-system-browser.ts';
 
 function section(content_id:string,overrides:Partial<Section>={}):Section{
  return {
@@ -163,6 +167,63 @@ test('system browser owns six semantic states in modular configuration',()=>{
  assert.equal(new Set(evidenceSlots).size,18);
  assert.ok(evidenceSlots.every((slot)=>browser.media_slots.includes(slot)));
  assert.equal(browser.modular?.interaction?.infoDisclosure?.enabled,true);
+});
+
+test('System Browser content resolves independently from structural media slots',()=>{
+ const overrides=new Map<string,string>([
+  [
+   kryptekSystemBrowserFieldId('foundation','title'),
+   'Custom foundation title.'
+  ],
+  [
+   kryptekSystemBrowserFieldId('application','evidence_3'),
+   'CUSTOM PHYSICAL PROOF'
+  ]
+ ]);
+
+ const text=(id:string)=>
+  overrides.get(id)??kryptekSystemBrowserDefaultText(id);
+
+ const candidate=buildKryptekIdentityCandidateProject(
+  baseProject(),
+  text
+ );
+
+ const browser=candidate.content_sections.find(
+  (entry)=>entry.content_id==='candidate__kis_05_governing_system'
+ );
+
+ assert.ok(browser);
+
+ const states=browser.modular?.systemBrowser?.states||[];
+
+ assert.equal(
+  states[0]?.title,
+  'Custom foundation title.'
+ );
+
+ assert.equal(
+  states[5]?.evidenceLabels[2],
+  'CUSTOM PHYSICAL PROOF'
+ );
+
+ assert.deepEqual(
+  states[0]?.mediaSlots,
+  [
+   'governing_foundation_primary',
+   'governing_foundation_color',
+   'governing_foundation_type'
+  ]
+ );
+
+ assert.deepEqual(
+  states[5]?.mediaSlots,
+  [
+   'governing_application_primary',
+   'governing_digital_touchpoints',
+   'governing_physical_touchpoints'
+  ]
+ );
 });
 
 test('candidate exposes Insight and Outcome through reusable semantic roles',()=>{

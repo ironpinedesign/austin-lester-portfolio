@@ -32,7 +32,7 @@ export default async function CaseStudy({params}:{params:Promise<{slug:string}>}
 
  const productionMap=await mediaMap();
  const project=p.slug==='kryptek-identity-system'
-  ?buildKryptekIdentityModularProject(p)
+  ?buildKryptekIdentityModularProject(p,text)
   :p;
  const map=p.slug==='kryptek-identity-system'
   ?buildKryptekIdentityModularMediaMap(p,project,productionMap)

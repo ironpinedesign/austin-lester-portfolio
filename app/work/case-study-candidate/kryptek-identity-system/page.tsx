@@ -18,7 +18,7 @@ export default async function KryptekIdentityCandidatePage(){
  const base=allProjects.find((project)=>project.slug==='kryptek-identity-system');
  if(!base)notFound();
 
- const candidate=buildKryptekIdentityCandidateProject(base);
+ const candidate=buildKryptekIdentityCandidateProject(base,text);
  const productionMap=await mediaMap();
  const candidateMap=buildKryptekIdentityCandidateMediaMap(base,candidate,productionMap);
  return <CaseStudyArticle
