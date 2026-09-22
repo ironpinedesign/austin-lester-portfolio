@@ -73,6 +73,31 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
  const inspectSlots=interaction?.mediaInspect?.enabled?new Set(interaction.mediaInspect.slots):new Set<string>();
  const loopSlots=interaction?.inlineLoop?.enabled?new Set(interaction.inlineLoop.slots):new Set<string>();
 
+ const inspectSlotNames=mediaSlots.filter(
+  (slotName)=>inspectSlots.has(slotName)
+ );
+
+ const inspectItems=inspectSlotNames.map(
+  (inspectSlotName)=>{
+   const inspectIndex=mediaSlots.indexOf(inspectSlotName);
+   const inspectSlotKey=slot(inspectIndex);
+
+   return {
+    id:inspectSlotName,
+    content:<Media
+     slot={inspectSlotKey}
+     map={map}
+     label={`${s.heading||s.narrative_stage||'Project'} / Inspect`}
+     className="wide"
+     controls
+     kind={sectionKind}
+    />,
+    caption:interaction?.mediaInspect?.captions?.[inspectSlotName],
+    credit:interaction?.mediaInspect?.credits?.[inspectSlotName]
+   };
+  }
+ );
+
  const renderSectionMedia=(n:number,className:string,kind:string)=>{
   const slotName=mediaSlots[n]||'';
   const slotKey=slot(n);
@@ -88,6 +113,11 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    tone={interaction?.mediaInspect?.tone||'bone'}
    trigger={node}
    expanded={<Media slot={slotKey} map={map} label={`${s.heading||s.narrative_stage||'Project'} / Inspect`} className="wide" controls kind={kind}/>}
+   items={inspectItems}
+   initialIndex={Math.max(
+    0,
+    inspectSlotNames.indexOf(slotName)
+   )}
   />;
 
   const detail=detailItems?.find((item)=>item.slot===slotName);

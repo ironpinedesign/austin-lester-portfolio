@@ -149,9 +149,15 @@ export default function SystemBrowser({
        <span>{disclosure.label||'EXTENDED CONTEXT'}</span>
        <span className={styles.disclosureIndicator} aria-hidden="true">{contextOpen?'−':'+'}</span>
       </button>
-      <div id={contextId} className={styles.disclosurePanel} hidden={!contextOpen}>
-       {disclosure.heading&&<h3>{disclosure.heading}</h3>}
-       {paragraphs(disclosure.body).map((paragraph,index)=><p key={index}>{paragraph}</p>)}
+      <div
+       id={contextId}
+       className={`${styles.disclosurePanel} ${contextOpen?styles.disclosurePanelOpen:''}`}
+       aria-hidden={!contextOpen}
+      >
+       <div className={styles.disclosurePanelInner}>
+        {disclosure.heading&&<h3>{disclosure.heading}</h3>}
+        {paragraphs(disclosure.body).map((paragraph,index)=><p key={index}>{paragraph}</p>)}
+       </div>
       </div>
      </div>}
     </div>
