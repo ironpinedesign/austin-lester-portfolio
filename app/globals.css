@@ -73,7 +73,17 @@
  }
 }
 
-@media(min-width:1200px){
+@media(min-width:1024px) and (max-width:1439px){
+ .case-role-credits-grid{
+  grid-template-columns:
+   clamp(340px,calc(24.0385vw + 93.8462px),440px)
+   minmax(0,1fr);
+  column-gap:
+   clamp(24px,calc(13.4615vw - 113.8462px),80px);
+ }
+}
+
+@media(min-width:1440px){
  .case-role-credits{
   min-height:479px;
  }

@@ -1417,8 +1417,28 @@
  }
 }
 
-/* Primary desktop authority: 440 / 80 / 760. */
-@media(min-width:1200px){
+/* Transitional sidecar interpolation between the verified
+   1024 contract (340 / 24 / 548) and the verified
+   1440 contract (440 / 80 / 760).
+
+   Text width and gap interpolate between the two authority
+   endpoints. Media occupies the remaining rail width so the
+   composition cannot overflow during the transition. */
+@media(min-width:1024px) and (max-width:1439px){
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:
+   clamp(340px,calc(24.0385vw + 93.8462px),440px)
+   minmax(0,1fr);
+  column-gap:
+   clamp(24px,calc(13.4615vw - 113.8462px),80px);
+ }
+}
+
+/* Primary desktop authority: 440 / 80 / 760 at 1440+. */
+@media(min-width:1440px){
 
  .modularSection[data-case-layout='TEXT SIDECAR 01'],
  .modularSection[data-case-layout='MEDIA SIDECAR 01'],

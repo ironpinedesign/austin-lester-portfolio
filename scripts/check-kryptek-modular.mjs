@@ -12,7 +12,10 @@ const canonical=[
  {width:1760,height:770},
 ];
 
-const transitionWidths=[621,700,767,899,900,960,1023];
+const transitionWidths=[
+ 621,700,767,899,900,960,1023,
+ 1200,1280,1366,1439,
+];
 
 const modularIds=[
  'modular__kis_02_complete_brand_world',
