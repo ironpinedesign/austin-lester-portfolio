@@ -186,10 +186,6 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
   </section>;
  }
 
- if(!s.modular&&slug==='kryptek-identity-system'&&s.content_id==='credits'&&s.type==='text'){
-  return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap kryptek-credits-grid"><div><p className="eyebrow">{s.narrative_stage}</p><h2 className="case-section-title">{s.heading}</h2></div><div className="kryptek-credits-details">{narrativeNode}{infoDisclosure}</div></div></section>;
- }
-
  return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap case-copy-grid"><p className="eyebrow">{s.narrative_stage}</p><div><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}{infoDisclosure}</div></div></section>;
 }
 
@@ -209,9 +205,7 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
  const openingQualifier=runtime.openingQualifier??(!project.case_study&&project.slug==='the-public-standard'?text('project.public_standard.opening.status_label'):undefined);
  const articleClassName=runtime.shellVariant==='canonical'
   ?'case-study-canonical-shell'
-  :project.slug==='kryptek-identity-system'
-   ?'kryptek-case-study'
-   :undefined;
+  :undefined;
 
  return <article className={articleClassName}>
   <section className="wrap page-opening case-opening">
