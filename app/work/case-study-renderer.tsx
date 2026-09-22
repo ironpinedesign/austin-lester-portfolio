@@ -107,6 +107,7 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    mediaNodes={mediaNodes}
    dark={dark}
    modular={!!s.modular}
+   sourceAnchors={s.modular?.sourceIds}
    layoutConfig={runtime.layoutConfig}
   />;
  }
@@ -192,6 +193,13 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
  return <section id={s.content_id} className={`case-section ${dark?'dark':''}`}><div className="wrap case-copy-grid"><p className="eyebrow">{s.narrative_stage}</p><div><h2 className="case-section-title">{s.heading}</h2>{narrativeNode}{infoDisclosure}</div></div></section>;
 }
 
+function layoutOwnsMergedSourceAnchors(section:Section){
+ return !!(
+  section.modular?.layout?.id==='FULL BLEED 02'&&
+  (section.modular.sourceIds?.length||0)>1
+ );
+}
+
 export function CaseStudyArticle({project,projects,map,text,showCover=true,coverSlotName='hero',navigationProjectSlug}:CaseStudyArticleProps){
  const runtime=resolveCaseStudyRuntime(project,{showCover,coverSlotName});
  const navigationSlug=navigationProjectSlug||project.slug;
@@ -232,7 +240,10 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
   </div>}
 
   {project.content_sections.map((section)=><Fragment key={section.content_id}>
-   {(section.modular?.sourceIds||[]).map((sourceId)=><span
+   {(!layoutOwnsMergedSourceAnchors(section)
+    ?section.modular?.sourceIds||[]
+    :[]
+   ).map((sourceId)=><span
     key={sourceId}
     id={sourceId}
     className="case-source-anchor"

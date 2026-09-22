@@ -461,6 +461,12 @@
  scroll-margin-top:calc(var(--als-nav-height) + 16px)!important;
 }
 
+.case-source-anchor.case-source-anchor-internal{
+ position:absolute!important;
+ top:0!important;
+ left:0!important;
+}
+
 /* CASE SEMANTIC CARDS
    Reusable Insight / Outcome narrative compositions. */
 .case-semantic-card-section{

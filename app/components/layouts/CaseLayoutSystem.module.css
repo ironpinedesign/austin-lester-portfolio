@@ -230,6 +230,7 @@
 }
 
 .editorialSequence01{
+ position:relative;
  display:grid;
  grid-template-columns:repeat(12,minmax(0,1fr));
  gap:20px 16px;
@@ -1214,6 +1215,7 @@
 .modularSection{}
 
 .fullBleedIntro{
+ position:relative;
  display:grid;
  gap:12px;
  background:var(--panel);

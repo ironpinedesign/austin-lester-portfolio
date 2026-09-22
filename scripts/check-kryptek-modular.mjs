@@ -254,6 +254,62 @@ async function auditPublic(browser,width,expectedHeight=null){
   );
  }
 
+ const editorialAnchorTargets=await page.evaluate(()=>{
+  const intro=document.getElementById('kis_09_editorial_intro');
+  const application=document.getElementById('kis_09_editorial_application');
+
+  if(!intro||!application)return null;
+
+  const introHost=intro.parentElement;
+  const applicationHost=application.parentElement;
+
+  return {
+   introSection:intro.closest('section')?.id||null,
+   applicationSection:application.closest('section')?.id||null,
+   introHostClass:
+    typeof introHost?.className==='string'
+     ?introHost.className
+     :'',
+   applicationHostClass:
+    typeof applicationHost?.className==='string'
+     ?applicationHost.className
+     :'',
+   introY:
+    intro.getBoundingClientRect().top+window.scrollY,
+   applicationY:
+    application.getBoundingClientRect().top+window.scrollY,
+  };
+ });
+
+ assert(
+  editorialAnchorTargets,
+  `${width}: Editorial source anchors are missing`
+ );
+
+ assert(
+  editorialAnchorTargets.introSection===
+   'modular__kis_09_editorial_application'&&
+  editorialAnchorTargets.applicationSection===
+   'modular__kis_09_editorial_application',
+  `${width}: Editorial source anchors escaped the merged modular section`
+ );
+
+ assert(
+  editorialAnchorTargets.introHostClass.includes('fullBleedIntro'),
+  `${width}: kis_09_editorial_intro is not attached to the Editorial intro`
+ );
+
+ assert(
+  editorialAnchorTargets.applicationHostClass.includes('editorialSequence01'),
+  `${width}: kis_09_editorial_application is not attached to the Editorial sequence`
+ );
+
+ assert(
+  editorialAnchorTargets.applicationY>
+   editorialAnchorTargets.introY+1,
+  `${width}: Editorial source anchors still resolve to the same position`
+ );
+
  await sidecarModes(page,width);
  await creditsMode(page,width);
  await sectionPadding(page,width);

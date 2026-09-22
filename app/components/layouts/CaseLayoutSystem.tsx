@@ -11,6 +11,7 @@ type Props={
  mediaNodes:ReactNode[];
  dark?:boolean;
  modular?:boolean;
+ sourceAnchors?:string[];
  layoutConfig:SectionLayoutConfig;
 };
 
@@ -34,7 +35,23 @@ function mediaNode(node:ReactNode){
  return <div className={styles.mediaNode}>{node}</div>;
 }
 
-function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNode[],mediaNote?:string){
+function sourceAnchor(id:string|undefined){
+ if(!id)return null;
+
+ return <span
+  id={id}
+  className="case-source-anchor case-source-anchor-internal"
+  data-case-source-anchor
+  aria-hidden="true"
+ />;
+}
+
+function renderMediaLayout(
+ mediaLayout:CaseMediaLayoutId|undefined,
+ nodes:ReactNode[],
+ mediaNote?:string,
+ sourceAnchorId?:string
+){
  const note=mediaNote?<p className={styles.mediaNote}>{mediaNote}</p>:null;
 
  if(mediaLayout==='ASYMMETRIC GRID 01'){
@@ -105,6 +122,7 @@ function renderMediaLayout(mediaLayout:CaseMediaLayoutId|undefined,nodes:ReactNo
     const item04=optionalNode(nodes,3);
   return <>
      <div className={styles.editorialSequence01}>
+        {sourceAnchor(sourceAnchorId)}
         <div className={styles.sequenceLead}>{mediaNode(requiredNode(nodes,0,'Lead editorial frame'))}</div>
         {item02&&<div className={styles.sequenceSupportA}>{mediaNode(item02)}</div>}
         {item03&&<div className={styles.sequenceSupportB}>{mediaNode(item03)}</div>}
@@ -160,11 +178,21 @@ function renderNarrativePrimary(heading:Props['heading'],narrative:Props['narrat
  </div>;
 }
 
-export default function CaseLayoutSystem({sectionId,narrativeStage,heading,narrative,disclosure,mediaNodes,dark=false,modular=false,layoutConfig}:Props){
+export default function CaseLayoutSystem({
+ sectionId,
+ narrativeStage,
+ heading,
+ narrative,
+ disclosure,
+ mediaNodes,
+ dark=false,
+ modular=false,
+ sourceAnchors=[],
+ layoutConfig
+}:Props){
  const spatialLayout:CaseSpatialLayoutId=layoutConfig.layout||'FULL BLEED 01';
  const narrativeBlock=renderNarrativeBlock(heading,narrative,disclosure);
  const narrativePrimary=renderNarrativePrimary(heading,narrative);
- const mediaRegion=renderMediaLayout(layoutConfig.mediaLayout,mediaNodes,layoutConfig.mediaNote);
  const shellClass=getShellClass(spatialLayout);
  const reverseClass=layoutConfig.reverse?styles.reverse:false;
  const viewportBleedClass=layoutConfig.viewportBleed?styles.viewportBleed:false;
@@ -173,8 +201,19 @@ export default function CaseLayoutSystem({sectionId,narrativeStage,heading,narra
   spatialLayout==='FULL BLEED 02'&&
   narrative
  );
+ const ownsMergedSourceAnchors=!!(
+  integratedFullBleedIntro&&
+  sourceAnchors.length>=2
+ );
+ const mediaRegion=renderMediaLayout(
+  layoutConfig.mediaLayout,
+  mediaNodes,
+  layoutConfig.mediaNote,
+  ownsMergedSourceAnchors?sourceAnchors[1]:undefined
+ );
  const fullBleedIntro=integratedFullBleedIntro
   ?<div className={styles.fullBleedIntro}>
+    {ownsMergedSourceAnchors&&sourceAnchor(sourceAnchors[0])}
     {narrativeStage&&<p className="eyebrow">{narrativeStage}</p>}
     <div className={styles.fullBleedIntroCopy}>{narrative}</div>
    </div>
