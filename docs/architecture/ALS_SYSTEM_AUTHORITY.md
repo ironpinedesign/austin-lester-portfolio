@@ -84,20 +84,41 @@ Production is evidence of what a visitor currently receives. It is not design au
 
 A difference between production and Figma, Git, D1 records, or R2 metadata triggers investigation and reconciliation. Production must not be treated as automatically correct merely because it is live.
 
-## Status vocabulary
+## Status and authority vocabulary
 
-Use these terms in Figma and architecture documentation:
+Figma Design System v1.4.0 separates **confidence status** from **authority, implementation state, and implementation notes**. These concepts must not be collapsed into one field.
+
+### Figma confidence status
+
+Use only the following values in a Figma `STATUS` field:
 
 | Status | Meaning |
 | --- | --- |
-| `DESIGN AUTHORITY` | Approved visual or interaction intent. It does not claim implementation. |
-| `STRUCTURAL SOURCE` | Approved hierarchy, anatomy, or machine-readable design structure. It does not claim implementation. |
+| `VERIFIED` | The documented claim has been checked against the governing source for its stated scope. |
+| `DESIGN AUTHORITY` | Approved visual or interaction intent governed by Figma. It does not by itself claim implementation. |
+| `KNOWN CONCEPT` | A recognized concept or planned system element that is not yet a verified implementation claim. |
+| `TBD — VERIFY IN REPO` | Repository evidence is required before the claim can be resolved. |
+| `SPECIMEN COPY` | Demonstration or explanatory copy that is not itself a governing production claim. |
+
+Do not use `CODE AUTHORITY`, `BEHAVIOR AUTHORITY`, `STRUCTURAL SOURCE`, `IMPLEMENTED`, `PARTIAL`, `NOT IMPLEMENTED`, `READY`, or an implementation note as a Figma confidence `STATUS`.
+
+### Authority and implementation classification
+
+Authority and implementation information must be recorded separately from confidence status.
+
+Architecture documentation may use the following terms where appropriate:
+
+| Classification | Meaning |
+| --- | --- |
+| `DESIGN AUTHORITY` | Figma governs approved visual or interaction intent. |
+| `STRUCTURAL SOURCE` | Approved hierarchy, anatomy, or machine-readable structure. It does not claim implementation. |
+| `CODE AUTHORITY` | A documented, verified repository-backed implementation. Git remains the underlying implementation authority. |
+| `BEHAVIOR AUTHORITY` | A documented source governing verified interaction or behavior. |
 | `IMPLEMENTED` | A repository-backed implementation exists and the minimum evidence record is complete. |
 | `PARTIAL` | Some approved structure or behavior exists in Git, but the recorded contract is incomplete. |
-| `NOT IMPLEMENTED` | Approved or proposed design exists without a repository implementation. |
-| `CODE AUTHORITY` | Reserved for a documented, verified repository-backed implementation. The repository remains the underlying authority. |
+| `NOT IMPLEMENTED` | Approved or proposed design exists without a corresponding repository implementation. |
 
-Do not use `READY` as a substitute for implementation status. If retained for workflow planning, qualify it as `READY FOR DESIGN REVIEW` or `READY FOR IMPLEMENTATION`.
+Implementation qualifiers such as `READY FOR IMPLEMENTATION`, `ARROW CLEANUP PENDING`, or similar notes belong in a separate note/qualifier field rather than in `STATUS`.
 
 ## Precedence rules
 
@@ -105,12 +126,13 @@ Do not use `READY` as a substitute for implementation status. If retained for wo
 
 When Figma documents an intended component and Git has no corresponding implementation:
 
-- Figma is `DESIGN AUTHORITY` or `STRUCTURAL SOURCE`;
-- Git is authority for the current implemented state;
-- status is `NOT IMPLEMENTED`; and
+- preserve the applicable Figma confidence `STATUS`;
+- Figma remains the source of approved design intent;
+- architecture implementation state is `NOT IMPLEMENTED`;
+- structural-source or other authority notes are recorded separately; and
 - the Figma structure must not be called `CODE AUTHORITY`.
 
-When Git implements only part of the approved contract, status is `PARTIAL`. Record the missing behavior rather than implying equivalence.
+When Git implements only part of the approved contract, architecture implementation state is `PARTIAL`. Preserve the Figma confidence `STATUS` separately and record the missing behavior rather than implying equivalence.
 
 ### Git versus production
 
@@ -156,7 +178,7 @@ Responsive typography is **DECISION REQUIRED** under `ALS-AUTH-004`. Do not infe
 
 ## Contract evidence
 
-Before Figma or documentation may describe an item as `IMPLEMENTED` or `CODE AUTHORITY`, record at minimum:
+Before architecture documentation may describe an implementation as `IMPLEMENTED` or assign `CODE AUTHORITY`, record at minimum:
 
 | Evidence | Requirement |
 | --- | --- |
@@ -168,20 +190,20 @@ Before Figma or documentation may describe an item as `IMPLEMENTED` or `CODE AUT
 
 For an interactive component, the evidence should also name the verified keyboard/focus behavior, reduced-motion behavior where relevant, and canonical widths exercised.
 
-Missing evidence means the item remains `DESIGN AUTHORITY`, `STRUCTURAL SOURCE`, `PARTIAL`, or `NOT IMPLEMENTED` as appropriate.
+Missing evidence must not be converted into a verified implementation claim. Preserve the applicable Figma confidence status, authority classification, and implementation state as separate fields.
 
 ## Change protocol
 
 For design-led or feature work:
 
 1. Design or propose in Figma when visual exploration is required.
-2. Mark the item `DESIGN AUTHORITY` and/or `STRUCTURAL SOURCE`.
+2. In Figma, use the applicable confidence `STATUS`; record design authority or structural-source classification separately where needed.
 3. Approve the contract, including responsive and interaction behavior.
 4. Implement in Git.
 5. Add or update tests where behavior is measurable.
 6. Verify the released result in production.
 7. Record the implementation evidence in Figma and/or architecture documentation.
-8. Change status to `IMPLEMENTED`, or `PARTIAL` when the full contract is not present.
+8. Update the architecture implementation state to `IMPLEMENTED`, or `PARTIAL` when the full contract is not present. Change the Figma confidence `STATUS` only when its confidence state has actually changed.
 
 For implementation-led maintenance that does not alter visual intent, Git may lead. Figma reconciliation is required only when the documented visual or interaction contract changes. Bug fixes must still be tested and verified before documentation claims are updated.
 

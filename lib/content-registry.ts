@@ -1,5 +1,10 @@
 import {siteCopy} from '../content/site-copy';
-import {projects,categories,categoryKeys,type Project,type MediaSlot} from './projects';
+import {
+ KRYPTĒK_SYSTEM_BROWSER_COPY,
+ kryptekSystemBrowserFieldId,
+ type KryptekSystemBrowserField
+} from './kryptek-system-browser';
+import {projects,categories,categoryLabels,categoryKeys,type Project,type MediaSlot} from './projects';
 export type FieldType='text'|'richtext'|'link'|'list'|'boolean'|'number'|'image'|'video';
 export type ContentValues=Record<string,string>;
 export type Entry={id:string;page:string;route:string;section:string;field:string;location:string;type:FieldType;value:string;editable:boolean;required:boolean;order:number;sourceId?:string;projectId?:string;surface?:'project'|'selected'|'index';slot?:string;active:boolean;status?:'COMPLETE'|'MISSING'|'PLACEHOLDER';note?:string};
@@ -13,7 +18,7 @@ for(const [id,value] of Object.entries(siteCopy)){
  const type:FieldType=id.endsWith('.destination')||id==='contact.direct.linkedin'?'link':id.endsWith('.items')?'list':/headline|\.body$/.test(id)?'richtext':id.endsWith('.year')?'number':'text';
  add({id,page:page.name,route:page.route,section:human(p?rest[0]:section),field:human((p?rest.slice(1):rest).join(' / ')),type,value,editable:true,required:!id.startsWith('contact.direct.')||!['email','location','linkedin'].includes(rest[0]),projectId:p?.content_id});
 }
-categories.forEach((c,i)=>add({id:`global.categories.${categoryKeys[i]}.label`,page:'Site-wide',route:'/work',section:'Category filters',field:c,type:'text',value:c,editable:true,required:true}));
+categoryLabels.forEach((label,i)=>add({id:`global.categories.${categoryKeys[i]}.label`,page:'Site-wide',route:'/work',section:'Category filters',field:label,type:'text',value:label,editable:true,required:true}));
 export const projectFields:Record<string,FieldType>={title:'text',project_number:'text',subtitle:'text',client:'text',year:'number',role:'list',thesis:'text',summary:'richtext',strategic_intent:'text',discipline_tags:'list',featured:'boolean',featured_order:'number',index_order:'number',published:'boolean',related_project_ids:'list'};
 const group=(k:string)=>['featured','featured_order','index_order','published','related_project_ids'].includes(k)?'settings':'opening';
 export const projectFieldId=(p:Project,k:string)=>`project.${p.content_id}.${group(k)}.${k}`;
@@ -35,12 +40,85 @@ for(const p of projects){
  }
  for(const s of p.content_sections){
   const prefix=`project.${p.content_id}.${s.content_id}`; const section=s.narrative_stage||human(s.content_id);
-  const keys=s.type==='pull_quote'?['narrative_stage','quote','quote_attribution']:s.type==='metrics'?['narrative_stage','heading']:['narrative_stage','heading','body'];
-  for(const k of keys)add({id:`${prefix}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:human(k),type:k==='body'?'richtext':'text',value:String(s[k as keyof typeof s]??''),editable:true,required:k==='quote',projectId:p.content_id,surface:'project'});
+  const keys=s.type==='pull_quote'
+   ?['narrative_stage','quote','quote_attribution']
+   :s.type==='metrics'
+    ?['narrative_stage','heading']
+    :[
+      'narrative_stage',
+      'heading',
+      'body',
+      ...(typeof s.quote==='string'?['quote']:[]),
+      ...(typeof s.quote_attribution==='string'?['quote_attribution']:[])
+     ];
+  for(const k of keys)add({id:`${prefix}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:human(k),type:k==='body'?'richtext':'text',value:String(s[k as keyof typeof s]??''),editable:true,required:s.type==='pull_quote'&&k==='quote',projectId:p.content_id,surface:'project'});
   for(const m of s.metrics||[])for(const k of ['label','value'] as const)add({id:`${prefix}.${m.content_id}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:`${m.label} / ${human(k)}`,type:'text',value:m[k],editable:true,required:true,projectId:p.content_id,surface:'project'});
   for(const name of s.media_slots)media(`${prefix}.${name}`,p.title,`/work/${p.slug}#${s.content_id}`,section,human(name)+(s.type==='video'?' (video)':' (image / video)'),p,'project',s.type==='video'?'video':'image');
  }
 }
+const kryptekSystemBrowserProject=projects.find(
+ p=>p.content_id==='kryptek_identity'
+);
+
+if(kryptekSystemBrowserProject){
+ const evidenceFields=[
+  'evidence_1',
+  'evidence_2',
+  'evidence_3'
+ ] as const;
+
+ for(const [stateId,copy] of Object.entries(
+  KRYPTĒK_SYSTEM_BROWSER_COPY
+ )){
+  const common={
+   page:kryptekSystemBrowserProject.title,
+   route:`/work/${kryptekSystemBrowserProject.slug}#kis_05_governing_system`,
+   section:`Governing System / System Browser / ${human(stateId)}`,
+   editable:true,
+   required:true,
+   projectId:kryptekSystemBrowserProject.content_id,
+   surface:'project' as const
+  };
+
+  add({
+   ...common,
+   id:kryptekSystemBrowserFieldId(stateId,'label'),
+   field:'Tab Label',
+   type:'text',
+   value:copy.label
+  });
+
+  add({
+   ...common,
+   id:kryptekSystemBrowserFieldId(stateId,'title'),
+   field:'State Title',
+   type:'text',
+   value:copy.title
+  });
+
+  add({
+   ...common,
+   id:kryptekSystemBrowserFieldId(stateId,'body'),
+   field:'Narrative',
+   type:'richtext',
+   value:copy.body
+  });
+
+  for(const [index,field] of evidenceFields.entries()){
+   add({
+    ...common,
+    id:kryptekSystemBrowserFieldId(
+     stateId,
+     field as KryptekSystemBrowserField
+    ),
+    field:`Evidence ${index+1} Label`,
+    type:'text',
+    value:copy.evidenceLabels[index]
+   });
+  }
+ }
+}
+
 media('home.hero.image','Homepage','/','Hero','Featured image / video');
 media('home.hero.detail_image','Homepage','/','Hero','Detail image / video');
 export const registry=fields;
@@ -57,7 +135,7 @@ export function resolveProjects(values:ContentValues):Project[]{return projects.
 })}
 export function registryState(values:ContentValues,placements:{slot:string;media_id:string}[],media:{id:string;alt:string}[]):Entry[]{
  const ps=resolveProjects(values);const byId=new Map(ps.map(p=>[p.content_id,p]));const featuredCount=ps.filter(p=>p.published&&p.featured).length;
- return registry.map(e=>{const p=e.projectId?byId.get(e.projectId):null;const active=e.id==='home.hero.image'?featuredCount>0:e.id==='home.hero.detail_image'?featuredCount>2:!p||p.published&&(e.surface!=='selected'||p.featured);const binding=placements.find(b=>b.slot===e.id);const m=binding&&media.find(m=>m.id===binding.media_id);const value=e.slot?binding?.media_id||'':contentValue(e.id,values);let status:Entry['status']=e.slot?(binding?(m?'COMPLETE':'MISSING'):'PLACEHOLDER'):!value.trim()?'MISSING':/\[.*placeholder|coming soon|to be added/i.test(value)?'PLACEHOLDER':'COMPLETE';
+ return registry.map(e=>{const p=e.projectId?byId.get(e.projectId):null;const active=e.id==='home.hero.image'?featuredCount>0:e.id==='home.hero.detail_image'?featuredCount>2:!p||p.published&&(e.surface!=='selected'||p.featured);const binding=placements.find(b=>b.slot===e.id);const m=binding&&media.find(m=>m.id===binding.media_id);const value=e.slot?binding?.media_id||'':contentValue(e.id,values);const status:Entry['status']=e.slot?(binding?(m?'COMPLETE':'MISSING'):'PLACEHOLDER'):!value.trim()?'MISSING':/\[.*placeholder|coming soon|to be added/i.test(value)?'PLACEHOLDER':'COMPLETE';
  let note=!active?'Not shown while project is unpublished or not featured.':e.sourceId?'Shared copy — edit the original project field.':e.slot?(m&&!m.alt?'Assigned; add alternative text in Media Studio.':m?'Assigned asset':binding?'Asset reference no longer resolves.':'No asset assigned; the site shows a placeholder.') :!value&&e.type==='link'?'Intentionally inactive until a destination is provided.':'';
  if(e.id==='contact.direct.email'&&!value)note='Email action intentionally inactive until you add your confirmed address.';
  if(e.id==='contact.direct.linkedin'&&!value)note='LinkedIn action intentionally inactive until you add your profile.';

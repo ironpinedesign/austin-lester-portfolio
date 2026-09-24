@@ -1,5 +1,5 @@
 .layoutSection{
- padding-block:72px;
+ padding-block:var(--als-case-section-pad);
 }
 
 .layoutWrap{
@@ -230,6 +230,7 @@
 }
 
 .editorialSequence01{
+ position:relative;
  display:grid;
  grid-template-columns:repeat(12,minmax(0,1fr));
  gap:20px 16px;
@@ -371,364 +372,6 @@
  min-height:min(64svh,700px);
 }
 
-/* Figma contract desktop geometry for Kryptek sections. */
-@media(min-width:1200px){
- :global(#kis_02_complete_brand_world){
-  padding-top:0;
-  padding-bottom:0;
-  min-height:698px;
- }
-
- :global(#kis_02_complete_brand_world) .layoutWrap{
-  width:calc(100% - 160px);
-  max-width:1280px;
-  margin-inline:auto;
-  position:relative;
-  gap:0;
- }
-
- :global(#kis_02_complete_brand_world) .layoutWrap > :global(.eyebrow){
-  position:absolute;
-  top:35px;
-  left:0;
-  margin:0;
- }
-
- :global(#kis_02_complete_brand_world) .layoutShell{
-  margin-top:75px;
-  gap:0;
- }
-
- :global(#kis_02_complete_brand_world) .fullBleedRegion,
- :global(#kis_02_complete_brand_world) .defaultMediaRegion{
-  width:1280px;
-  height:560px;
- }
-
- :global(#kis_02_complete_brand_world) .fullBleedRegion :global(.media-frame),
- :global(#kis_02_complete_brand_world) .defaultMediaRegion :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- :global(#kis_03_inherited_brand_context){
-  padding-top:84px;
-  padding-bottom:46px;
- }
-
- :global(#kis_05_governing_system){
-  padding-top:84px;
-  padding-bottom:41px;
- }
-
- :global(#kis_08_ecommerce_application){
-  padding-top:84px;
-  padding-bottom:84px;
- }
-
- :global(#kis_10_campaign_application){
-  padding-top:84px;
-  padding-bottom:58px;
- }
-
- :global(#kis_09_editorial_application){
-  padding-top:84px;
-  padding-bottom:35px;
- }
-
- :global(#kis_03_inherited_brand_context) .layoutWrap,
- :global(#kis_05_governing_system) .layoutWrap,
- :global(#kis_08_ecommerce_application) .layoutWrap,
- :global(#kis_10_campaign_application) .layoutWrap,
- :global(#kis_09_editorial_application) .layoutWrap{
-  width:calc(100% - 160px);
-  max-width:1280px;
-  margin-inline:auto;
-    position:relative;
-    gap:0;
- }
-
- :global(#kis_03_inherited_brand_context) .layoutWrap > :global(.eyebrow),
- :global(#kis_05_governing_system) .layoutWrap > :global(.eyebrow),
- :global(#kis_08_ecommerce_application) .layoutWrap > :global(.eyebrow),
- :global(#kis_10_campaign_application) .layoutWrap > :global(.eyebrow),
- :global(#kis_09_editorial_application) .layoutWrap > :global(.eyebrow){
-    position:absolute;
-    top:0;
-    left:0;
-    margin:0;
- }
-
- :global(#kis_03_inherited_brand_context) .layoutShell,
- :global(#kis_08_ecommerce_application) .layoutShell,
- :global(#kis_10_campaign_application) .layoutShell{
-  grid-template-columns:440px 760px;
-  gap:80px;
- }
-
- :global(#kis_03_inherited_brand_context) .mediaPane,
- :global(#kis_08_ecommerce_application) .mediaPane,
- :global(#kis_10_campaign_application) .mediaPane{
-  width:760px;
- }
-
- :global(#kis_10_campaign_application) .narrativePane{
-  width:440px;
- }
-
- :global(#kis_10_campaign_application) .asymmetricGrid01{
-  width:760px;
-  height:664px;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  grid-template-rows:420px 220px;
-  gap:24px;
-  align-items:stretch;
- }
-
- :global(#kis_10_campaign_application) .asymmetricGrid01 > .dominantRegion{
-  grid-column:1 / -1;
-  grid-row:1;
- }
-
- :global(#kis_10_campaign_application) .asymmetricSupportStack{
-  grid-column:1 / -1;
-  grid-row:2;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  grid-template-rows:220px;
-  gap:24px;
-  align-self:stretch;
- }
-
- :global(#kis_10_campaign_application) .dominantRegion :global(.media-frame),
- :global(#kis_10_campaign_application) .asymmetricSupportStack > div :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- /* KIS_03: dominant + full-height three-row support rail. */
- :global(#kis_03_inherited_brand_context) .asymmetricGrid02{
-  width:760px;
-  height:550px;
-  grid-template-columns:464px 284px;
-  grid-template-rows:repeat(3,minmax(0,1fr));
-  gap:12px;
-  align-items:stretch;
- }
-
- :global(#kis_03_inherited_brand_context) .asymmetricGrid02 > .dominantRegion{
-  grid-column:1;
-  grid-row:1 / span 3;
- }
-
- :global(#kis_03_inherited_brand_context) .supportRail{
-  grid-column:2;
-  grid-row:1 / span 3;
-  grid-template-columns:1fr;
-  grid-template-rows:repeat(3,minmax(0,1fr));
-  gap:12px;
-  align-self:stretch;
- }
-
- :global(#kis_03_inherited_brand_context) .asymmetricSupportStack{
-  grid-column:1;
-  grid-row:1 / span 2;
-  grid-template-columns:1fr;
-  grid-template-rows:repeat(2,minmax(0,1fr));
-  gap:12px;
-  align-self:stretch;
- }
-
- :global(#kis_03_inherited_brand_context) .supportWide{
-  grid-column:1;
-  grid-row:3;
- }
-
- :global(#kis_03_inherited_brand_context) .dominantRegion :global(.media-frame),
- :global(#kis_03_inherited_brand_context) .asymmetricSupportStack :global(.media-frame),
- :global(#kis_03_inherited_brand_context) .supportWide :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- /* KIS_05: system rail + full-width primary with two support tiles below. */
- :global(#kis_05_governing_system) .systemStage01{
-  grid-template-columns:440px 760px;
-  gap:80px;
- }
-
- :global(#kis_05_governing_system) .systemNav{
-  width:440px;
-    min-height:707px;
-    display:grid;
-    grid-template-rows:auto 1fr auto;
-    align-content:start;
- }
-
- :global(#kis_05_governing_system) .systemField{
-  width:760px;
- }
-
- :global(#kis_05_governing_system) .specimenField02{
-  width:760px;
-  height:664px;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  grid-template-rows:420px 220px;
-  gap:24px;
- }
-
- :global(#kis_05_governing_system) .specimenField02 > .specimenDominant{
-  grid-column:1 / -1;
-  grid-row:1;
- }
-
- :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div{
-  grid-column:1;
-  grid-row:2;
- }
-
- :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div + div{
-  grid-column:2;
-  grid-row:2;
- }
-
- :global(#kis_05_governing_system) .specimenDominant :global(.media-frame),
- :global(#kis_05_governing_system) .specimenField02 > div:not(.specimenDominant) :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- /* KIS_05 Extended Context: one compact intrinsic editorial object. */
- :global(#kis_05_governing_system) :global(.info-disclosure){
-  margin-top:8px;
-  gap:10px;
-  justify-items:start;
- }
-
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle){
-    position:relative;
-    display:grid;
-    grid-template-columns:1fr auto;
-    align-items:center;
-    column-gap:8px;
-  width:174px;
-    height:26px;
-  min-width:0;
-    padding:0;
-  color:var(--ink);
- }
-
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle::after){
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    content:'';
-    display:block;
-  width:100%;
-  min-width:0;
-  transform:none;
-  opacity:.55;
- }
-
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle-label){
-  display:block;
-  max-width:10ch;
-    line-height:1.2;
-  white-space:normal;
-    padding-bottom:8px;
- }
-
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle-indicator){
-  display:block;
-    font-size:14px;
-  line-height:1;
-  letter-spacing:0;
-    padding-bottom:8px;
- }
-
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle:hover),
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle:focus-visible),
- :global(#kis_05_governing_system) :global(.info-disclosure .interaction-toggle[aria-expanded='true']){
-  color:var(--clay);
- }
-
- /* KIS_08: text-left, fixed stage width/height, aligned support rail. */
- :global(#kis_08_ecommerce_application) .mediaPane{
-  grid-column:2;
-    grid-row:1;
- }
-
- :global(#kis_08_ecommerce_application) .sidecarPane{
-  grid-column:1;
-    grid-row:1;
-  width:440px;
- }
-
- :global(#kis_08_ecommerce_application) .asymmetricGrid01{
-  width:760px;
-  height:520px;
-  grid-template-columns:520px 216px;
-  grid-template-rows:520px;
-  gap:24px;
-  align-items:stretch;
- }
-
- :global(#kis_08_ecommerce_application) .asymmetricSupportStack{
-  grid-template-columns:1fr;
-  grid-template-rows:repeat(2,minmax(0,1fr));
-  gap:24px;
-  align-self:stretch;
- }
-
- :global(#kis_08_ecommerce_application) .dominantRegion :global(.media-frame),
- :global(#kis_08_ecommerce_application) .asymmetricSupportStack > div :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- /* KIS_09B: lead over 3-up support row, no staggered staircase. */
- :global(#kis_09_editorial_application) .editorialSequence01{
-  width:1280px;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  grid-template-rows:560px 280px;
-  gap:24px;
-  align-items:stretch;
- }
-
- :global(#kis_09_editorial_application) .sequenceLead{
-  grid-column:1 / -1;
-  grid-row:1;
- }
-
- :global(#kis_09_editorial_application) .sequenceSupportA,
- :global(#kis_09_editorial_application) .sequenceSupportB,
- :global(#kis_09_editorial_application) .sequenceClosing{
-  grid-row:2;
-  align-self:stretch;
- }
-
- :global(#kis_09_editorial_application) .sequenceSupportA{ grid-column:1; }
- :global(#kis_09_editorial_application) .sequenceSupportB{ grid-column:2; }
- :global(#kis_09_editorial_application) .sequenceClosing{
-  grid-column:3;
-  margin-top:0;
- }
-
- :global(#kis_09_editorial_application) .sequenceLead :global(.media-frame),
- :global(#kis_09_editorial_application) .sequenceSupportA :global(.media-frame),
- :global(#kis_09_editorial_application) .sequenceSupportB :global(.media-frame),
- :global(#kis_09_editorial_application) .sequenceClosing :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-}
-
 .annotatedStage01{
  grid-template-columns:minmax(0,3fr) minmax(0,9fr);
  align-items:start;
@@ -773,95 +416,6 @@
  border:1px dashed var(--line);
 }
 
-@media(min-width:1200px){
- :global(#kis_03_inherited_brand_context) .narrativePane,
- :global(#kis_05_governing_system) .systemNav,
- :global(#kis_08_ecommerce_application) .sidecarPane,
- :global(#kis_10_campaign_application) .narrativePane{
-  padding-top:40px;
- }
-}
-
-@media(min-width:1441px){
- :global(#kis_02_complete_brand_world) .layoutWrap,
- :global(#kis_03_inherited_brand_context) .layoutWrap,
- :global(#kis_05_governing_system) .layoutWrap,
- :global(#kis_08_ecommerce_application) .layoutWrap,
- :global(#kis_09_editorial_application) .layoutWrap,
- :global(#kis_10_campaign_application) .layoutWrap,
- :global(#kis_09_editorial_intro) > .wrap.case-copy-grid{
-  width:calc(100% - 160px);
-  max-width:1600px;
- }
-
- :global(#kis_02_complete_brand_world) .fullBleedRegion,
- :global(#kis_02_complete_brand_world) .defaultMediaRegion{
-  width:100%;
-  height:auto;
-  aspect-ratio:16/7;
- }
-
- :global(#kis_03_inherited_brand_context) .layoutShell,
- :global(#kis_08_ecommerce_application) .layoutShell,
- :global(#kis_10_campaign_application) .layoutShell,
- :global(#kis_05_governing_system) .systemStage01{
-  grid-template-columns:minmax(0,34.375%) minmax(0,59.375%);
-  column-gap:6.25%;
- }
-
- :global(#kis_03_inherited_brand_context) .mediaPane,
- :global(#kis_08_ecommerce_application) .mediaPane,
- :global(#kis_10_campaign_application) .mediaPane,
- :global(#kis_05_governing_system) .systemField,
- :global(#kis_05_governing_system) .systemNav,
- :global(#kis_08_ecommerce_application) .sidecarPane,
- :global(#kis_10_campaign_application) .narrativePane{
-  width:100%;
- }
-
- :global(#kis_03_inherited_brand_context) .asymmetricGrid02{
-  width:100%;
-  height:auto;
-  aspect-ratio:760/550;
-  grid-template-columns:minmax(0,61.0526%) minmax(0,37.3684%);
-  column-gap:1.5789%;
-  row-gap:2.1818%;
-  grid-template-rows:repeat(3,minmax(0,1fr));
- }
-
- :global(#kis_05_governing_system) .specimenField02,
- :global(#kis_10_campaign_application) .asymmetricGrid01{
-  width:100%;
-  height:auto;
-  aspect-ratio:760/664;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  grid-template-rows:minmax(0,1.909fr) minmax(0,1fr);
-  gap:clamp(24px,1.25vw,32px);
- }
-
- :global(#kis_08_ecommerce_application) .asymmetricGrid01{
-  width:100%;
-  height:auto;
-  aspect-ratio:760/520;
-  grid-template-columns:minmax(0,68.4211%) minmax(0,28.4211%);
-  column-gap:3.1578%;
-  row-gap:0;
- }
-
- :global(#kis_08_ecommerce_application) .asymmetricSupportStack{
-  gap:clamp(24px,1.25vw,32px);
- }
-
- :global(#kis_09_editorial_application) .editorialSequence01{
-  width:100%;
-  height:auto;
-  aspect-ratio:1280/864;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  grid-template-rows:minmax(0,2fr) minmax(0,1fr);
-  gap:clamp(24px,1.25vw,32px);
- }
-}
-
 .requiredMissing{
  background:color-mix(in srgb,var(--panel) 75%,#f0d6cd 25%);
 }
@@ -871,12 +425,6 @@
  .mediaSidecar01,
  .mediaSidecar02{
   grid-template-columns:1fr;
- }
-
- :global(#kis_08_ecommerce_application) .mediaPane,
- :global(#kis_08_ecommerce_application) .sidecarPane{
-  grid-column:auto;
-  width:auto;
  }
 }
 
@@ -894,10 +442,6 @@
 
  .archiveSupportRail{
   grid-template-columns:repeat(2,minmax(0,1fr));
- }
-
- :global(#kis_05_governing_system) .systemStage01{
-  grid-template-columns:1fr;
  }
 }
 
@@ -965,95 +509,483 @@
  }
 }
 
-@media(max-width:620px){
- :global(#kis_02_complete_brand_world){
-  min-height:296px;
-  padding-top:0;
-  padding-bottom:0;
-  border-top:0;
+
+/* =========================================================
+   MODULAR CASE-STUDY GEOMETRY
+   Governing source: ALS Pages 04 / 07.
+   These rules apply to modular layout identity, not projects.
+   ========================================================= */
+
+.modularSection{}
+
+.fullBleedIntro{
+ position:relative;
+ display:grid;
+ gap:12px;
+ background:var(--panel);
+ padding:24px;
+}
+
+.fullBleedIntro > :global(.eyebrow){
+ margin:0;
+}
+
+.fullBleedIntroCopy{
+ min-width:0;
+ max-width:880px;
+}
+
+.fullBleedIntroCopy :global(.prose){
+ margin:0;
+ color:var(--muted);
+}
+
+/* FULL BLEED 02 / Editorial:
+   the introductory narrative is a viewport-wide surface while
+   its content remains aligned to the canonical rail. */
+.modularSection[data-case-layout='FULL BLEED 02']
+ .fullBleedIntro{
+ margin-top:calc(-1 * var(--als-case-section-pad));
+ padding:var(--als-case-section-pad) 0 36px;
+ box-shadow:0 0 0 100vmax var(--panel);
+ clip-path:inset(0 -100vmax);
+}
+
+/* KIS_02 / reusable FULL BLEED 01 preserves the authored
+   brand-world proportion instead of the generic 21:9 crop. */
+.modularSection[data-case-layout='FULL BLEED 01']
+ .fullBleedRegion .defaultMediaRegion{
+ aspect-ratio:16/7;
+}
+
+.modularSection[data-case-layout='FULL BLEED 01']
+ .fullBleedRegion :global(.media-frame){
+ aspect-ratio:auto;
+ min-height:0;
+ height:100%;
+}
+
+/* 1024 transitional sidecar authority:
+   340 narrative / 24 gap / 548 media. */
+@media(min-width:1024px){
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 02'] .layoutWrap{
+  position:relative;
+  gap:0;
  }
 
- :global(#kis_02_complete_brand_world) .layoutWrap{
+ .modularSection[data-case-layout='TEXT SIDECAR 01']
+  .layoutWrap > :global(.eyebrow),
+ .modularSection[data-case-layout='MEDIA SIDECAR 01']
+  .layoutWrap > :global(.eyebrow),
+ .modularSection[data-case-layout='MEDIA SIDECAR 02']
+  .layoutWrap > :global(.eyebrow){
+  position:absolute;
+  top:0;
+  left:0;
+  margin:0;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:340px 548px;
+  gap:24px;
+  align-items:start;
+ }
+
+ /* MEDIA SIDECAR 01: compact narrative left,
+    dominant visual evidence right. */
+ .modularSection .mediaSidecar01 .sidecarPane{
+  grid-column:1;
+  grid-row:1;
+ }
+
+ .modularSection .mediaSidecar01 .mediaPane{
+  grid-column:2;
+  grid-row:1;
+ }
+
+ .modularSection .textSidecar01 .narrativePane,
+ .modularSection .mediaSidecar01 .sidecarPane{
+  padding-top:28px;
+ }
+
+ .modularSection .textSidecar01 .narrativePane,
+ .modularSection .mediaSidecar01 .sidecarPane,
+ .modularSection .textSidecar01 .mediaPane,
+ .modularSection .mediaSidecar01 .mediaPane{
+  width:100%;
+ }
+
+ /* CONTEXT — ASYMMETRIC GRID 02 */
+ .modularSection .textSidecar01 .asymmetricGrid02{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/550;
+  grid-template-columns:
+   minmax(0,61.0526%)
+   minmax(0,37.3684%);
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  column-gap:1.5789%;
+  row-gap:2.1818%;
+  align-items:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 > .dominantRegion{
+  grid-column:1;
+  grid-row:1 / span 3;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .supportRail{
+  grid-column:2;
+  grid-row:1 / span 3;
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(3,minmax(0,1fr));
+  gap:4.22535%;
+  align-self:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .asymmetricSupportStack{
+  display:contents;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid02 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* ECOMMERCE — MEDIA SIDECAR 01 + ASYMMETRIC GRID 01 */
+ .modularSection .mediaSidecar01 .asymmetricGrid01{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/520;
+  grid-template-columns:
+   minmax(0,68.4211%)
+   minmax(0,28.4211%);
+  grid-template-rows:1fr;
+  column-gap:3.1578%;
+  row-gap:0;
+  align-items:stretch;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 > .dominantRegion{
+  grid-column:1;
+  grid-row:1;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
+  grid-column:2;
+  grid-row:1;
+  grid-template-columns:1fr;
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:11.1111%;
+  align-self:stretch;
+ }
+
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+
+ /* CAMPAIGN — TEXT SIDECAR 01 + ASYMMETRIC GRID 01 */
+ .modularSection .textSidecar01 .asymmetricGrid01{
+  width:100%;
+  height:auto;
+  aspect-ratio:760/664;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:minmax(0,1.909fr) minmax(0,1fr);
+  gap:3.1578%;
+  align-items:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 > .dominantRegion{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
+  grid-column:1 / -1;
+  grid-row:2;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-template-rows:1fr;
+  gap:3.1578%;
+  align-self:stretch;
+ }
+
+ .modularSection .textSidecar01
+  .asymmetricGrid01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+}
+
+/* Transitional sidecar interpolation between the verified
+   1024 contract (340 / 24 / 548) and the verified
+   1440 contract (440 / 80 / 760).
+
+   Text width and gap interpolate between the two authority
+   endpoints. Media occupies the remaining rail width so the
+   composition cannot overflow during the transition. */
+@media(min-width:1024px) and (max-width:1439px){
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:
+   clamp(340px,calc(24.0385vw + 93.8462px),440px)
+   minmax(0,1fr);
+  column-gap:
+   clamp(24px,calc(13.4615vw - 113.8462px),80px);
+ }
+}
+
+/* Primary desktop authority: 440 / 80 / 760 at 1440+. */
+@media(min-width:1440px){
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'],
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'],
+ .modularSection[data-case-layout='MEDIA SIDECAR 02']{
+  padding-block:var(--als-case-section-pad);
+ }
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 02'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1280px;
+  margin-inline:auto;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:440px 760px;
+  column-gap:80px;
+ }
+
+ /* BRAND WORLD */
+ .modularSection[data-case-layout='FULL BLEED 01']{
+  padding-top:64px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01'] .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1280px;
+  margin-inline:auto;
+  position:relative;
+  gap:0;
+ }
+
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .layoutShell{
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .fullBleedRegion,
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .defaultMediaRegion{
+  width:100%;
+  aspect-ratio:16/7;
+ }
+
+ /* EDITORIAL */
+
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutShell{
+  gap:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .fullBleedRegion{
+  gap:16px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .fullBleedIntro{
+  grid-template-columns:240px minmax(0,880px);
+  column-gap:80px;
+  align-items:start;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01{
+  width:100%;
+  height:864px;
+  aspect-ratio:auto;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:560px 280px;
+  gap:24px;
+  align-items:stretch;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceLead{
+  grid-column:1 / -1;
+  grid-row:1;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{
+  grid-row:2;
+  align-self:stretch;
+  margin-top:0;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA{grid-column:1;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB{grid-column:2;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{grid-column:3;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01 :global(.media-frame){
+  aspect-ratio:auto;
+  min-height:0;
+  height:100%;
+ }
+}
+
+/* Large desktop: 550 / 100 / 950.
+   Internal type remains stable; composition expands. */
+@media(min-width:1441px){
+
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 02'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 01'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
+  width:calc(100% - 160px);
+  max-width:1600px;
+ }
+
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01,
+ .modularSection .mediaSidecar02{
+  grid-template-columns:
+   minmax(0,34.375%)
+   minmax(0,59.375%);
+  column-gap:6.25%;
+ }
+
+ /* Large desktop preserves the approved Editorial hierarchy
+    while allowing the sequence to scale with the content rail. */
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01{
+  width:100%;
+  height:auto;
+  aspect-ratio:1280/864;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-rows:minmax(0,2fr) minmax(0,1fr);
+  gap:clamp(24px,1.25vw,32px);
+ }
+}
+
+
+/* Media Inspect is geometry-transparent inside modular media cells. */
+.modularSection .mediaNode :global(.media-inspect){
+ position:relative;
+ display:block;
+ height:100%;
+ min-height:0;
+}
+
+.modularSection .mediaNode
+ :global(.media-inspect > div:first-child){
+ height:100%;
+ min-height:0;
+}
+
+.modularSection .mediaNode
+ :global(.media-inspect-trigger){
+ position:absolute;
+ left:12px;
+ bottom:12px;
+ z-index:2;
+}
+
+/* Mobile authority. */
+@media(max-width:620px){
+
+
+ .modularSection[data-case-layout='FULL BLEED 01'] .layoutWrap{
   width:342px;
   max-width:342px;
   position:relative;
   gap:0;
  }
 
- :global(#kis_02_complete_brand_world) .layoutWrap > :global(.eyebrow){
-  position:absolute;
-  top:24px;
-  left:0;
-  margin:0;
- }
 
- :global(#kis_02_complete_brand_world) .layoutShell{
-  margin-top:56px;
- }
 
- :global(#kis_02_complete_brand_world) .fullBleedRegion,
- :global(#kis_02_complete_brand_world) .defaultMediaRegion{
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .fullBleedRegion,
+ .modularSection[data-case-layout='FULL BLEED 01']
+  .defaultMediaRegion{
   width:342px;
   height:240px;
- }
-
- :global(#kis_02_complete_brand_world) :global(.media-frame){
   aspect-ratio:auto;
-  min-height:0;
-  height:100%;
  }
 
- :global(#kis_03_inherited_brand_context){
-  min-height:916px;
-  padding-top:0;
-  padding-bottom:0;
- }
-
- :global(#kis_03_inherited_brand_context) .layoutWrap{
-  gap:0;
- }
-
- :global(#kis_03_inherited_brand_context) .case-section-title{
-  margin-bottom:14px;
- }
-
- :global(#kis_03_inherited_brand_context) :global(.prose){
-  font-size:15px;
-  line-height:1.65;
- }
-
- :global(#kis_03_inherited_brand_context) .layoutWrap,
- :global(#kis_05_governing_system) .layoutWrap,
- :global(#kis_08_ecommerce_application) .layoutWrap,
- :global(#kis_09_editorial_application) .layoutWrap,
- :global(#kis_10_campaign_application) .layoutWrap{
+ .modularSection[data-case-layout='TEXT SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='MEDIA SIDECAR 01'] .layoutWrap,
+ .modularSection[data-case-layout='FULL BLEED 02'] .layoutWrap{
   width:342px;
   max-width:342px;
-  gap:12px;
  }
 
- :global(#kis_03_inherited_brand_context) .layoutShell,
- :global(#kis_08_ecommerce_application) .layoutShell,
- :global(#kis_10_campaign_application) .layoutShell{
+ .modularSection .textSidecar01,
+ .modularSection .mediaSidecar01{
   grid-template-columns:1fr;
   gap:12px;
  }
 
- :global(#kis_03_inherited_brand_context) .asymmetricGrid02{
+ /* Context */
+
+ .modularSection .textSidecar01 .asymmetricGrid02{
   width:342px;
   height:332px;
+  aspect-ratio:auto;
   grid-template-columns:repeat(3,minmax(0,1fr));
   grid-template-rows:240px 80px;
   column-gap:8px;
   row-gap:12px;
  }
 
- :global(#kis_03_inherited_brand_context) .asymmetricGrid02 > .dominantRegion{
+ .modularSection .textSidecar01
+  .asymmetricGrid02 > .dominantRegion{
   grid-column:1 / -1;
   grid-row:1;
  }
 
- :global(#kis_03_inherited_brand_context) .supportRail{
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .supportRail{
   grid-column:1 / -1;
   grid-row:2;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -1061,63 +993,30 @@
   gap:8px;
  }
 
- :global(#kis_03_inherited_brand_context) .asymmetricSupportStack{
+ .modularSection .textSidecar01
+  .asymmetricGrid02 .asymmetricSupportStack{
   display:contents;
  }
 
- :global(#kis_03_inherited_brand_context) .dominantRegion :global(.media-frame),
- :global(#kis_03_inherited_brand_context) .supportRail :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
+ /* Ecommerce */
 
- :global(#kis_05_governing_system){
-  min-height:1090px;
- }
-
- :global(#kis_05_governing_system) .specimenField02{
-  width:342px;
-  height:332px;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  grid-template-rows:200px 120px;
-  gap:12px;
- }
-
- :global(#kis_05_governing_system) .specimenField02 > .specimenDominant{
-  grid-column:1 / -1;
-  grid-row:1;
- }
-
- :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div{grid-column:1;grid-row:2;}
- :global(#kis_05_governing_system) .specimenField02 > .specimenDominant + div + div{grid-column:2;grid-row:2;}
-
- :global(#kis_05_governing_system) .specimenField02 :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- :global(#kis_08_ecommerce_application){
-  min-height:800px;
-  padding-top:28px;
-  padding-bottom:28px;
- }
-
- :global(#kis_08_ecommerce_application) .asymmetricGrid01{
+ .modularSection .mediaSidecar01 .asymmetricGrid01{
   width:342px;
   height:412px;
+  aspect-ratio:auto;
   grid-template-columns:repeat(2,minmax(0,1fr));
   grid-template-rows:240px 160px;
   gap:12px;
  }
 
- :global(#kis_08_ecommerce_application) .asymmetricGrid01 > .dominantRegion{
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 > .dominantRegion{
   grid-column:1 / -1;
   grid-row:1;
  }
 
- :global(#kis_08_ecommerce_application) .asymmetricSupportStack{
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
   grid-column:1 / -1;
   grid-row:2;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1125,71 +1024,25 @@
   gap:12px;
  }
 
- :global(#kis_08_ecommerce_application) .asymmetricGrid01 :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
+ /* Campaign */
 
- :global(#kis_09_editorial_application){
-  min-height:764px;
-  padding-top:0;
-  padding-bottom:0;
- }
-
- :global(#kis_09_editorial_application) .editorialSequence01{
-  width:342px;
-  grid-template-columns:1fr;
-  grid-template-rows:200px 140px 140px 140px;
-  gap:12px;
- }
-
- :global(#kis_09_editorial_application) .sequenceLead,
- :global(#kis_09_editorial_application) .sequenceSupportA,
- :global(#kis_09_editorial_application) .sequenceSupportB,
- :global(#kis_09_editorial_application) .sequenceClosing{
-  grid-column:1;
-  height:100%;
- }
-
- :global(#kis_09_editorial_application) .sequenceLead{grid-row:1;}
- :global(#kis_09_editorial_application) .sequenceSupportA{grid-row:2;}
- :global(#kis_09_editorial_application) .sequenceSupportB{grid-row:3;}
- :global(#kis_09_editorial_application) .sequenceClosing{grid-row:4;}
-
- :global(#kis_09_editorial_application) .editorialSequence01 :global(.media-frame){
-  aspect-ratio:auto;
-  min-height:0;
-  height:100%;
- }
-
- :global(#kis_09_editorial_application) .captionRail{
-  display:none;
- }
-
- :global(#kis_09_editorial_application) :global(.media-inspect),
- :global(#kis_09_editorial_application) :global(.media-inspect > div:first-child){
-  height:100%;
- }
-
- :global(#kis_10_campaign_application){
-  min-height:716px;
- }
-
- :global(#kis_10_campaign_application) .asymmetricGrid01{
+ .modularSection .textSidecar01 .asymmetricGrid01{
   width:342px;
   height:332px;
+  aspect-ratio:auto;
   grid-template-columns:repeat(2,minmax(0,1fr));
   grid-template-rows:200px 120px;
   gap:12px;
  }
 
- :global(#kis_10_campaign_application) .asymmetricGrid01 > .dominantRegion{
+ .modularSection .textSidecar01
+  .asymmetricGrid01 > .dominantRegion{
   grid-column:1 / -1;
   grid-row:1;
  }
 
- :global(#kis_10_campaign_application) .asymmetricSupportStack{
+ .modularSection .textSidecar01
+  .asymmetricGrid01 .asymmetricSupportStack{
   grid-column:1 / -1;
   grid-row:2;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1197,9 +1050,66 @@
   gap:12px;
  }
 
- :global(#kis_10_campaign_application) .asymmetricGrid01 :global(.media-frame){
+ /* Authored mobile media cells own geometry.
+    Media content fills the cell rather than changing its height. */
+ .modularSection .textSidecar01
+  .asymmetricGrid02 :global(.media-frame),
+ .modularSection .mediaSidecar01
+  .asymmetricGrid01 :global(.media-frame),
+ .modularSection .textSidecar01
+  .asymmetricGrid01 :global(.media-frame),
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01 :global(.media-frame){
   aspect-ratio:auto;
   min-height:0;
   height:100%;
+ }
+
+ /* Editorial */
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .fullBleedIntro{
+  grid-template-columns:1fr;
+  gap:12px;
+  padding:var(--als-case-section-pad) 0 24px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .editorialSequence01{
+  width:342px;
+  height:auto;
+  aspect-ratio:auto;
+  grid-template-columns:1fr;
+  grid-template-rows:200px 140px 140px 140px;
+  gap:12px;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceLead,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB,
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{
+  grid-column:1;
+  height:100%;
+ }
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceLead{grid-row:1;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportA{grid-row:2;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceSupportB{grid-row:3;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .sequenceClosing{grid-row:4;}
+
+ .modularSection[data-case-layout='FULL BLEED 02']
+  .captionRail{
+  display:none;
  }
 }

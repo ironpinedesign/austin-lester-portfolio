@@ -155,7 +155,7 @@ export function buildKryptekIdentityIntegrationProject(base:Project):Project{
     mediaInspect:{
      enabled:true,
      slots:['fixture_spread_2page','fixture_tall_editorial'],
-     buttonLabel:'Inspect spread ↗',
+     buttonLabel:'Inspect spread →',
      tone:'bone',
      captions:{
       fixture_spread_2page:'Two-page spread with inspect enabled for detail review.',

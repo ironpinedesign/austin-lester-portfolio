@@ -282,7 +282,22 @@
         "media_slots": [
           "governing_master_identity",
           "governing_voice_manifesto",
-          "governing_icon_system"
+          "governing_icon_system",
+          "governing_foundation_primary",
+          "governing_foundation_color",
+          "governing_foundation_type",
+          "governing_identity_lockup",
+          "governing_identity_usage",
+          "governing_language_tone",
+          "governing_language_rules",
+          "governing_icon_construction",
+          "governing_icon_application",
+          "governing_guideline_spreads",
+          "governing_decision_rules",
+          "governing_hierarchy_usage",
+          "governing_application_primary",
+          "governing_digital_touchpoints",
+          "governing_physical_touchpoints"
         ],
         "layout_system": {
           "layout": "SYSTEM STAGE 01",
@@ -397,7 +412,7 @@
         "interaction": {
           "mediaInspect": {
             "enabled": true,
-            "buttonLabel": "INSPECT ↗",
+            "buttonLabel": "INSPECT →",
             "tone": "bone",
             "slots": [
               "editorial_lead_spread",
@@ -444,10 +459,31 @@
         "quote_attribution": null,
         "images": [],
         "video_url": null,
-        "quote": null,
+        "quote": "A system designed to survive use.",
         "heading": "Systemized, governed, and extensible.",
         "background": "dark",
-        "metrics": [],
+        "metrics": [
+          {
+            "content_id": "outcome_systemize",
+            "value": "Systemize",
+            "label": "A scattered identity became a documented operating system."
+          },
+          {
+            "content_id": "outcome_govern",
+            "value": "Govern",
+            "label": "Official master assets and usage rules created a reliable source of truth."
+          },
+          {
+            "content_id": "outcome_unify",
+            "value": "Unify",
+            "label": "Voice, hierarchy, color, typography, and iconography began working as one system."
+          },
+          {
+            "content_id": "outcome_extend",
+            "value": "Extend",
+            "label": "The framework could carry consistently across customer, retailer, partner, and future campaign work."
+          }
+        ],
         "type": "dark_statement",
         "narrative_stage": "Outcome",
         "body": "The work established official guidance and a reliable asset foundation, improved consistency across the branding ecosystem, supported clearer market positioning, and gave future customer, retailer, and partnership communication a shared voice and visual standard.",

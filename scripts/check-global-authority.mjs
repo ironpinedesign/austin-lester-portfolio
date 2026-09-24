@@ -15,7 +15,7 @@ const routes=[
  {name:'home',path:'/',rail:'section.wrap.hero'},
  {name:'about',path:'/about',rail:'section.about-wrap.page-opening'},
  {name:'work',path:'/work/truckvault-3d-configurator',rail:'section.wrap.page-opening.case-opening'},
- {name:'kryptek',path:'/work/kryptek-identity-system',rail:'.kryptek-case-study>.page-opening.case-opening'},
+ {name:'kryptek',path:'/work/kryptek-identity-system',rail:'.case-study-canonical-shell>.page-opening.case-opening'},
 ];
 
 function assert(condition,message){
@@ -25,6 +25,31 @@ function assert(condition,message){
 function near(actual,expectedValue,tolerance=1){
  return Math.abs(actual-expectedValue)<=tolerance;
 }
+
+const siteCopySource=await fs.readFile(
+ new URL('../content/site-copy.ts',import.meta.url),
+ 'utf8'
+);
+
+assert(
+ siteCopySource.includes("'home.hero.eyebrow':'Austin Lester / Creative Direction + Design'"),
+ 'Homepage eyebrow default does not match approved production copy'
+);
+
+assert(
+ siteCopySource.includes("'home.hero.headline':'The right solution is\\na consequence of\\nbetter understanding.'"),
+ 'Homepage hero headline default does not match approved production copy'
+);
+
+assert(
+ siteCopySource.includes("'home.hero.intro':'Creative director working across strategy, identity, campaigns, design, film, digital experiences, and technology. I bring the judgment to determine what the work requires and the capability to carry it through.'"),
+ 'Homepage hero intro default does not match approved production copy'
+);
+
+assert(
+ siteCopySource.includes("'home.approach.heading':'Not every problem needs every tool. The value is knowing what the work actually requires.'"),
+ 'Homepage approach heading default does not match approved production copy'
+);
 
 await fs.mkdir(outputDir,{recursive:true});
 const browser=await chromium.launch({headless:true});
@@ -136,8 +161,8 @@ try{
   }
 
   const sidecars=await kryptekPage.evaluate(()=>[
-   {name:'text',selector:'#kis_03_inherited_brand_context'},
-   {name:'media',selector:'#kis_08_ecommerce_application'},
+   {name:'text',selector:'[data-case-layout="TEXT SIDECAR 01"]'},
+   {name:'media',selector:'[data-case-layout="MEDIA SIDECAR 01"]'},
   ].map(({name,selector})=>{
    const section=document.querySelector(selector);
    const rail=section?.querySelector('[class*="layoutWrap"]');
@@ -166,11 +191,122 @@ try{
   await kryptekPage.close();
  }
 
- const semanticPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
- await semanticPage.goto(`${baseUrl}/`,{waitUntil:'networkidle'});
- assert(await semanticPage.locator('.intent-arrow').allTextContents().then((values)=>values.length>0&&values.every((value)=>value.trim()==='→')),'Homepage intent arrows must use →');
- assert((await semanticPage.locator('.footer-title span').textContent())?.trim()==='→','Footer forward arrow must use →');
- await semanticPage.close();
+ const semanticRoutes=[
+  '/',
+  '/about',
+  '/work',
+  '/contact',
+  '/work/interaction-lab',
+  '/work/kryptek-identity-system',
+ ];
+
+ for(const route of semanticRoutes){
+  const semanticPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+  await semanticPage.goto(`${baseUrl}${route}`,{waitUntil:'networkidle'});
+
+  const visibleText=await semanticPage.locator('body').innerText();
+  assert(!visibleText.includes('↗'),`${route}: diagonal arrow ↗ violates the global directional-arrow contract`);
+
+  if(route==='/work/kryptek-identity-system'){
+   const backIndexLabel=(await semanticPage.locator('a.project-navigation-center[href="/work"]').textContent())?.trim();
+   assert(backIndexLabel?.startsWith('←'),`Case-study back-to-index action must use ←, received: ${backIndexLabel}`);
+  }
+
+  if(route==='/'){
+   assert(
+    await semanticPage.locator('.intent-arrow').allTextContents()
+     .then((values)=>values.length>0&&values.every((value)=>value.trim()==='→')),
+    'Homepage intent arrows must use →'
+   );
+   const intentItems=await semanticPage.locator('.intent-grid>a').evaluateAll((links)=>
+    links.map((link)=>({
+     label:link.children[1]?.textContent?.trim()||'',
+     href:link.getAttribute('href')||'',
+     arrow:link.children[2]?.textContent?.trim()||'',
+    }))
+   );
+
+   const creativeArtIntent=intentItems.find((item)=>item.label==='Creative & Art Direction');
+   assert(creativeArtIntent,'Homepage Browse by Intent is missing Creative & Art Direction');
+   assert(
+    creativeArtIntent.href==='/work?intent=Creative%20%26%20Art%20Direction',
+    `Creative & Art Direction intent link has unexpected destination: ${creativeArtIntent.href}`
+   );
+
+   const intentResultPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+   await intentResultPage.goto(`${baseUrl}${creativeArtIntent.href}`,{waitUntil:'networkidle'});
+   const intentResultText=await intentResultPage.locator('body').innerText();
+   assert(intentResultText.includes('2024 Big Game Guide'),'Creative & Art Direction filter is missing 2024 Big Game Guide');
+   assert(intentResultText.includes('Kryptek Merchandise'),'Creative & Art Direction filter is missing Kryptek Merchandise');
+   await intentResultPage.close();
+
+   const approachHeading=(await semanticPage.locator('.approach h2').textContent())?.trim();
+   assert(
+    approachHeading==='Not every problem needs every tool. The value is knowing what the work actually requires.',
+    `Homepage Approach heading does not match approved copy: ${approachHeading}`
+   );
+
+   const approachLink=semanticPage.locator('.approach a.text-link[href="/about"]');
+   assert(await approachLink.count()===1,'Homepage Approach must link to /about');
+   assert(
+    (await approachLink.textContent())?.trim()==='More about Austin →',
+    'Homepage Approach CTA must use the approved forward-navigation label'
+   );
+
+   const footerTitle=semanticPage.locator('.footer-title');
+   assert(
+    await footerTitle.count()===1,
+    'Global footer must render one Contact CTA'
+   );
+   assert(
+    (await footerTitle.textContent())?.trim()==='Let’s make it matter',
+    'Footer CTA copy drifted'
+   );
+   assert(
+    await footerTitle.getAttribute('href')==='/contact',
+    'Footer CTA must link to /contact'
+   );
+   assert(
+    await footerTitle.locator('span').count()===0,
+    'Footer CTA must not carry a separate arrow'
+   );
+
+   const footerStudio=semanticPage.locator(
+    '.footer-studio-link,.footer-studio-label'
+   ).first();
+   assert(
+    await footerStudio.count()===1,
+    'Global footer must render the Media studio utility'
+   );
+   assert(
+    (await footerStudio.textContent())?.trim()==='Media studio →',
+    'Footer Studio utility must use the canonical forward label'
+   );
+
+   const heroSupportingType=await semanticPage.locator('.hero-rail p').evaluate((element)=>{
+    const style=getComputedStyle(element);
+    return {
+     fontSize:style.fontSize,
+     lineHeight:style.lineHeight,
+     fontFamily:style.fontFamily,
+     fontWeight:style.fontWeight,
+    };
+   });
+
+   assert(heroSupportingType.fontSize==='17px',`Homepage hero supporting copy font size was ${heroSupportingType.fontSize}, expected 17px`);
+   assert(near(parseFloat(heroSupportingType.lineHeight),30.6,.2),`Homepage hero supporting copy line height was ${heroSupportingType.lineHeight}, expected 30.6px`);
+   assert(heroSupportingType.fontFamily.includes('Archivo'),`Homepage hero supporting copy did not resolve to Archivo: ${heroSupportingType.fontFamily}`);
+   assert(heroSupportingType.fontWeight==='400',`Homepage hero supporting copy weight was ${heroSupportingType.fontWeight}, expected 400`);
+  }
+
+  await semanticPage.close();
+ }
+
+ const notFoundPage=await browser.newPage({viewport:{width:1440,height:1200},reducedMotion:'reduce'});
+ await notFoundPage.goto(`${baseUrl}/__als-authority-404__`,{waitUntil:'networkidle'});
+ const notFoundBackLabel=(await notFoundPage.locator('a.button[href="/work"]').textContent())?.trim();
+ assert(notFoundBackLabel?.startsWith('←'),`404 back-to-index action must use ←, received: ${notFoundBackLabel}`);
+ await notFoundPage.close();
 }finally{
  await browser.close();
 }

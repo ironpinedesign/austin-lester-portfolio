@@ -31,7 +31,7 @@ Tertiary:
 
 Language semantics:
 - + = contextual explanation / deeper thinking.
-- Inspect/enlarge actions use INSPECT ↗ language, not +, to avoid conceptual ambiguity.
+- Inspect/enlarge actions use INSPECT → language, not +, to avoid conceptual ambiguity.
 
 Disclosure control sizing:
 - Disclosure controls should generally be intrinsic/compact.
@@ -91,7 +91,7 @@ Disclosure control sizing:
 
 - Problem solved: detailed work needs closer inspection without overcrowding page layout.
 - Best use cases: guideline pages, detailed layouts, technical diagrams, dense UI.
-- Intended behavior: INSPECT ↗ opens media-first dialog with close control and optional caption/credit.
+- Intended behavior: INSPECT → opens media-first dialog with close control and optional caption/credit.
 - Mobile behavior: full-height panel with scrolling body.
 - Accessibility notes: dialog semantics, Escape close, focus to close on open, focus return on close.
 - Performance considerations: modal only mounts on open.

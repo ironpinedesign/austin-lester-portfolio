@@ -214,6 +214,15 @@ async function main() {
   console.log(`- origin/main: ${originMain}`);
   checkCurrentBranchAlignment(currentBranch);
 
+  printCheck('Modular case-study tests');
+  for (const script of [
+    'test:case-study-schema',
+    'test:case-study-runtime',
+    'test:kryptek-candidate',
+  ]) {
+    runCommand('corepack', ['pnpm', 'run', script]);
+  }
+
   printCheck('TypeScript');
   runCommand('corepack', ['pnpm', 'exec', 'tsc', '--noEmit']);
 

@@ -8,9 +8,12 @@ type ApiResult=Preview&{revision:number;canRestore:boolean;entries:Entry[];chang
 async function call(body?:unknown):Promise<ApiResult>{const r=await fetch('/api/studio/content',body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:undefined);if(!r.ok){let msg=await r.text();try{msg=JSON.parse(msg).error||msg}catch{}throw Error(msg)}return r.json() as Promise<ApiResult>}
 export default function ContentManager(){
  const [state,setState]=useState<{revision:number;canRestore:boolean;entries:Entry[]}|null>(null),[csv,setCsv]=useState(''),[filename,setFilename]=useState(''),[preview,setPreview]=useState<(Preview&{revision:number})|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState(''),[restore,setRestore]=useState(false);const input=useRef<HTMLInputElement>(null);
- async function refresh(){setState(await call())}useEffect(()=>{refresh().catch(e=>setError(e.message))},[]);
+ async function refresh(){setState(await call())}
+ // Initial remote load is intentional; refresh is async and reused after mutations.
+ // eslint-disable-next-line react-hooks/set-state-in-effect
+ useEffect(()=>{refresh().catch(e=>setError(e.message))},[]);
  async function action(fn:()=>Promise<void>){setBusy(true);setError('');setNotice('');try{await fn()}catch(e){setError(e instanceof Error?e.message:'Please try again.')}finally{setBusy(false)}}
- return <section className="wrap studio"><div className="studio-heading"><div><p className="eyebrow">— Private workspace</p><h1>Content <em>/ CSV.</em></h1></div><Link className="text-link" href="/">View portfolio ↗</Link></div><AdminNav active="content"/>
+ return <section className="wrap studio"><div className="studio-heading"><div><p className="eyebrow">— Private workspace</p><h1>Content <em>/ CSV.</em></h1></div><Link className="text-link" href="/">View portfolio →</Link></div><AdminNav active="content"/>
  <p className="studio-intro">Export current copy, edit the value column, then review exactly what will change before applying it.</p>
  {error&&<p role="alert" className="status-banner error-banner">{error}</p>}{notice&&<p role="status" className="status-banner">{notice}</p>}
  <div className="content-actions"><a className="button" href="/api/studio/content?format=csv" download>Export current CSV ↓</a><button className="button secondary" disabled={busy} onClick={()=>input.current?.click()}>Import CSV ↑</button><button className="text-button" disabled={busy||!state?.canRestore} onClick={()=>setRestore(true)}>Restore previous content</button></div>
@@ -22,6 +25,6 @@ export default function ContentManager(){
  {preview.changes.map(c=><article className="copy-change" key={c.id}><h3>{c.location}</h3><small>{c.id} · {c.type}</small><div className="before-after"><div><p className="eyebrow">Before</p><p>{c.before||'(empty)'}</p></div><div><p className="eyebrow">After →</p><p>{c.after||'(empty)'}</p></div></div></article>)}
  {!preview.changes.length&&!preview.error&&!preview.invalid.length&&!preview.unknown.length&&!preview.missingRequired.length&&<p className="status-banner">No content changes. This CSV matches the current site.</p>}
  <div className="content-actions"><button className="button" disabled={busy||!preview.canApply} onClick={()=>action(async()=>{const r=await call({action:'apply',csv,revision:preview.revision});setPreview(null);await refresh();setNotice(`${r.changed} field${r.changed===1?'':'s'} updated. A restore point was saved. Refresh the portfolio to see the change.`)})}>Apply {preview.changes.length} changes</button><button className="text-button" disabled={busy} onClick={()=>action(async()=>setPreview(await call({action:'preview',csv})))}>Refresh preview</button><button className="text-button" onClick={()=>setPreview(null)}>Discard preview</button></div></section>}
- <section className="content-summary"><h2>One location for every piece of copy.</h2><p>{state?state.entries.filter(e=>e.editable&&!e.slot).length:'…'} editable fields. Find their page, section, permanent key, and current status in the <Link href="/studio/map">Site Map ↗</Link>.</p></section>
+ <section className="content-summary"><h2>One location for every piece of copy.</h2><p>{state?state.entries.filter(e=>e.editable&&!e.slot).length:'…'} editable fields. Find their page, section, permanent key, and current status in the <Link href="/studio/map">Site Map →</Link>.</p></section>
  </section>
 }
