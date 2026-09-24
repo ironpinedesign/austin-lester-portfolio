@@ -179,6 +179,47 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
  }
 
  if(semanticRole==='outcome'){
+  const outcomeItems=s.metrics||[];
+
+  if(outcomeItems.length===4){
+   return <section
+    id={s.content_id}
+    className="case-section dark case-outcome-system"
+    data-case-role="outcome"
+   >
+    <div className="wrap case-outcome-system-inner">
+     <p className="eyebrow case-outcome-eyebrow">
+      {s.narrative_stage||'Outcome'}
+     </p>
+
+     <div className="case-outcome-pillars">
+      {outcomeItems.map((item,index)=><div
+       className="case-outcome-pillar"
+       key={item.content_id}
+      >
+       <span className="eyebrow">
+        {String(index+1).padStart(2,'0')}
+       </span>
+       <h2>{item.value}</h2>
+       <p>{item.label}</p>
+      </div>)}
+     </div>
+
+     <div className="case-outcome-summary">
+      <div>
+       <h2 className="case-outcome-heading">{s.heading}</h2>
+      </div>
+
+      <div className="case-outcome-copy">
+       {s.quote&&<p className="case-outcome-quote">{s.quote}</p>}
+       {narrativeNode}
+       {infoDisclosure}
+      </div>
+     </div>
+    </div>
+   </section>;
+  }
+
   return <section
    id={s.content_id}
    className="case-section case-semantic-card-section"
@@ -237,26 +278,35 @@ export function CaseStudyArticle({project,projects,map,text,showCover=true,cover
   ?'case-study-canonical-shell'
   :undefined;
 
+ const openingContent=<>
+  <p className="eyebrow">- {project.project_number} / {project.strategic_intent} · {project.year}{openingQualifier?` · ${openingQualifier}`:''}</p>
+  <div className="case-title-grid">
+   <h1>{project.title}</h1>
+   <div>
+    <p className="case-subtitle">{project.subtitle}</p>
+    <p className="eyebrow">{project.client} · {project.year}</p>
+   </div>
+  </div>
+  <div className="case-intro">
+   <h2>{project.thesis}</h2>
+   <Prose text={project.summary}/>
+  </div>
+  <dl className="project-facts">
+   <div><dt>{text('global.project.client_label')}</dt><dd>{project.client}</dd></div>
+   <div><dt>{text('global.project.year_label')}</dt><dd>{project.year}</dd></div>
+   <div><dt>{text('global.project.role_label')}</dt><dd>{project.role.join(', ')}</dd></div>
+   <div><dt>{text('global.project.disciplines_label')}</dt><dd>{project.discipline_tags.join(', ')}</dd></div>
+  </dl>
+ </>;
+
  return <article className={articleClassName}>
-  <section className="wrap page-opening case-opening">
-   <p className="eyebrow">- {project.project_number} / {project.strategic_intent} · {project.year}{openingQualifier?` · ${openingQualifier}`:''}</p>
-   <div className="case-title-grid">
-    <h1>{project.title}</h1>
-    <div>
-     <p className="case-subtitle">{project.subtitle}</p>
-     <p className="eyebrow">{project.client} · {project.year}</p>
-    </div>
-   </div>
-   <div className="case-intro">
-    <h2>{project.thesis}</h2>
-    <Prose text={project.summary}/>
-   </div>
-   <dl className="project-facts">
-    <div><dt>{text('global.project.client_label')}</dt><dd>{project.client}</dd></div>
-    <div><dt>{text('global.project.year_label')}</dt><dd>{project.year}</dd></div>
-    <div><dt>{text('global.project.role_label')}</dt><dd>{project.role.join(', ')}</dd></div>
-    <div><dt>{text('global.project.disciplines_label')}</dt><dd>{project.discipline_tags.join(', ')}</dd></div>
-   </dl>
+  <section className={runtime.shellVariant==='canonical'
+   ?'page-opening case-opening'
+   :'wrap page-opening case-opening'
+  }>
+   {runtime.shellVariant==='canonical'
+    ?<div className="wrap case-opening-inner">{openingContent}</div>
+    :openingContent}
   </section>
 
   {runtime.showCover&&<div className="wrap case-cover">

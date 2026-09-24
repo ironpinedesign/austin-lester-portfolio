@@ -40,8 +40,18 @@ for(const p of projects){
  }
  for(const s of p.content_sections){
   const prefix=`project.${p.content_id}.${s.content_id}`; const section=s.narrative_stage||human(s.content_id);
-  const keys=s.type==='pull_quote'?['narrative_stage','quote','quote_attribution']:s.type==='metrics'?['narrative_stage','heading']:['narrative_stage','heading','body'];
-  for(const k of keys)add({id:`${prefix}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:human(k),type:k==='body'?'richtext':'text',value:String(s[k as keyof typeof s]??''),editable:true,required:k==='quote',projectId:p.content_id,surface:'project'});
+  const keys=s.type==='pull_quote'
+   ?['narrative_stage','quote','quote_attribution']
+   :s.type==='metrics'
+    ?['narrative_stage','heading']
+    :[
+      'narrative_stage',
+      'heading',
+      'body',
+      ...(typeof s.quote==='string'?['quote']:[]),
+      ...(typeof s.quote_attribution==='string'?['quote_attribution']:[])
+     ];
+  for(const k of keys)add({id:`${prefix}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:human(k),type:k==='body'?'richtext':'text',value:String(s[k as keyof typeof s]??''),editable:true,required:s.type==='pull_quote'&&k==='quote',projectId:p.content_id,surface:'project'});
   for(const m of s.metrics||[])for(const k of ['label','value'] as const)add({id:`${prefix}.${m.content_id}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:`${m.label} / ${human(k)}`,type:'text',value:m[k],editable:true,required:true,projectId:p.content_id,surface:'project'});
   for(const name of s.media_slots)media(`${prefix}.${name}`,p.title,`/work/${p.slug}#${s.content_id}`,section,human(name)+(s.type==='video'?' (video)':' (image / video)'),p,'project',s.type==='video'?'video':'image');
  }

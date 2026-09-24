@@ -3,7 +3,6 @@
 name = "austin-lester-portfolio-production"
 main = "dist/worker.js"
 compatibility_date = "2026-09-02"
-compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 account_id = "2e8092555bad431938650f4256140c20"
 routes = [

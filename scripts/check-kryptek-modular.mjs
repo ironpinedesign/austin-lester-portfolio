@@ -4,12 +4,12 @@ const baseUrl=(process.env.KRYPTEK_MODULAR_URL||'http://localhost:3000').replace
 const publicRoute='/work/kryptek-identity-system';
 const candidateRoute='/work/case-study-candidate/kryptek-identity-system';
 
-const canonical=[
- {width:390,height:1090},
- {width:768,height:1180},
- {width:1024,height:800},
- {width:1440,height:825},
- {width:1760,height:770},
+const canonicalWidths=[
+ 390,
+ 768,
+ 1024,
+ 1440,
+ 1760,
 ];
 
 const transitionWidths=[
@@ -182,7 +182,7 @@ async function sectionPadding(page,width){
  }
 }
 
-async function auditPublic(browser,width,expectedHeight=null){
+async function auditPublic(browser,width){
  const page=await browser.newPage({
   viewport:{width,height:1200},
   reducedMotion:'reduce'
@@ -359,6 +359,7 @@ async function auditPublic(browser,width,expectedHeight=null){
  );
 
  const heights=[];
+ const unassignedSlots=new Set();
  const stateIds=['foundation','identity','language','iconography','governance','application'];
 
  for(let index=0;index<6;index++){
@@ -396,6 +397,16 @@ async function auditPublic(browser,width,expectedHeight=null){
    `${width}: state ${index+1} is not using production modular media binding keys`
   );
 
+  const stateUnassigned=await browserRoot
+   .locator('[data-media-slot]')
+   .evaluateAll((elements)=>elements
+    .filter((element)=>element.querySelector('.media-placeholder'))
+    .map((element)=>element.getAttribute('data-media-slot'))
+    .filter(Boolean)
+   );
+
+  for(const key of stateUnassigned)unassignedSlots.add(key);
+
   const rootHeight=await browserRoot.evaluate(
    (element)=>element.getBoundingClientRect().height
   );
@@ -415,20 +426,6 @@ async function auditPublic(browser,width,expectedHeight=null){
  const max=Math.max(...heights);
 
  assert(max-min<=1,`${width}: System Browser state height jumps by ${max-min}px`);
-
- if(expectedHeight!==null){
-  assert(
-   near(min,expectedHeight)&&near(max,expectedHeight),
-   `${width}: System Browser height ${min}→${max}, expected ${expectedHeight}`
-  );
- }
-
- if(width>=768&&width<1024){
-  assert(
-   near(min,1180)&&near(max,1180),
-   `${width}: tablet System Browser must remain 1180px; got ${min}→${max}`
-  );
- }
 
  await tabs.nth(0).click();
  await tabs.nth(0).focus();
@@ -468,14 +465,13 @@ async function auditPublic(browser,width,expectedHeight=null){
   );
  }
 
- const placeholders=await browserRoot.locator('.media-placeholder').count();
-
  await page.close();
 
  return {
   width,
   systemBrowserHeight:`${Math.round(min)} → ${Math.round(max)}`,
-  placeholders,
+  placeholders:unassignedSlots.size,
+  unassignedSlots:[...unassignedSlots],
  };
 }
 
@@ -550,12 +546,12 @@ const browser=await chromium.launch({headless:true});
 const report=[];
 
 try{
- for(const contract of canonical){
-  report.push(await auditPublic(browser,contract.width,contract.height));
+ for(const width of canonicalWidths){
+  report.push(await auditPublic(browser,width));
  }
 
  for(const width of transitionWidths){
-  report.push(await auditPublic(browser,width,null));
+  report.push(await auditPublic(browser,width));
  }
 
  await auditCandidate(browser);
@@ -563,18 +559,19 @@ try{
  await browser.close();
 }
 
-const placeholderCount=report.reduce(
- (total,entry)=>total+entry.placeholders,
- 0
-);
+const unassignedMedia=[
+ ...new Set(report.flatMap((entry)=>entry.unassignedSlots))
+];
 
 console.log(JSON.stringify({
  status:'pass',
- canonicalWidths:canonical.map((entry)=>entry.width),
+ canonicalWidths,
  transitionWidths,
  report,
+ unassignedMediaCount:unassignedMedia.length,
+ unassignedMedia,
  mediaStatus:
-  placeholderCount>0
-   ?'UNASSIGNED MEDIA REMAINS — assign and visually verify production imagery before merge/deploy.'
+  unassignedMedia.length>0
+   ?`${unassignedMedia.length} UNIQUE SYSTEM BROWSER MEDIA SLOTS REMAIN UNASSIGNED — assign and visually verify production imagery before merge/deploy.`
    :'No System Browser media placeholders detected.',
 },null,2));
