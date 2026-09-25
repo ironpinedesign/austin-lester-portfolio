@@ -420,8 +420,55 @@
 .client-wall{padding-block:48px}
 .client-wall-title{margin:25px 0 31px}
 .client-logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));list-style:none;margin:0;padding:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.client-logo-grid>li{height:120px;display:grid;place-items:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}
-.client-logo-image{display:block;width:var(--logo-width);height:auto;max-height:66px;object-fit:contain}
+.client-logo-grid>li{position:relative;isolation:isolate;height:120px;display:grid;place-items:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);overflow:visible}
+
+/* Selected Clients / moving corners hover effect */
+.client-logo-grid>li::before,
+.client-logo-grid>li::after{
+ content:"";
+ position:absolute;
+ inset:-1px;
+ z-index:1;
+ pointer-events:none;
+ opacity:0;
+ transition:background-size .24s cubic-bezier(.2,.8,.2,1),opacity .14s ease;
+}
+
+/* Horizontal portions of the four corners */
+.client-logo-grid>li::before{
+ background:
+  linear-gradient(var(--clay),var(--clay)) left top / 0 1px no-repeat,
+  linear-gradient(var(--clay),var(--clay)) right top / 0 1px no-repeat,
+  linear-gradient(var(--clay),var(--clay)) left bottom / 0 1px no-repeat,
+  linear-gradient(var(--clay),var(--clay)) right bottom / 0 1px no-repeat;
+}
+
+/* Vertical portions of the four corners */
+.client-logo-grid>li::after{
+ background:
+  linear-gradient(var(--clay),var(--clay)) left top / 1px 0 no-repeat,
+  linear-gradient(var(--clay),var(--clay)) right top / 1px 0 no-repeat,
+  linear-gradient(var(--clay),var(--clay)) left bottom / 1px 0 no-repeat,
+  linear-gradient(var(--clay),var(--clay)) right bottom / 1px 0 no-repeat;
+}
+
+.client-logo-image{position:relative;z-index:2;display:block;width:var(--logo-width);height:auto;max-height:66px;object-fit:contain}
+
+@media(hover:hover) and (pointer:fine){
+ .client-logo-grid>li:hover{
+  z-index:2;
+ }
+
+ .client-logo-grid>li:hover::before{
+  opacity:1;
+  background-size:16% 1px,16% 1px,16% 1px,16% 1px;
+ }
+
+ .client-logo-grid>li:hover::after{
+  opacity:1;
+  background-size:1px 16%,1px 16%,1px 16%,1px 16%;
+ }
+}
 
 @media(min-width:768px){
 
