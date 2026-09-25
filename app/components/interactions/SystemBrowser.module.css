@@ -58,9 +58,11 @@
 .title{
  margin:0;
  font-size:32px;
- font-weight:500;
- line-height:1.1;
- letter-spacing:-.049em;
+ font-weight:700;
+ font-stretch:90%;
+ font-variation-settings:"wdth" 90;
+ line-height:.94;
+ letter-spacing:-.05em;
  color:var(--ink);
 }
 
@@ -362,8 +364,8 @@
 
  .title{
   font-size:38px;
-  line-height:1.1;
-  letter-spacing:-.041em;
+  line-height:.94;
+  letter-spacing:-.05em;
  }
 
  .body{
@@ -587,9 +589,9 @@
  }
 
  .title{
-  font-size:45px;
-  line-height:1.12;
-  letter-spacing:-.035em;
+  font-size:48px;
+  line-height:.94;
+  letter-spacing:-.05em;
  }
 
  .body{
@@ -636,7 +638,7 @@
  }
 
  .titleStack{
-  gap:7px;
+  gap:20px;
  }
 
  .evidenceRail{
