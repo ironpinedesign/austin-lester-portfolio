@@ -15,6 +15,7 @@ export const KRYPTĒK_CANDIDATE_SOURCE_SECTION_IDS=[
  'kis_02_complete_brand_world',
  'kis_03_inherited_brand_context',
  'insight',
+ 'kis_04_identity_architecture',
  'kis_05_governing_system',
  'kis_08_ecommerce_application',
  'kis_09_editorial_application',
@@ -55,6 +56,13 @@ const CANDIDATE_RECIPE:CandidateRecipe[]=[
   sourceId:'insight',
   semanticRole:'insight',
   surface:'light'
+ },
+ {
+  sourceId:'kis_04_identity_architecture',
+  semanticRole:'narrative',
+  surface:'light',
+  layout:{id:'STATE COMPARE 01'},
+  specializedComponent:'BEFORE AFTER COMPARE'
  },
  {
   sourceId:'kis_05_governing_system',

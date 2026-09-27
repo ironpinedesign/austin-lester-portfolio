@@ -33,7 +33,7 @@ export const CASE_SECTION_ROLE_IDS=[
 export const CASE_SURFACE_IDS=['light','dark'] as const;
 export const CASE_NAVIGATION_VARIANTS=['continue','compact'] as const;
 export const CASE_SHELL_VARIANTS=['default','canonical'] as const;
-export const CASE_SPECIALIZED_COMPONENT_IDS=['SYSTEM BROWSER','VIDEO FEATURE'] as const;
+export const CASE_SPECIALIZED_COMPONENT_IDS=['SYSTEM BROWSER','VIDEO FEATURE','BEFORE AFTER COMPARE'] as const;
 
 export type CaseSpatialLayoutId=(typeof CASE_SPATIAL_LAYOUT_IDS)[number];
 export type CaseMediaLayoutId=(typeof CASE_MEDIA_LAYOUT_IDS)[number];

@@ -1,0 +1,282 @@
+.root{
+ background:var(--paper);
+}
+
+.inner{
+ display:flex;
+ flex-direction:column;
+}
+
+.intro{
+ display:block;
+ margin-bottom:52px;
+}
+
+.eyebrow{
+ margin:0 0 24px;
+}
+
+.introCopy{
+ max-width:920px;
+}
+
+.heading{
+ margin:0;
+ max-width:22ch;
+ font-size:48px;
+ font-weight:700;
+ font-stretch:90%;
+ font-variation-settings:"wdth" 90;
+ line-height:.94;
+ letter-spacing:-.05em;
+}
+
+.body{
+ margin-top:28px;
+ max-width:66ch;
+ color:var(--muted);
+ font-size:17px;
+ line-height:1.8;
+}
+
+.rail{
+ display:flex;
+ align-items:baseline;
+ justify-content:space-between;
+ gap:24px;
+ margin-bottom:18px;
+ font:400 10px/1.65 var(--mono);
+ letter-spacing:.14em;
+ text-transform:uppercase;
+ color:var(--muted);
+}
+
+.prompt{
+ margin-left:auto;
+ color:var(--ink);
+ text-align:right;
+ white-space:nowrap;
+}
+
+.frame{
+ position:relative;
+ width:100%;
+ aspect-ratio:21/9;
+ overflow:hidden;
+ background:var(--panel);
+ user-select:none;
+ -webkit-user-select:none;
+ isolation:isolate;
+}
+
+.refinedLayer,
+.legacyLayer{
+ position:absolute;
+ inset:0;
+}
+
+.refinedLayer{
+ z-index:1;
+}
+
+.legacyLayer{
+ z-index:2;
+ pointer-events:none;
+}
+
+.picture{
+ display:block;
+ width:100%;
+ height:100%;
+}
+
+.picture img{
+ display:block;
+ width:100%;
+ height:100%;
+ object-fit:fill;
+ user-select:none;
+ -webkit-user-drag:none;
+}
+
+.placeholder{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ gap:12px;
+ width:100%;
+ height:100%;
+ background:var(--panel);
+ border:1px solid var(--line);
+ color:#777;
+ font:400 10px/1.6 var(--mono);
+ letter-spacing:.1em;
+ text-align:center;
+ text-transform:uppercase;
+}
+
+.placeholder>span:first-child{
+ font-family:Arial,sans-serif;
+ font-size:40px;
+ font-weight:200;
+ color:#aaa;
+}
+
+.divider{
+ position:absolute;
+ top:0;
+ bottom:0;
+ z-index:6;
+ width:1px;
+ transform:translateX(-1px);
+ background:rgba(26,26,26,.28);
+ pointer-events:none;
+ transition:background-color 160ms ease;
+}
+
+.grip{
+ position:absolute;
+ top:50%;
+ left:50%;
+ width:32px;
+ height:44px;
+ transform:translate(-50%,-50%);
+ opacity:.58;
+ pointer-events:none;
+ transition:opacity 160ms ease;
+}
+
+.grip::before{
+ content:"";
+ position:absolute;
+ top:50%;
+ left:50%;
+ width:20px;
+ height:1px;
+ transform:translate(-50%,-50%);
+ background:rgba(26,26,26,.68);
+ transition:
+  width 160ms ease,
+  background-color 160ms ease;
+}
+
+.interaction{
+ position:absolute;
+ inset:0;
+ z-index:10;
+ cursor:ew-resize;
+ touch-action:pan-y;
+ outline:none;
+}
+
+.frame:hover .divider{
+ background:rgba(26,26,26,.58);
+}
+
+.frame:hover .grip{
+ opacity:.92;
+}
+
+.frame:hover .grip::before{
+ width:24px;
+ background:rgba(26,26,26,.86);
+}
+
+.active .divider,
+.focused .divider{
+ background:var(--clay);
+}
+
+.active .grip,
+.focused .grip{
+ opacity:1;
+}
+
+.active .grip::before,
+.focused .grip::before{
+ width:24px;
+ background:var(--clay);
+}
+
+.interaction:focus-visible{
+ box-shadow:inset 0 0 0 1px var(--clay);
+}
+
+.states{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:32px;
+ margin-top:14px;
+ padding-top:14px;
+ border-top:1px solid var(--line);
+}
+
+.refinedState{
+ text-align:right;
+}
+
+.stateLabel{
+ margin:0;
+ font:500 9px/1.4 var(--mono);
+ letter-spacing:.16em;
+ text-transform:uppercase;
+ color:var(--ink);
+}
+
+@media(max-width:767px){
+ .intro{
+  margin-bottom:40px;
+ }
+
+ .eyebrow{
+  margin-bottom:20px;
+ }
+
+ .heading{
+  font-size:clamp(34px,8.5vw,44px);
+ }
+
+ .body{
+  margin-top:22px;
+  font-size:15px;
+  line-height:1.7;
+ }
+}
+
+@media(max-width:620px){
+ .rail{
+  align-items:flex-start;
+  gap:18px;
+  margin-bottom:14px;
+  font-size:8px;
+ }
+
+ .prompt{
+  max-width:150px;
+  white-space:normal;
+  line-height:1.55;
+ }
+
+ .frameHasMobile{
+  aspect-ratio:16/10;
+ }
+
+ .states{
+  gap:18px;
+  margin-top:12px;
+  padding-top:12px;
+ }
+
+ .stateLabel{
+  font-size:8px;
+ }
+}
+
+@media(prefers-reduced-motion:reduce){
+ .divider,
+ .grip,
+ .grip::before{
+  transition:none;
+ }
+}

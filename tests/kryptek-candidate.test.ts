@@ -85,6 +85,9 @@ function baseProject():Project{
    section('outcome',{type:'dark_statement',background:'dark'}),
    section('kis_03_inherited_brand_context',{media_slots:['inherited_dominant']}),
    section('insight'),
+   section('kis_04_identity_architecture',{
+    media_slots:['identity_legacy','identity_refined']
+   }),
    section('kis_09_editorial_application',{
     heading:'',
     body:'',

@@ -34,9 +34,17 @@ export type Section={
  layout_system?:SectionLayoutConfig|null;
  quote?:string|null;
  quote_attribution?:string|null;
- metrics?:{content_id:string;label:string;value:string;kind?:string}[];
+ metrics?:{
+  content_id:string;
+  label:string;
+  value:string;
+  kind?:string;
+  stage?:string;
+  descriptor?:string;
+ }[];
  images?:string[];
  caption?:string|null;
+ note?:string|null;
  interaction?:SectionInteractionConfig;
  modular?:ModularSectionConfig|null;
 };
