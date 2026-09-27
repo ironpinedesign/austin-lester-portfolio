@@ -4,6 +4,7 @@ import {ProseCopy as Prose} from '../components/Copy';
 import ExpandableNarrative from '../components/interactions/ExpandableNarrative';
 import InfoDisclosure from '../components/interactions/InfoDisclosure';
 import SystemBrowser from '../components/interactions/SystemBrowser';
+import BeforeAfterCompare from '../components/interactions/BeforeAfterCompare';
 import InlineLoop from '../components/interactions/InlineLoop';
 import MediaCarousel from '../components/interactions/MediaCarousel';
 import MediaDetail from '../components/interactions/MediaDetail';
@@ -62,6 +63,19 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
    projectId={projectId}
    map={map}
    disclosure={interaction?.infoDisclosure}
+  />;
+ }
+
+ if(runtime.specializedComponent==='BEFORE AFTER COMPARE'){
+  const legacySlot=`project.${projectId}.${s.content_id}.identity_legacy`;
+  const refinedSlot=`project.${projectId}.${s.content_id}.identity_refined`;
+
+  return <BeforeAfterCompare
+   eyebrow={s.narrative_stage||'KIS_04 · Identity Architecture'}
+   heading={s.heading}
+   body={s.body}
+   legacy={map[legacySlot]}
+   refined={map[refinedSlot]}
   />;
  }
 
@@ -199,11 +213,15 @@ function CaseSection({s,slug,projectId,map,text}:{s:Section;slug:string;projectI
       >
        <span className="eyebrow">
         {String(index+1).padStart(2,'0')}
+        {item.stage?` / ${item.stage}`:''}
        </span>
        <h2>{item.value}</h2>
-       <p>{item.label}</p>
+       <h3>{item.label}</h3>
+       {item.descriptor&&<p>{item.descriptor}</p>}
       </div>)}
      </div>
+
+     {s.note&&<p className="case-outcome-note">{s.note}</p>}
 
      <div className="case-outcome-summary">
       <div>

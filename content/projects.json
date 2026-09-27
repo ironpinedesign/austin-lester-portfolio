@@ -272,6 +272,28 @@
         "images": [],
         "video_url": null,
         "quote": null,
+        "heading": "From accumulated lockups to a governed system.",
+        "background": "light",
+        "metrics": [],
+        "type": "text_image",
+        "narrative_stage": "KIS_04 · Identity Architecture",
+        "body": "The refinement reduced redundant brand signals, separated the roles of symbol and wordmark, and established shared proportion and spacing rules so the identity could scale across configurations without being rebuilt case by case.",
+        "content_id": "kis_04_identity_architecture",
+        "media_slots": [
+          "identity_legacy",
+          "identity_refined"
+        ],
+        "layout_system": {
+          "layout": "STATE COMPARE 01",
+          "caption": "Legacy and refined identity architecture comparison."
+        }
+      },
+      {
+        "layout": null,
+        "quote_attribution": null,
+        "images": [],
+        "video_url": null,
+        "quote": null,
         "heading": "Governing system in operation.",
         "background": "light",
         "metrics": [],
@@ -459,36 +481,49 @@
         "quote_attribution": null,
         "images": [],
         "video_url": null,
-        "quote": "A system designed to survive use.",
-        "heading": "Systemized, governed, and extensible.",
+        "quote": null,
+        "heading": "A brand system built to survive use and support growth.",
         "background": "dark",
         "metrics": [
           {
-            "content_id": "outcome_systemize",
-            "value": "Systemize",
-            "label": "A scattered identity became a documented operating system."
+            "content_id": "outcome_discovery",
+            "stage": "DISCOVERY",
+            "value": "+94%",
+            "label": "ORGANIC ACQUISITION",
+            "descriptor": "Organic search & organic social visits YoY",
+            "kind": "outcome"
           },
           {
-            "content_id": "outcome_govern",
-            "value": "Govern",
-            "label": "Official master assets and usage rules created a reliable source of truth."
+            "content_id": "outcome_engagement",
+            "stage": "ENGAGEMENT",
+            "value": "+53%",
+            "label": "HOMEPAGE VISITORS",
+            "descriptor": "Unique homepage visitors YoY",
+            "kind": "outcome"
           },
           {
-            "content_id": "outcome_unify",
-            "value": "Unify",
-            "label": "Voice, hierarchy, color, typography, and iconography began working as one system."
+            "content_id": "outcome_efficiency",
+            "stage": "EFFICIENCY",
+            "value": "+76%",
+            "label": "ADVERTISING ROI",
+            "descriptor": "YoY improvement",
+            "kind": "outcome"
           },
           {
-            "content_id": "outcome_extend",
-            "value": "Extend",
-            "label": "The framework could carry consistently across customer, retailer, partner, and future campaign work."
+            "content_id": "outcome_revenue",
+            "stage": "REVENUE",
+            "value": "+110%",
+            "label": "REVENUE GROWTH",
+            "descriptor": "YoY increase",
+            "kind": "outcome"
           }
         ],
         "type": "dark_statement",
         "narrative_stage": "Outcome",
-        "body": "The work established official guidance and a reliable asset foundation, improved consistency across the branding ecosystem, supported clearer market positioning, and gave future customer, retailer, and partnership communication a shared voice and visual standard.",
+        "body": "The work established official guidance, reliable master assets, and a shared visual and verbal standard that could be carried across teams, partners, ecommerce, campaigns, retail, and editorial. During the broader period in which the system was implemented alongside ongoing creative, media, ecommerce, and business activity, Kryptek also recorded substantial year-over-year gains across organic acquisition, homepage traffic, advertising ROI, and revenue.",
         "content_id": "outcome",
-        "media_slots": []
+        "media_slots": [],
+        "note": "Performance reflects the combined contribution of brand, creative, ecommerce, media, campaign execution, and broader business activity during the period. Figures are presented as business outcomes, not as effects attributable to the identity system alone."
       },
       {
         "layout": null,

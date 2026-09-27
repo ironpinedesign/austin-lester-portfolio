@@ -49,10 +49,15 @@ for(const p of projects){
       'heading',
       'body',
       ...(typeof s.quote==='string'?['quote']:[]),
-      ...(typeof s.quote_attribution==='string'?['quote_attribution']:[])
+      ...(typeof s.quote_attribution==='string'?['quote_attribution']:[]),
+      ...(typeof s.note==='string'?['note']:[])
      ];
   for(const k of keys)add({id:`${prefix}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:human(k),type:k==='body'?'richtext':'text',value:String(s[k as keyof typeof s]??''),editable:true,required:s.type==='pull_quote'&&k==='quote',projectId:p.content_id,surface:'project'});
-  for(const m of s.metrics||[])for(const k of ['label','value'] as const)add({id:`${prefix}.${m.content_id}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:`${m.label} / ${human(k)}`,type:'text',value:m[k],editable:true,required:true,projectId:p.content_id,surface:'project'});
+  for(const m of s.metrics||[])for(const k of ['stage','label','value','descriptor'] as const){
+   const value=m[k];
+   if(typeof value!=='string')continue;
+   add({id:`${prefix}.${m.content_id}.${k}`,page:p.title,route:`/work/${p.slug}#${s.content_id}`,section,field:`${m.label} / ${human(k)}`,type:'text',value,editable:true,required:true,projectId:p.content_id,surface:'project'});
+  }
   for(const name of s.media_slots)media(`${prefix}.${name}`,p.title,`/work/${p.slug}#${s.content_id}`,section,human(name)+(s.type==='video'?' (video)':' (image / video)'),p,'project',s.type==='video'?'video':'image');
  }
 }
@@ -130,7 +135,7 @@ export function resolveProjects(values:ContentValues):Project[]{return projects.
  const p=structuredClone(original);
  for(const [k,type] of Object.entries(projectFields)){const v=contentValue(projectFieldId(p,k),values);(p as unknown as Record<string,unknown>)[k]=type==='list'?v.split('\n').filter(Boolean):type==='boolean'?v==='true':type==='number'?Number(v):v;}
  p.strategic_intent=contentValue(`global.categories.${categoryKeys[categories.indexOf(p.strategic_intent)]}.label`,values)||p.strategic_intent;
- for(const s of p.content_sections){const prefix=`project.${p.content_id}.${s.content_id}`;for(const k of ['narrative_stage','heading','body','quote','quote_attribution'] as const)if(registryById.has(`${prefix}.${k}`))s[k]=contentValue(`${prefix}.${k}`,values);for(const m of s.metrics||[])for(const k of ['label','value'] as const)m[k]=contentValue(`${prefix}.${m.content_id}.${k}`,values)}
+ for(const s of p.content_sections){const prefix=`project.${p.content_id}.${s.content_id}`;for(const k of ['narrative_stage','heading','body','quote','quote_attribution','note'] as const)if(registryById.has(`${prefix}.${k}`))s[k]=contentValue(`${prefix}.${k}`,values);for(const m of s.metrics||[])for(const k of ['stage','label','value','descriptor'] as const)if(registryById.has(`${prefix}.${m.content_id}.${k}`))m[k]=contentValue(`${prefix}.${m.content_id}.${k}`,values)}
  return p;
 })}
 export function registryState(values:ContentValues,placements:{slot:string;media_id:string}[],media:{id:string;alt:string}[]):Entry[]{
